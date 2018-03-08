@@ -150,7 +150,21 @@ class CoinChooserBase(PrintError):
 
         return amounts
 
+    def get_change_address(self, coins):
+        max_val = 0
+        ret_addr = None
+        for each in coins:
+            if each.get('value') > max_val:
+                max_val = each.get('value')
+                ret_addr = each.get('address')
+
+        return ret_addr
+
     def change_outputs(self, tx, change_addrs, fee_estimator, dust_threshold):
+        # get max value address
+        change_addr = self.get_change_address(tx.inputs())
+        change_addrs = [change_addr]
+        
         amounts = self.change_amounts(tx, len(change_addrs), fee_estimator,
                                       dust_threshold)
         assert min(amounts) >= 0
@@ -162,6 +176,8 @@ class CoinChooserBase(PrintError):
         change = [(TYPE_ADDRESS, addr, amount)
                   for addr, amount in zip(change_addrs, amounts)]
         self.print_error('change:', change)
+        self.print_error('change:', tx.inputs())
+
         if dust:
             self.print_error('not keeping dust', dust)
         return change

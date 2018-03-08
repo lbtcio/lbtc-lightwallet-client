@@ -86,6 +86,21 @@ class Software_KeyStore(KeyStore):
         key = regenerate_key(privkey)
         return key.sign_message(message, compressed)
 
+    def test_standard_sign_message(self, sequence, message, password):
+        #sec = pw_decode(self.keypairs[pubkey], password)
+        privkey, compressed = self.get_private_key(sequence, password)
+        pre_hash = Hash(bfh(message))
+        #print_error("pubkey:", pubkey)
+        #print_error("prikey:", privkey)
+        #print_error("prehash:", bh2u(pre_hash))
+        pkey = regenerate_key(privkey)
+        secexp = pkey.secret
+        private_key = bitcoin.MySigningKey.from_secret_exponent(secexp, curve = SECP256k1)
+        public_key = private_key.get_verifying_key()
+        sig = private_key.sign_digest_deterministic(pre_hash, hashfunc=hashlib.sha256, sigencode = ecdsa.util.sigencode_der)
+        assert public_key.verify_digest(sig, pre_hash, sigdecode = ecdsa.util.sigdecode_der)
+        return bh2u(sig)
+        
     def decrypt_message(self, sequence, message, password):
         privkey, compressed = self.get_private_key(sequence, password)
         ec = regenerate_key(privkey)
@@ -151,6 +166,27 @@ class Imported_KeyStore(Software_KeyStore):
         if pubkey != public_key_from_private_key(privkey, compressed):
             raise InvalidPassword()
         return privkey, compressed
+
+    #def sign_message(self, pubkey, message, password):
+        #sec = pw_decode(self.keypairs[pubkey], password)
+        #privkey, compressed = self.get_private_key(pubkey, password)
+        #key = regenerate_key(sec)
+        #return key.sign_message(message, compressed)
+
+    def standard_sign_message(self, pubkey, message, password):
+        #sec = pw_decode(self.keypairs[pubkey], password)
+        privkey, compressed = self.get_private_key(pubkey, password)
+        pre_hash = Hash(bfh(message))
+        print_error("pubkey:", pubkey)
+        print_error("prikey:", privkey)
+        print_error("prehash:", bh2u(pre_hash))
+        pkey = regenerate_key(privkey)
+        secexp = pkey.secret
+        private_key = bitcoin.MySigningKey.from_secret_exponent(secexp, curve = SECP256k1)
+        public_key = private_key.get_verifying_key()
+        sig = private_key.sign_digest_deterministic(pre_hash, hashfunc=hashlib.sha256, sigencode = ecdsa.util.sigencode_der)
+        assert public_key.verify_digest(sig, pre_hash, sigdecode = ecdsa.util.sigdecode_der)
+        return bh2u(sig)
 
     def get_pubkey_derivation(self, x_pubkey):
         if x_pubkey[0:2] in ['02', '03', '04']:

@@ -31,7 +31,7 @@ from .qrtextedit import ScanQRTextEdit
 import re
 from decimal import Decimal
 from electrum import bitcoin
-
+from electrum.bitcoin import int_to_hex
 from . import util
 
 RE_ADDRESS = '[1-9A-HJ-NP-Za-km-z]{26,}'
@@ -93,9 +93,11 @@ class PayToEdit(ScanQRTextEdit):
         for word in x.split():
             if word[0:3] == 'OP_':
                 assert word in opcodes.lookup
-                script += chr(opcodes.lookup[word])
+                #script += chr(opcodes.lookup[word])
+                script += int_to_hex(opcodes.lookup[word])
             else:
-                script += push_script(word).decode('hex')
+                #script += push_script(word).decode('hex')
+                script += push_script(word)
         return script
 
     def parse_amount(self, x):

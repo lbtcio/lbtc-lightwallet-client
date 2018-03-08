@@ -162,7 +162,8 @@ class HistoryList(MyTreeWidget):
         if column in self.editable_columns:
             menu.addAction(_("Edit %s")%column_title, lambda: self.editItem(item, column))
 
-        menu.addAction(_("Details"), lambda: self.parent.show_transaction(tx))
+        #menu.addAction(_("Details"), lambda: self.parent.show_transaction(tx))
+        menu.addAction(_("Details %s")%height, lambda: self.parent.show_transaction(tx))
         if is_unconfirmed and tx:
             rbf = is_mine and not tx.is_final()
             if rbf:

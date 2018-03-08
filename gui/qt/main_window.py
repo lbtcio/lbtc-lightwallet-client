@@ -40,11 +40,12 @@ from electrum.util import bh2u, bfh
 
 from electrum import keystore
 from electrum.bitcoin import COIN, is_address, TYPE_ADDRESS, NetworkConstants
+from electrum.bitcoin import Hash, int_to_hex, var_int, b58_address_to_hash160, is_segwit_address
 from electrum.plugins import run_hook
 from electrum.i18n import _
 from electrum.util import (format_time, format_satoshis, PrintError,
                            format_satoshis_plain, NotEnoughFunds,
-                           UserCancelled)
+                           UserCancelled, InvalidPassword, to_bytes, bh2u)
 from electrum import Transaction
 from electrum import util, bitcoin, commands, coinchooser
 from electrum import paymentrequest
@@ -118,6 +119,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.require_fee_update = False
         self.tx_notifications = []
         self.tl_windows = []
+        self.show_business = 0
         self.tx_external_keypairs = {}
 
         self.create_status_bar()
@@ -136,9 +138,20 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.utxo_tab = self.create_utxo_tab()
         self.console_tab = self.create_console_tab()
         self.contacts_tab = self.create_contacts_tab()
+		# vote func
+        #self.register_tab = self.create_register_tab()
+        self.voted_tab = self.create_voted_tab()
+        self.votes_tab = self.create_votes_tab()
+        self.delegates_tab = self.create_delegates_tab()
+
         tabs.addTab(self.create_history_tab(), QIcon(":icons/tab_history.png"), _('History'))
         tabs.addTab(self.send_tab, QIcon(":icons/tab_send.png"), _('Send'))
-        tabs.addTab(self.receive_tab, QIcon(":icons/tab_receive.png"), _('Receive'))
+        #tabs.addTab(self.receive_tab, QIcon(":icons/tab_receive.png"), _('Receive'))
+		# vote func
+        #tabs.addTab(self.register_tab, QIcon(":icons/tab_send.png"), _('Register'))
+        tabs.addTab(self.delegates_tab, QIcon(":icons/tab_contacts.png"), _('Delegates'))
+        tabs.addTab(self.votes_tab, QIcon(":icons/tab_contacts.png"), _('MyVotes'))
+        tabs.addTab(self.voted_tab, QIcon(":icons/tab_send.png"), _('ReceivedVotes'))
 
         def add_optional_tab(tabs, tab, icon, description, name):
             tab.tab_icon = icon
@@ -188,7 +201,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             # partials, lambdas or methods of subobjects.  Hence...
             self.network.register_callback(self.on_network, interests)
             # set initial message
-            self.console.showMessage(self.network.banner)
+            #self.console.showMessage(self.network.banner)
+            self.console.showMessage('Wecome on board!\nWebsite:lightningbitcoin.io\nTwitter/Telegram:LightningBTC\nWish you a greate journey.')
             self.network.register_callback(self.on_quotes, ['on_quotes'])
             self.network.register_callback(self.on_history, ['on_history'])
             self.new_fx_quotes_signal.connect(self.on_fx_quotes)
@@ -207,6 +221,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.history_list.refresh_headers()
         self.history_list.update()
         self.address_list.update()
+        # load vote related data
+        self.delegate_list.toggle_refresh()
+        self.myvote_list.toggle_refresh()
+        self.myvoted_list.toggle_refresh()
 
     def on_quotes(self, b):
         self.new_fx_quotes_signal.emit()
@@ -342,6 +360,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.update_buttons_on_seed()
         self.update_console()
         self.clear_receive_tab()
+
         self.request_list.update()
         self.tabs.show()
         self.init_geometry()
@@ -363,8 +382,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.setGeometry(100, 100, 840, 400)
 
     def watching_only_changed(self):
-        name = "Electrum Testnet" if NetworkConstants.TESTNET else "Electrum"
-        title = '%s %s  -  %s' % (name, self.wallet.electrum_version,
+        #name = "LBTC Wallet Testnet" if NetworkConstants.TESTNET else "LBTC Wallet"
+        name = "LBTC Wallet"
+        title = '%s %s based on electrum 3.0.5 -  %s' % (name, self.wallet.electrum_version,
                                         self.wallet.basename())
         extra = [self.wallet.storage.get('wallet_type', '?')]
         if self.wallet.is_watching_only():
@@ -498,7 +518,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         # Settings / Preferences are all reserved keywords in OSX using this as work around
         tools_menu.addAction(_("Electrum preferences") if sys.platform == 'darwin' else _("Preferences"), self.settings_dialog)
         tools_menu.addAction(_("&Network"), lambda: self.gui_object.show_network_dialog(self))
-        tools_menu.addAction(_("&Plugins"), self.plugins_dialog)
+        #tools_menu.addAction(_("&Plugins"), self.plugins_dialog)
         tools_menu.addSeparator()
         tools_menu.addAction(_("&Sign/verify message"), self.sign_verify_message)
         tools_menu.addAction(_("&Encrypt/decrypt message"), self.encrypt_message)
@@ -516,12 +536,12 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum.org"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://www.lightningbitcoin.io/"))
         help_menu.addSeparator()
-        help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://docs.electrum.org/")).setShortcut(QKeySequence.HelpContents)
+        #help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://docs.electrum.org/")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
         help_menu.addSeparator()
-        help_menu.addAction(_("&Donate to server"), self.donate_to_server)
+        #help_menu.addAction(_("&Donate to server"), self.donate_to_server)
 
         self.setMenuBar(menubar)
 
@@ -534,19 +554,18 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.show_error(_('No donation address for this server'))
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum",
+        QMessageBox.about(self, "LBTC Wallet",
             _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" +
-                _("Electrum's focus is speed, with low resource usage and simplifying Bitcoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Bitcoin system."  + "\n\n" +
-                _("Uses icons from the Icons8 icon pack (icons8.com).")))
+                _("Lightning Bitcoin is a fork of the Bitcoin blockchain. By adopting DPoS consensus mechanism with 2M blocksize, Lightning Bitcoin improves transaction speed, promotes decentralization and also supports smart contracts. Lightning Bitcoin combines the advantages of Bitcoin and Ethereum and creates a more valuable and functional blockchain system."))
 
     def show_report_bug(self):
         msg = ' '.join([
-            _("Please report any bugs as issues on github:<br/>"),
-            "<a href=\"https://github.com/spesmilo/electrum/issues\">https://github.com/spesmilo/electrum/issues</a><br/><br/>",
-            _("Before reporting a bug, upgrade to the most recent version of Electrum (latest release or git HEAD), and include the version number in your report."),
+            _("Please report any bugs as issues on email:<br/><br/>"),
+            "support@lightningbitcoin.io<br/><br/>",
+            _("Before reporting a bug, upgrade to the most recent version of LBTC Wallet (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        self.show_message(msg, title="Electrum - " + _("Reporting Bugs"))
+        self.show_message(msg, title="LBTC Wallet - " + _("Reporting Bugs"))
 
     def notify_transactions(self):
         if not self.network or not self.network.is_connected():
@@ -638,9 +657,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.decimal_point == 2:
             return 'bits'
         if self.decimal_point == 5:
-            return 'mBTC'
+            return 'mLBTC'
         if self.decimal_point == 8:
-            return 'BTC'
+            return 'LBTC'
         raise Exception('Unknown base unit')
 
     def connect_fields(self, window, btc_e, fiat_e, fee_e):
@@ -999,6 +1018,183 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.qr_window and self.qr_window.isVisible():
             self.qr_window.set_content(addr, amount, message, uri)
 
+	# vote func
+    def create_register_tab(self):
+        # A 4-column grid layout.  All the stretch is in the last column.
+        # The exchange rate plugin adds a fiat widget in column 2
+        # note : must be called after create_send_tab 
+        self.register_grid = grid = QGridLayout()
+        grid.setSpacing(8)
+        grid.setColumnStretch(3, 1)
+
+        msg = _('Description of the transaction (not mandatory).') + '\n\n'\
+              + _('The description is not sent to the recipient of the funds. It is stored in your wallet file, and displayed in the \'History\' tab.')
+        name_label = HelpLabel(_('Name'), msg)
+        grid.addWidget(name_label, 1, 0)
+        self.register_name_e = MyLineEdit()
+        grid.addWidget(self.register_name_e, 1, 1, 1, -1)
+
+
+        from .paytoedit import PayToEdit
+        self.register_address_e = PayToEdit(self)
+        msg = _('Recipient of the funds.') + '\n\n'\
+              + _('You may enter a Bitcoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Bitcoin address)')
+        address_label = HelpLabel(_('Address'), msg)
+        grid.addWidget(address_label, 2, 0)
+        grid.addWidget(self.register_address_e, 2, 1, 1, -1)
+
+        completer = QCompleter()
+        completer.setCaseSensitivity(False)
+        self.register_address_e.setCompleter(completer)
+        completer.setModel(self.completions)
+
+        self.register_button = QPushButton(_('Register'))
+        #self.save_request_button.clicked.connect(self.save_payment_request)
+
+        self.register_clear_button = EnterButton(_("Clear"), self.do_clear)
+        #self.new_request_button.clicked.connect(self.new_payment_request)
+
+        self.register_buttons = buttons = QHBoxLayout()
+        buttons.addStretch(1)
+        buttons.addWidget(self.register_button)
+        buttons.addWidget(self.register_clear_button)
+        grid.addLayout(buttons, 3, 1, 1, 2)
+
+        vbox0 = QVBoxLayout()
+        vbox0.addLayout(grid)
+        hbox = QHBoxLayout()
+        hbox.addLayout(vbox0)
+        w = QWidget()
+        vbox = QVBoxLayout(w)
+        vbox.addLayout(hbox)
+        vbox.addStretch(1)
+        vbox.addWidget(self.invoices_label)
+        vbox.addWidget(self.invoice_list)
+        vbox.setStretchFactor(self.invoice_list, 1000)
+        w.searchable_list = self.invoice_list
+        #run_hook('create_send_tab', grid)
+        return w
+
+    def create_vote_tab(self):
+        # A 4-column grid layout.  All the stretch is in the last column.
+        # The exchange rate plugin adds a fiat widget in column 2
+        # note : must be called after create_send_tab
+        self.vote_grid = grid = QGridLayout()
+        grid.setSpacing(8)
+        grid.setColumnStretch(3, 1)
+
+        msg = _('Description of the transaction (not mandatory).') + '\n\n'\
+              + _('The description is not sent to the recipient of the funds. It is stored in your wallet file, and displayed in the \'History\' tab.')
+        name_label = HelpLabel(_('Name'), msg)
+        grid.addWidget(name_label, 1, 0)
+        self.vote_name_e = MyLineEdit()
+        grid.addWidget(self.vote_name_e, 1, 1, 1, -1)
+
+
+        from .paytoedit import PayToEdit
+        self.vote_address_e = PayToEdit(self)
+        msg = _('Recipient of the funds.') + '\n\n'\
+              + _('You may enter a Bitcoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Bitcoin address)')
+        address_label = HelpLabel(_('Address'), msg)
+        grid.addWidget(address_label, 2, 0)
+        grid.addWidget(self.vote_address_e, 2, 1, 1, -1)
+
+        completer = QCompleter()
+        completer.setCaseSensitivity(False)
+        self.vote_address_e.setCompleter(completer)
+        completer.setModel(self.completions)
+
+        self.vote_button = QPushButton(_('Vote'))
+        #self.save_request_button.clicked.connect(self.save_payment_request)
+
+        self.vote_clear_button = QPushButton(_('Clear'))
+        #self.new_request_button.clicked.connect(self.new_payment_request)
+
+        self.vote_buttons = buttons = QHBoxLayout()
+        buttons.addStretch(1)
+        buttons.addWidget(self.vote_button)
+        buttons.addWidget(self.vote_clear_button)
+        grid.addLayout(buttons, 3, 1, 1, 2)
+        
+        vbox0 = QVBoxLayout()
+        vbox0.addLayout(grid)
+        hbox = QHBoxLayout()
+        hbox.addLayout(vbox0)
+        w = QWidget()
+        vbox = QVBoxLayout(w)
+        vbox.addLayout(hbox)
+        vbox.addStretch(1)
+        vbox.addWidget(self.invoices_label)
+        vbox.addWidget(self.invoice_list)
+        vbox.setStretchFactor(self.invoice_list, 1000)
+        w.searchable_list = self.invoice_list
+        #run_hook('create_send_tab', grid)
+        return w
+
+    def toggle_business(self, state):
+        if state == self.show_business:
+            return
+        self.show_business = state
+        self.update_send_tab()
+        #QTimer.singleShot(500, lambda: self.update_send_tab())
+
+    def update_send_tab(self):
+        if self.show_business == 0:  # "Transfer":
+            self.payto_label.setText("Pay to")
+            self.description_label.setText("Description")
+            self.description_label.show()
+            self.message_e.show()
+            self.amount_label.show()
+            self.amount_e.show()
+            self.max_button.show()
+            self.fee_e_label.hide()
+            self.fee_slider.hide()
+            self.fee_e.hide()
+            #self.fee_e_label.show()
+            #self.fee_slider.show()
+            #self.fee_e.show()
+            self.pw_label.hide()
+            self.pw.hide()
+            self.multi_name_label.hide()
+            self.multi_name_e.hide()
+        elif self.show_business == 1: # "Register":
+            self.payto_label.setText("Address")
+            self.description_label.setText("Name")
+            self.description_label.show()
+            self.message_e.show()
+            self.amount_label.hide()
+            self.amount_e.hide()
+            self.max_button.hide()
+            self.fee_e_label.hide()
+            self.fee_slider.hide()
+            self.fee_e.hide()
+            #self.rbf_checkbox.hide()
+            #if not isinstance(self.wallet, Imported_Wallet):
+            if self.wallet.has_password():
+                self.pw_label.show()
+                self.pw.show()
+            self.multi_name_label.hide()
+            self.multi_name_e.hide()
+
+        elif (self.show_business == 2) or (self.show_business == 3): #"Vote/CancelVote":
+            self.payto_label.setText("Address")
+            self.description_label.hide()
+            self.message_e.hide()
+            self.multi_name_label.setText("Names")
+            self.amount_label.hide()
+            self.amount_e.hide()
+            self.max_button.hide()
+            self.fee_e_label.hide()
+            self.fee_slider.hide()
+            self.fee_e.hide()
+            if not isinstance(self.wallet, Imported_Wallet):
+                self.pw_label.show()
+                self.pw.show()
+            self.multi_name_label.show()
+            self.multi_name_e.show()
+            self.multi_name_e.setText('')
+        self.do_clear()
+
     def create_send_tab(self):
         # A 4-column grid layout.  All the stretch is in the last column.
         # The exchange rate plugin adds a fiat widget in column 2
@@ -1006,14 +1202,24 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         grid.setSpacing(8)
         grid.setColumnStretch(3, 1)
 
+        self.business_button = QComboBox(self)
+        #for t in [_('Transfer'), _('Register'), _('Vote'), _('CancelVote')]:
+        for t in [_('Transfer'), _('Register')]:
+            self.business_button.addItem(t)
+        self.business_button.setCurrentIndex(0)
+        self.business_button.currentIndexChanged.connect(self.toggle_business)
+        self.business_label = QLabel(_('Transaction Type'))
+        grid.addWidget(self.business_label, 1, 0)
+        grid.addWidget(self.business_button, 1, 1, 1, -1)
+
         from .paytoedit import PayToEdit
         self.amount_e = BTCAmountEdit(self.get_decimal_point)
         self.payto_e = PayToEdit(self)
         msg = _('Recipient of the funds.') + '\n\n'\
               + _('You may enter a Bitcoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Bitcoin address)')
-        payto_label = HelpLabel(_('Pay to'), msg)
-        grid.addWidget(payto_label, 1, 0)
-        grid.addWidget(self.payto_e, 1, 1, 1, -1)
+        self.payto_label = HelpLabel(_('Pay to'), msg)
+        grid.addWidget(self.payto_label, 2, 0)
+        grid.addWidget(self.payto_e, 2, 1, 1, -1)
 
         completer = QCompleter()
         completer.setCaseSensitivity(False)
@@ -1022,37 +1228,44 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         msg = _('Description of the transaction (not mandatory).') + '\n\n'\
               + _('The description is not sent to the recipient of the funds. It is stored in your wallet file, and displayed in the \'History\' tab.')
-        description_label = HelpLabel(_('Description'), msg)
-        grid.addWidget(description_label, 2, 0)
+        self.description_label = HelpLabel(_('Description'), msg)
+        grid.addWidget(self.description_label, 3, 0)
         self.message_e = MyLineEdit()
-        grid.addWidget(self.message_e, 2, 1, 1, -1)
+        grid.addWidget(self.message_e, 3, 1, 1, -1)
+
+        self.multi_name_label = HelpLabel(_('Names'), msg)
+        grid.addWidget(self.multi_name_label, 4, 0)
+        self.multi_name_e = QTextEdit(self)
+        grid.addWidget(self.multi_name_e, 4, 1, 1, -1)
+        self.multi_name_label.hide()
+        self.multi_name_e.hide()
 
         self.from_label = QLabel(_('From'))
-        grid.addWidget(self.from_label, 3, 0)
+        grid.addWidget(self.from_label, 5, 0)
         self.from_list = MyTreeWidget(self, self.from_list_menu, ['',''])
         self.from_list.setHeaderHidden(True)
         self.from_list.setMaximumHeight(80)
-        grid.addWidget(self.from_list, 3, 1, 1, -1)
+        grid.addWidget(self.from_list, 5, 1, 1, -1)
         self.set_pay_from([])
 
         msg = _('Amount to be sent.') + '\n\n' \
               + _('The amount will be displayed in red if you do not have enough funds in your wallet.') + ' ' \
               + _('Note that if you have frozen some of your addresses, the available funds will be lower than your total balance.') + '\n\n' \
               + _('Keyboard shortcut: type "!" to send all your coins.')
-        amount_label = HelpLabel(_('Amount'), msg)
-        grid.addWidget(amount_label, 4, 0)
-        grid.addWidget(self.amount_e, 4, 1)
+        self.amount_label = HelpLabel(_('Amount'), msg)
+        grid.addWidget(self.amount_label, 6, 0)
+        grid.addWidget(self.amount_e, 6, 1)
 
         self.fiat_send_e = AmountEdit(self.fx.get_currency if self.fx else '')
         if not self.fx or not self.fx.is_enabled():
             self.fiat_send_e.setVisible(False)
-        grid.addWidget(self.fiat_send_e, 4, 2)
+        grid.addWidget(self.fiat_send_e, 6, 2)
         self.amount_e.frozen.connect(
             lambda: self.fiat_send_e.setFrozen(self.amount_e.isReadOnly()))
 
         self.max_button = EnterButton(_("Max"), self.spend_max)
         self.max_button.setFixedWidth(140)
-        grid.addWidget(self.max_button, 4, 3)
+        grid.addWidget(self.max_button, 6, 3)
         hbox = QHBoxLayout()
         hbox.addStretch(1)
         grid.addLayout(hbox, 4, 4)
@@ -1073,8 +1286,14 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.fee_slider.setFixedWidth(140)
 
         self.fee_e = BTCAmountEdit(self.get_decimal_point)
-        if not self.config.get('show_fee', False):
-            self.fee_e.setVisible(False)
+        #if not self.config.get('show_fee', False):
+            #self.fee_e.setVisible(False)
+
+        self.fee_e_label.hide()
+        self.fee_slider.hide()
+        self.fee_e.setVisible(False)
+        self.fee_e.setAmount(1000)
+
         self.fee_e.textEdited.connect(self.update_fee)
         # This is so that when the user blanks the fee and moves on,
         # we go back to auto-calculate mode and put a fee back.
@@ -1088,10 +1307,20 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.rbf_checkbox.setToolTip('<p>' + ' '.join(msg) + '</p>')
         self.rbf_checkbox.setVisible(False)
 
-        grid.addWidget(self.fee_e_label, 5, 0)
-        grid.addWidget(self.fee_slider, 5, 1)
-        grid.addWidget(self.fee_e, 5, 2)
-        grid.addWidget(self.rbf_checkbox, 5, 3)
+        grid.addWidget(self.fee_e_label, 7, 0)
+        grid.addWidget(self.fee_e, 7, 1)
+        grid.addWidget(self.fee_slider, 7, 2)
+        grid.addWidget(self.rbf_checkbox, 7, 3)
+
+        self.pw_label = QLabel(_('Password'))
+        #self.pw = QLineEdit()
+        self.pw = MyLineEdit()
+        self.pw.setEchoMode(2)
+        self.pw_label.hide()
+        self.pw.hide()
+        grid.addWidget(self.pw_label, 8, 0)
+        grid.addWidget(self.pw, 8, 1)
+
 
         self.preview_button = EnterButton(_("Preview"), self.do_preview)
         self.preview_button.setToolTip(_('Display the details of your transactions before signing it.'))
@@ -1102,7 +1331,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         buttons.addWidget(self.clear_button)
         buttons.addWidget(self.preview_button)
         buttons.addWidget(self.send_button)
-        grid.addLayout(buttons, 6, 1, 1, 3)
+        grid.addLayout(buttons, 9, 1, 1, 3)
 
         self.amount_e.shortcut.connect(self.spend_max)
         self.payto_e.textChanged.connect(self.update_fee)
@@ -1289,30 +1518,97 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             return func(self, *args, **kwargs)
         return request_password
 
-    def read_send_tab(self):
-        if self.payment_request and self.payment_request.has_expired():
-            self.show_error(_('Payment request has expired'))
-            return
-        label = self.message_e.text()
+    def get_vote_addresses(self, all_voter_ls):
+        vote_ls = []
+        revoke_ls = []
+        # devide into two type list
+        for each in all_voter_ls :
+            if each.get('type') == 'vote' :
+                vote_ls.append(each)
+            if each.get('type') == 'revoke' :
+                revoke_ls.append(each)
+        # filter 
+        for vote in all_voter_ls :
+            for revoke in revoke_ls :
+                if ((vote.get('type') == 'vote') 
+                    and (vote.get('voter') == revoke.get('voter')) 
+                    and (vote.get('delegate') == revoke.get('delegate'))
+                    and (vote.get('id') < revoke.get('id'))) :
+                    vote['status'] = False
+                    self.print_error("vote :", vote)
+        # remove revoked item
+        ret_ls = []
+        for each in all_voter_ls:
+            if 'status' in each : # invalid vote
+                continue
+            if each.get('type') == 'revoke' :
+                continue
+            ret_ls.append(each.get('delegate'));
+        return ret_ls
+        
+    # all sending out votes
+    def get_out_vote(self, addr) :
+        try :
+            vote_ls = self.network.synchronous_get(('blockchain.address.listvoteddelegates', [addr]))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            vote_ls = []
+        #return [each.get('delegate') for each in vote_ls]
+        return self.get_vote_addresses(vote_ls)
 
-        if self.payment_request:
-            outputs = self.payment_request.get_outputs()
-        else:
-            errors = self.payto_e.get_errors()
-            if errors:
-                self.show_warning(_("Invalid Lines found:") + "\n\n" + '\n'.join([ _("Line #") + str(x[0]+1) + ": " + x[1] for x in errors]))
-                return
-            outputs = self.payto_e.get_outputs(self.is_max)
+    # received vote
+    def get_in_vote(self) :
+        pass
+        
+    def get_vote_outputs(self, addr, op_code, selected_list) :
 
-            if self.payto_e.is_alias and self.payto_e.validated is False:
-                alias = self.payto_e.toPlainText()
-                msg = _('WARNING: the alias "%s" could not be validated via an additional security check, DNSSEC, and thus may not be correct.'%alias) + '\n'
-                msg += _('Do you wish to continue?')
-                if not self.question(msg):
+        data = ''
+        vote_ls = self.get_out_vote(addr)
+        self.print_error("vote ls :", vote_ls)
+        
+        for each in selected_list :
+            if (op_code == 0xc1) : # vote
+                if each in vote_ls :
+                    self.show_message('Can not vote to voted address : ' + each)
                     return
+            elif (op_code == 0xc2) : # cancelvote
+                if each not in vote_ls :
+                    self.show_message('Can not cancel vote to unvoted address : ' + each)
+                    return
+            else :
+                self.show_error('Unspported code : ' + op_code)
+                return
+
+            addrtype, addr_hash = b58_address_to_hash160(each)
+            #_type, hash_data = self.payto_e.parse_output(bh2u(addr_hash))
+            data = data + bh2u(addr_hash)
+
+        msg = []
+        if self.wallet.has_password():
+            msg.append("")
+            msg.append(_("Enter your password to proceed"))
+            password = self.password_dialog('\n'.join(msg))
+            if not password:
+                return
+        else:
+            msg.append(_('Proceed?'))
+            password = None
+            if not self.question('\n'.join(msg)):
+                return
+
+        _type, addr = self.get_script(addr, op_code, data, password)
+        if not addr:
+            return
+        outputs = [(_type, addr, 0)]
+            
+        return outputs
+
+    def read_vote_info(self, addr, op_code, selected_list):
+        label = ''
+        outputs = self.get_vote_outputs(addr, op_code, selected_list)
 
         if not outputs:
-            self.show_error(_('No outputs'))
+            self.print_error(_('No outputs'))
             return
 
         for _type, addr, amount in outputs:
@@ -1325,26 +1621,29 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             if amount is None:
                 self.show_error(_('Invalid Amount'))
                 return
-
-        freeze_fee = self.fee_e.isVisible() and self.fee_e.isModified() and (self.fee_e.text() or self.fee_e.hasFocus())
-        fee = self.fee_e.get_amount() if freeze_fee else None
+        fee = 1000000
         coins = self.get_coins()
+        self.print_error("coins : ", coins)
+        
         return outputs, fee, label, coins
 
-    def do_preview(self):
-        self.do_send(preview = True)
-
-    def do_send(self, preview = False):
+    def do_vote(self, addr, op_code, selected_list, preview = False):
         if run_hook('abort_send', self):
             return
-        r = self.read_send_tab()
+        if not addr :
+            self.show_error('please input address.')
+            return
+
+        if not selected_list :
+            self.show_error('please select candidate.')
+            return
+
+        r = self.read_vote_info(addr, op_code, selected_list)
         if not r:
             return
         outputs, fee, tx_desc, coins = r
         try:
-            is_sweep = bool(self.tx_external_keypairs)
-            tx = self.wallet.make_unsigned_transaction(
-                coins, outputs, self.config, fee, is_sweep=is_sweep)
+            tx = self.wallet.make_unsigned_transaction(coins, outputs, self.config, fee)
         except NotEnoughFunds:
             self.show_message(_("Insufficient funds"))
             return
@@ -1353,12 +1652,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.show_message(str(e))
             return
 
-        amount = tx.output_value() if self.is_max else sum(map(lambda x:x[2], outputs))
+        amount = sum(map(lambda x:x[2], outputs))
         fee = tx.get_fee()
-
-        use_rbf = self.rbf_checkbox.isChecked()
-        if use_rbf:
-            tx.set_rbf(True)
 
         if fee < self.wallet.relayfee() * tx.estimated_size() / 1000:
             self.show_error(_("This transaction requires a higher fee, or it will not be propagated by the network"))
@@ -1399,8 +1694,300 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             if success:
                 if not tx.is_complete():
                     self.show_transaction(tx)
+                    self.update_send_tab()
                     self.do_clear()
                 else:
+                    self.print_error("raw tx : ", tx.serialize())
+                    self.broadcast_transaction(tx, tx_desc)
+        self.sign_tx_with_password(tx, sign_done, password)
+
+
+    def get_script(self, addr, op_code, data, passwd) :
+        #if isinstance(self.wallet, Imported_Wallet) :
+        # populate op_return script
+        # format : HASH + PUBLICKEY + DATETIME + SIGNATURE + OP_CODE + Application_DATA
+        epoch_time = int_to_hex(int(time.time()))
+        #epoch_time = int_to_hex(1514127494)
+        pubkey = self.wallet.get_public_key(addr)
+        try :
+            sig = self.wallet.test_standard_sign_message(addr, epoch_time, passwd)
+        except InvalidPassword as e:
+            self.show_error(_('Invalid Password!'))
+            return
+        #data = bh2u(to_bytes(data)) + bh2u(b'\x00'*(32-len(data)))
+        #data = bh2u(to_bytes(data))
+        #sig = ''.join('{:02x}'.format(x) for x in sig)
+        prehash_content = var_int(len(pubkey)) + pubkey
+        prehash_content += var_int(len(epoch_time)) + epoch_time
+        prehash_content += var_int(len(sig)) + sig
+        prehash_content += var_int(len(int_to_hex(op_code))+len(data))
+        prehash_content += int_to_hex(op_code)
+        prehash_content += data
+        #hash = Hash(pubkey + epoch_time + sig + int_to_hex(op_code) + data)
+        hash = Hash(prehash_content)
+        hash = ''.join('{:02x}'.format(x) for x in hash)
+        hash = bh2u(to_bytes('LBTC'))
+        #op_code = chr(op_code)
+        op_code = int_to_hex(op_code)
+        self.print_error("value :", 'OP_RETURN' + ' ' + hash + ' ' + pubkey + ' ' +  epoch_time + ' ' + sig + ' ' + op_code + ' ' + data)
+        _type, addr = self.payto_e.parse_output(hash + ' ' + pubkey + ' ' +  epoch_time + ' ' + sig)
+        ret_data = op_code
+        #op_data = ''
+        #if (op_code == 0xc0) : # register
+        _type, op_data = self.payto_e.parse_output(data)
+        #elif (op_code == 0xc1) or (op_code == 0xc2) : # vote / cancel vote
+        #    op_data = data
+
+        ret_data += op_data
+        _type, ret_data = self.payto_e.parse_output(ret_data)
+        addr = addr + ret_data
+        _type, addr = self.payto_e.parse_output('OP_RETURN' + ' ' + addr)
+        #return 'OP_RETURN' + ' ' + hash + ' ' + pubkey + ' ' +  epoch_time + ' ' + sig + ' ' + op_code + ' ' + data
+        self.print_error("encode value :", addr)
+        return _type, addr
+            
+    def get_outputs(self) :
+        # check target address
+        has_segwit = False
+        for each in self.payto_e.lines() :
+            #each = 'bc1qpkm0c685lemc9pz5gfrz438hkf8hwla5h2v00k'
+            seg_addr = self.payto_e.parse_address(each)
+            if is_segwit_address(seg_addr) :
+                has_segwit = True
+                break
+        if has_segwit :
+            self.show_error('Not support Segwit Address : ' + seg_addr)
+            return
+
+        if (self.show_business == 0) : # transfer
+            if self.payment_request:
+                outputs = self.payment_request.get_outputs()
+            else:
+                errors = self.payto_e.get_errors()
+                if errors:
+                    self.show_warning(_("Invalid Lines found:") + "\n\n" + '\n'.join([ _("Line #") + str(x[0]+1) + ": " + x[1] for x in errors]))
+                    return
+                outputs = self.payto_e.get_outputs(self.is_max)
+
+                if self.payto_e.is_alias and self.payto_e.validated is False:
+                    alias = self.payto_e.toPlainText()
+                    msg = _('WARNING: the alias "%s" could not be validated via an additional security check, DNSSEC, and thus may not be correct.'%alias) + '\n'
+                    msg += _('Do you wish to continue?')
+                    if not self.question(msg):
+                        return
+        else : 
+            if (self.show_business == 1) : # register
+                op_code = 0xc0 # int_to_hex(i, 4)
+            elif (self.show_business == 2) : # vote
+                op_code = 0xc1
+            elif (self.show_business == 3) : # cancelvote
+                op_code = 0xc2
+                
+            if self.payto_e.is_multiline() :
+                self.show_error(_('Only operate on one address!'))
+                return
+
+            addr = self.payto_e.parse_address(self.payto_e.lines()[0]) # only one line
+            data = self.message_e.text()
+
+            if (self.show_business == 1) : # register
+                self.print_error("user :", data)
+                if len(to_bytes(data)) > 32 :
+                    self.show_error('Too long name : ' + data)
+                    return
+                # name filter
+                try :
+                    witness_json = self.network.synchronous_get(('blockchain.address.getwitness', [data]))
+                except BaseException as e:
+                    self.show_message("error: " + str(e))
+                    return
+                self.print_error("user :", witness_json)
+                if witness_json :
+                    if witness_json.get('name') == data :
+                        self.show_message(_("Name already registered, try another one!"))
+                        return
+                # address filter
+                try :
+                    delegate_list = self.network.synchronous_get(('blockchain.address.getwitness', ['']))
+                except BaseException as e:
+                    self.print_error("error: " + str(e))
+                for each in delegate_list :
+                    if each.get('address') == addr :
+                        #self.show_message(_("Address already registered wiht %s"))
+                        self.show_message(_("Address already registered by ") + " '%s'" % each.get('name'))
+                        return
+
+                data = bh2u(to_bytes(data)) + bh2u(b'\x00'*(32-len(data.encode('utf-8'))))
+                self.print_error("user :", data)
+
+            elif (self.show_business == 2) or (self.show_business == 3) : # vote/cancelvote
+                data = ''
+                lines = [i for i in self.multi_name_e.toPlainText().split('\n') if i]
+                for each in lines :
+                    if len(to_bytes(each)) > 32 :
+                        self.show_error('Too long name : ' + each)
+                        return
+                    try :
+                        witness_json = self.network.synchronous_get(('blockchain.address.getwitness', [each]))
+                    except BaseException as e:
+                        self.show_message("error: " + str(e))
+                        return
+                        
+                    self.print_error("user :", witness_json)
+                    self.print_error("user :", type(witness_json))
+                    # Parse JSON into an object with attributes corresponding to dict keys.
+                    #witness = json.loads(witness_json, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
+                    if not witness_json.get('name') :
+                        self.show_message('Unregistered name : ' + each)
+                        return
+                    addrtype, addr_hash = b58_address_to_hash160(witness_json.get('address'))
+                    _type, hash_data = self.payto_e.parse_output(bh2u(addr_hash))
+                    data = data + hash_data
+
+            passwd = self.pw.text()
+            if not passwd:
+                passwd = None
+            _type, addr = self.get_script(addr, op_code, data, passwd)
+            if not addr:
+                return
+            outputs = [(_type, addr, 0)]
+            
+        return outputs
+             
+    def read_send_tab(self):
+        if self.payment_request and self.payment_request.has_expired():
+            self.show_error(_('Payment request has expired'))
+            return
+        label = self.message_e.text()
+        if self.show_business == 1 : # register/vote/cancelvote name check
+            if not (label and label.strip()) :
+                self.show_error(_('Empty Name'))
+                return
+            if len(to_bytes(label)) > 32 :
+                self.show_error(_('Too long name'))
+                return
+
+        outputs = self.get_outputs()
+
+        if not outputs:
+            self.print_error(_('No outputs'))
+            return
+
+        for _type, addr, amount in outputs:
+            if addr is None:
+                self.show_error(_('Bitcoin Address is None'))
+                return
+            if _type == TYPE_ADDRESS and not bitcoin.is_address(addr):
+                self.show_error(_('Invalid Bitcoin Address'))
+                return
+            if amount is None:
+                self.show_error(_('Invalid Amount'))
+                return
+        if (self.show_business == 1) : # register
+            self.fee_e.setAmount(100000000) # 1 LBTC fee for register
+            fee = self.fee_e.get_amount()
+        elif (self.show_business == 2) or (self.show_business == 3) : # vote fee not less than 100000
+            fee = self.fee_e.get_amount()
+            if not fee :
+                fee = 1000000
+            if (fee < 1000000) :
+                self.show_error(_('Vote/CanelVote fee must not less than 1000000'))
+                return
+        else : # other case
+            #freeze_fee = self.fee_e.isVisible() and self.fee_e.isModified() and (self.fee_e.text() or self.fee_e.hasFocus())
+            #fee = self.fee_e.get_amount() if freeze_fee else None
+            fee = self.fee_e.get_amount()
+            if not fee :
+                fee = 1000
+            if (fee < 1000) :
+                self.show_error(_('fee must not less than 1000'))
+                return
+
+        self.print_error("fee : ", fee)
+        coins = self.get_coins()
+        #self.print_error("coins : ", coins)
+        if (self.show_business == 1) or (self.show_business == 2) or (self.show_business == 3) :
+            label = ''
+
+        return outputs, fee, label, coins
+
+    def do_preview(self):
+        self.do_send(preview = True)
+
+    def do_send(self, preview = False):
+        if run_hook('abort_send', self):
+            return
+        r = self.read_send_tab()
+        if not r:
+            return
+        outputs, fee, tx_desc, coins = r
+        try:
+            is_sweep = bool(self.tx_external_keypairs)
+            tx = self.wallet.make_unsigned_transaction(
+                coins, outputs, self.config, fee, is_sweep=is_sweep)
+        except NotEnoughFunds:
+            self.show_message(_("Insufficient funds"))
+            return
+        except BaseException as e:
+            traceback.print_exc(file=sys.stdout)
+            self.show_message(str(e))
+            return
+
+        amount = tx.output_value() if self.is_max else sum(map(lambda x:x[2], outputs))
+        fee = tx.get_fee()
+
+        use_rbf = self.rbf_checkbox.isChecked()
+        if use_rbf:
+            tx.set_rbf(True)
+
+        self.print_error('test estimated fee:', self.wallet.relayfee() * tx.estimated_size())
+        if fee < self.wallet.relayfee() * tx.estimated_size() / 1000:
+        #if fee < self.wallet.relayfee() * tx.estimated_size() :
+            #self.show_error(_("This transaction requires a higher fee, or it will not be propagated by the network"))
+            #self.show_error(_("This transaction requires not less than %d sataoshi, or it will not be propagated by the network")%(self.wallet.relayfee() * tx.estimated_size()))
+            #return
+            fee = self.wallet.relayfee() * tx.estimated_size() / 1000
+
+        self.print_error('changed fee:', fee)
+        if preview:
+            self.show_transaction(tx, tx_desc)
+            return
+
+        # confirmation dialog
+        msg = [
+            _("Amount to be sent") + ": " + self.format_amount_and_units(amount),
+            _("Mining fee") + ": " + self.format_amount_and_units(fee),
+        ]
+
+        x_fee = run_hook('get_tx_extra_fee', self.wallet, tx)
+        if x_fee:
+            x_fee_address, x_fee_amount = x_fee
+            msg.append( _("Additional fees") + ": " + self.format_amount_and_units(x_fee_amount) )
+
+        confirm_rate = 2 * self.config.max_fee_rate()
+        if fee > confirm_rate * tx.estimated_size() / 1000:
+            msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
+
+        if self.wallet.has_password():
+            msg.append("")
+            msg.append(_("Enter your password to proceed"))
+            password = self.password_dialog('\n'.join(msg))
+            if not password:
+                return
+        else:
+            msg.append(_('Proceed?'))
+            password = None
+            if not self.question('\n'.join(msg)):
+                return
+
+        def sign_done(success):
+            if success:
+                if not tx.is_complete():
+                    self.show_transaction(tx)
+                    self.update_send_tab()
+                    self.do_clear()
+                else:
+                    self.print_error("raw tx : ", tx.serialize())
                     self.broadcast_transaction(tx, tx_desc)
         self.sign_tx_with_password(tx, sign_done, password)
 
@@ -1563,7 +2150,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.not_enough_funds = False
         self.payment_request = None
         self.payto_e.is_pr = False
-        for e in [self.payto_e, self.message_e, self.amount_e, self.fiat_send_e, self.fee_e]:
+        for e in [self.payto_e, self.message_e, self.amount_e, self.fiat_send_e, self.fee_e, self.pw]:
             e.setText('')
             e.setFrozen(False)
         self.set_pay_from([])
@@ -1599,6 +2186,21 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.address_list = l = AddressList(self)
         return self.create_list_tab(l, l.get_list_header())
 
+    def create_voted_tab(self):
+        from .contact_list import MyVotedList
+        self.myvoted_list = l = MyVotedList(self)
+        return self.create_list_tab(l, l.get_list_header())
+
+    def create_votes_tab(self):
+        from .contact_list import MyVoteList
+        self.myvote_list = l = MyVoteList(self)
+        return self.create_list_tab(l, l.get_list_header())
+        
+    def create_delegates_tab(self):
+        from .contact_list import DelegateList
+        self.delegate_list = l = DelegateList(self)
+        return self.create_list_tab(l, l.get_list_header())
+        
     def create_utxo_tab(self):
         from .utxo_list import UTXOList
         self.utxo_list = l = UTXOList(self)
@@ -2456,7 +3058,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         lang_label = HelpLabel(_('Language') + ':', lang_help)
         lang_combo = QComboBox()
         from electrum.i18n import languages
-        lang_combo.addItems(list(languages.values()))
+        #lang_combo.addItems(list(languages.values()))
+        lang_combo.addItem(_('English'))
         try:
             index = languages.keys().index(self.config.get("language",''))
         except Exception:
@@ -2504,7 +3107,11 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         feebox_cb.setToolTip(_("Show fee edit box in send tab."))
         def on_feebox(x):
             self.config.set_key('show_fee', x == Qt.Checked)
-            self.fee_e.setVisible(bool(x))
+            #self.fee_e.setVisible(bool(x))
+            if self.show_business == 0:  # "Transfer":
+                self.fee_e_label.setVisible(bool(x))
+                self.fee_slider.hide()
+                self.fee_e.setVisible(bool(x))
         feebox_cb.stateChanged.connect(on_feebox)
         fee_widgets.append((feebox_cb, None))
 
@@ -2521,7 +3128,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.fee_unit = self.config.get('fee_unit', 0)
         fee_unit_label = HelpLabel(_('Fee Unit') + ':', '')
         fee_unit_combo = QComboBox()
-        fee_unit_combo.addItems([_('sat/byte'), _('mBTC/kB')])
+        fee_unit_combo.addItems([_('sat/byte'), _('mLBTC/kB')])
         fee_unit_combo.setCurrentIndex(self.fee_unit)
         def on_fee_unit(x):
             self.fee_unit = x
@@ -2580,9 +3187,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         SSL_id_e.setReadOnly(True)
         id_widgets.append((SSL_id_label, SSL_id_e))
 
-        units = ['BTC', 'mBTC', 'bits']
+        units = ['LBTC', 'mLBTC', 'bits']
         msg = _('Base unit of your wallet.')\
-              + '\n1BTC=1000mBTC.\n' \
+              + '\n1LBTC=1000mLBTC.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()
@@ -2594,9 +3201,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 return
             edits = self.amount_e, self.fee_e, self.receive_amount_e
             amounts = [edit.get_amount() for edit in edits]
-            if unit_result == 'BTC':
+            if unit_result == 'LBTC':
                 self.decimal_point = 8
-            elif unit_result == 'mBTC':
+            elif unit_result == 'mLBTC':
                 self.decimal_point = 5
             elif unit_result == 'bits':
                 self.decimal_point = 2
@@ -2782,11 +3389,11 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         fiat_widgets.append((QLabel(_('Source')), ex_combo))
 
         tabs_info = [
-            (fee_widgets, _('Fees')),
+            #(fee_widgets, _('Fees')),
             (tx_widgets, _('Transactions')),
             (gui_widgets, _('Appearance')),
-            (fiat_widgets, _('Fiat')),
-            (id_widgets, _('Identity')),
+            #(fiat_widgets, _('Fiat')),
+            #(id_widgets, _('Identity')),
         ]
         for widgets, name in tabs_info:
             tab = QWidget()

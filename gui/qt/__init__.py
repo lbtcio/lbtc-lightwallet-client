@@ -105,7 +105,7 @@ class ElectrumGui:
         # init tray
         self.dark_icon = self.config.get("dark_icon", False)
         self.tray = QSystemTrayIcon(self.tray_icon(), None)
-        self.tray.setToolTip('Electrum')
+        self.tray.setToolTip('LBTC Wallet')
         self.tray.activated.connect(self.tray_activated)
         self.build_tray_menu()
         self.tray.show()

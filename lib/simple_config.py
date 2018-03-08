@@ -92,7 +92,8 @@ class SimpleConfig(PrintError):
         if not os.path.exists(path):
             if os.path.islink(path):
                 raise BaseException('Dangling link: ' + path)
-            os.mkdir(path)
+            #os.mkdir(path)
+            os.makedirs(path, exist_ok=True)
             os.chmod(path, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
 
         self.print_error("electrum directory", path)
@@ -239,7 +240,8 @@ class SimpleConfig(PrintError):
         return len(self.fee_estimates)==4
 
     def is_dynfee(self):
-        return self.get('dynamic_fees', True)
+        #return self.get('dynamic_fees', True)
+        return self.get('dynamic_fees', False)
 
     def fee_per_kb(self):
         dyn = self.is_dynfee()

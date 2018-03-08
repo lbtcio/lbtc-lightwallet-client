@@ -105,6 +105,16 @@ class Synchronizer(ThreadJob):
         self.print_error("receiving history", addr, len(result))
         server_status = self.requested_histories[addr]
         hashes = set(map(lambda item: item['tx_hash'], result))
+        # unique result, filter item with same hash and height
+        unique_ls = []
+        hash_ls = set(map(lambda item: item['tx_hash'], result))
+        for each in result :
+            if each['tx_hash'] in hash_ls :
+                unique_ls.append({'tx_hash' : each['tx_hash'], 'height' : each['height']})
+                hash_ls.remove(each['tx_hash'])
+        result = unique_ls
+        #self.print_error("receiving history 2", addr, len(result), result)
+        
         hist = list(map(lambda item: (item['tx_hash'], item['height']), result))
         # tx_fees
         tx_fees = [(item['tx_hash'], item.get('fee')) for item in result]
@@ -114,10 +124,10 @@ class Synchronizer(ThreadJob):
             self.network.interface.print_error("serving improperly sorted address histories")
         # Check that txids are unique
         if len(hashes) != len(result):
-            self.print_error("error: server history has non-unique txids: %s"% addr)
+            self.print_error("error: server history has non-unique txids: %s"% addr, len(hashes))
         # Check that the status corresponds to what was announced
-        elif self.get_status(hist) != server_status:
-            self.print_error("error: status mismatch: %s" % addr)
+        #elif self.get_status(hist) != server_status:
+            #self.print_error("error: status mismatch: %s" % addr, server_status, self.get_status(hist))
         else:
             # Store received history
             self.wallet.receive_history_callback(addr, hist, tx_fees)

@@ -219,6 +219,7 @@ class Network(util.DaemonThread):
         self.auto_connect = self.config.get('auto_connect', True)
         self.connecting = set()
         self.socket_queue = queue.Queue()
+        self.print_error('no height for main interface', self.default_server)
         self.start_network(deserialize_server(self.default_server)[2],
                            deserialize_proxy(self.config.get('proxy')))
 
@@ -778,6 +779,7 @@ class Network(util.DaemonThread):
         if not connect:
             self.connection_down(interface.server)
             return
+            #interface.print_error('connect_chunk', interface.blockchain.height())
         if interface.blockchain.height() < interface.tip:
             self.request_chunk(interface, index+1)
         else:
@@ -951,8 +953,11 @@ class Network(util.DaemonThread):
                 import urllib.request, socket
                 socket.setdefaulttimeout(30)
                 self.print_error("downloading ", bitcoin.NetworkConstants.HEADERS_URL)
-                urllib.request.urlretrieve(bitcoin.NetworkConstants.HEADERS_URL, filename + '.tmp')
-                os.rename(filename + '.tmp', filename)
+                #urllib.request.urlretrieve(bitcoin.NetworkConstants.HEADERS_URL, filename + '.tmp')
+                #os.rename(filename + '.tmp', filename)
+                # vote 
+                with open(filename, 'a'):  # Create file if does not exist
+                    pass
                 self.print_error("done.")
             except Exception:
                 self.print_error("download failed. creating file", filename)

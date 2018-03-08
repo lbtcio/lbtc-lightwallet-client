@@ -165,7 +165,8 @@ class Abstract_Wallet(PrintError):
 
         self.gap_limit_for_change = 6 # constant
         # saved fields
-        self.use_change            = storage.get('use_change', True)
+        #self.use_change            = storage.get('use_change', True)
+        self.use_change            = storage.get('use_change', False)
         self.multiple_change       = storage.get('multiple_change', False)
         self.labels                = storage.get('labels', {})
         self.frozen_addresses      = set(storage.get('frozen_addresses',[]))
@@ -787,7 +788,6 @@ class Abstract_Wallet(PrintError):
             history.append((tx_hash, height, conf, timestamp, delta))
         history.sort(key = lambda x: self.get_txpos(x[0]))
         history.reverse()
-
         # 3. add balance
         c, u, x = self.get_balance(domain)
         balance = c + u + x
@@ -1354,6 +1354,10 @@ class Abstract_Wallet(PrintError):
         index = self.get_address_index(address)
         return self.keystore.sign_message(index, message, password)
 
+    def test_standard_sign_message(self, address, message, password):
+        index = self.get_address_index(address)
+        return self.keystore.test_standard_sign_message(index, message, password)
+
     def decrypt_message(self, pubkey, message, password):
         addr = self.pubkeys_to_address(pubkey)
         index = self.get_address_index(addr)
@@ -1543,6 +1547,16 @@ class Imported_Wallet(Simple_Wallet):
         sec = pw_decode(self.keystore.keypairs[pubkey], password)
         return sec, redeem_script
 
+    #def sign_message(self, address, message, password):
+        #d = self.addresses[address]
+        #pubkey = d['pubkey']
+        #return self.keystore.sign_message(pubkey, message, password)
+
+    def standard_sign_message(self, address, message, password):
+        d = self.addresses[address]
+        pubkey = d['pubkey']
+        return self.keystore.standard_sign_message(pubkey, message, password)
+
     def get_txin_type(self, address):
         return self.addresses[address].get('type', 'address')
 
@@ -1575,6 +1589,7 @@ class Deterministic_Wallet(Abstract_Wallet):
     def __init__(self, storage):
         Abstract_Wallet.__init__(self, storage)
         self.gap_limit = storage.get('gap_limit', 20)
+        #self.gap_limit = 600
 
     def has_seed(self):
         return self.keystore.has_seed()

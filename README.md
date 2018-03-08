@@ -2,8 +2,11 @@ LBTC light weight wallet based on Electrum - 3.0.5
 =====================================
 
   Licence: MIT Licence
+  
   Author: Benjamin Smith
+  
   Language: Python
+  
 
 Getting started
 ===============
