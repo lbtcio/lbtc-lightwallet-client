@@ -369,6 +369,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         else:
             self.show()
         self.watching_only_changed()
+        # load recently delegates from wallet file
+        self.delegate_list.load_delegates()
         run_hook('load_wallet', wallet, self)
 
     def init_geometry(self):
@@ -1606,7 +1608,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def read_vote_info(self, addr, op_code, selected_list):
         label = ''
         outputs = self.get_vote_outputs(addr, op_code, selected_list)
-
+        #return
         if not outputs:
             self.print_error(_('No outputs'))
             return
@@ -1636,6 +1638,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         if not selected_list :
             self.show_error('please select candidate.')
+            return
+
+        if len(selected_list) > 51 :
+            self.show_error('candidate not more than 51.')
             return
 
         r = self.read_vote_info(addr, op_code, selected_list)
@@ -1724,8 +1730,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         prehash_content += int_to_hex(op_code)
         prehash_content += data
         #hash = Hash(pubkey + epoch_time + sig + int_to_hex(op_code) + data)
-        hash = Hash(prehash_content)
-        hash = ''.join('{:02x}'.format(x) for x in hash)
+        #hash = Hash(prehash_content)
+        #hash = ''.join('{:02x}'.format(x) for x in hash)
         hash = bh2u(to_bytes('LBTC'))
         #op_code = chr(op_code)
         op_code = int_to_hex(op_code)
@@ -1791,8 +1797,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             data = self.message_e.text()
 
             if (self.show_business == 1) : # register
+                data = data.strip()
                 self.print_error("user :", data)
-                if len(to_bytes(data)) > 32 :
+                #if len(to_bytes(data)) > 32 :
+                if len(data.encode('utf-8')) > 32 :
                     self.show_error('Too long name : ' + data)
                     return
                 # name filter
@@ -1891,8 +1899,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             if not fee :
                 fee = 1000000
             if (fee < 1000000) :
-                self.show_error(_('Vote/CanelVote fee must not less than 1000000'))
-                return
+                #self.show_error(_('Vote/CanelVote fee must not less than 1000000'))
+                #return
+                fee = 1000000
+
         else : # other case
             #freeze_fee = self.fee_e.isVisible() and self.fee_e.isModified() and (self.fee_e.text() or self.fee_e.hasFocus())
             #fee = self.fee_e.get_amount() if freeze_fee else None
@@ -1900,8 +1910,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             if not fee :
                 fee = 1000
             if (fee < 1000) :
-                self.show_error(_('fee must not less than 1000'))
-                return
+                #self.show_error(_('fee must not less than 1000'))
+                #return
+                fee = 1000
 
         self.print_error("fee : ", fee)
         coins = self.get_coins()
@@ -1940,7 +1951,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if use_rbf:
             tx.set_rbf(True)
 
-        self.print_error('test estimated fee:', self.wallet.relayfee() * tx.estimated_size())
+        self.print_error('test estimated fee:', self.wallet.relayfee())
+        self.print_error('test estimated fee:', tx.estimated_size())
         if fee < self.wallet.relayfee() * tx.estimated_size() / 1000:
         #if fee < self.wallet.relayfee() * tx.estimated_size() :
             #self.show_error(_("This transaction requires a higher fee, or it will not be propagated by the network"))

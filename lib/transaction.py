@@ -523,6 +523,7 @@ class Transaction:
         self._outputs = None
         self.locktime = 0
         self.version = 0xff01 # first lbtc version
+        #self.version = 0xff02 # second lbtc version
 
     def update(self, raw):
         self.raw = raw
@@ -796,6 +797,11 @@ class Transaction:
             txins = var_int(len(inputs)) + ''.join(self.serialize_input(txin, self.get_preimage_script(txin) if i==k else '') for k, txin in enumerate(inputs))
             txouts = var_int(len(outputs)) + ''.join(self.serialize_output(o) for o in outputs)
             preimage = nVersion + txins + txouts + nLocktime + nHashType
+
+        print_error("before preimage", preimage)
+        if self.version >= 0xff02 :
+            preimage = preimage + int_to_hex(0x4354424c, 4)
+        print_error("after preimage", preimage)
         return preimage
 
     def is_segwit(self):

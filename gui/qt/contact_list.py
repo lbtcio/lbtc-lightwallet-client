@@ -111,12 +111,13 @@ class DelegateList(MyTreeWidget, PrintError):
         self.setSortingEnabled(True)
         self.itemClicked.connect(self.on_itemclicked)
         self.delegate_list = []
+        self.recently_delegates = []
         self.addr_e = QLineEdit(self)
         self.addr_e.setText('')
         self.selected_list = []
         self.vote_button = EnterButton(_("Vote"), self.toggle_vote)
         self.refresh_button = EnterButton(_("Refresh"), self.toggle_refresh)
-        self.filter_status = 0
+        self.store_button = EnterButton(_("StoreDelegates"), self.toggle_store_delegate)
         #self.filter_button = QComboBox(self)
         #for t in [_('All'), _('Voted'), _('Unvoted'), _('Selected')]:
             #self.filter_button.addItem(t)
@@ -132,7 +133,7 @@ class DelegateList(MyTreeWidget, PrintError):
 
     def get_list_header(self):
         #return QLabel(_("Filter:")), self.filter_button, QLabel(_("Address:")), self.addr_e, self.vote_button
-        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.refresh_button
+        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.refresh_button, self.store_button
         
     def toggle_vote(self):
         op_code = 0xc1
@@ -143,6 +144,7 @@ class DelegateList(MyTreeWidget, PrintError):
 
     def toggle_refresh(self):
         self.delegate_list = []
+        self.selected_list = []
         try :
             self.delegate_list = self.parent.network.synchronous_get(('blockchain.address.getwitness', ['']))
         except BaseException as e:
@@ -150,14 +152,20 @@ class DelegateList(MyTreeWidget, PrintError):
             self.delegate_list = []
         self.update()
 
-    def toggle_filter(self, state):
-        if state == self.filter_status:
-            return
-        self.filter_status = state
+    def toggle_store_delegate(self):
+        self.delegate_list = []
+        self.selected_list = []
+        if len(self.recently_delegates) :
+            self.parent.wallet.storage.put('recently_delegates', self.recently_delegates)
         self.update()
-        
+
+    def load_delegates(self):
+        self.recently_delegates = self.parent.wallet.storage.get('recently_delegates', [])
+        self.update()
+
     def on_itemclicked(self, item, column):
-        addr = item.text(2);
+        name = item.text(1)
+        addr = item.text(2)
         #for each in self.out_vote :
             #if (each == addr) :
                 #item.setCheckState(0, Qt.Checked)
@@ -166,10 +174,20 @@ class DelegateList(MyTreeWidget, PrintError):
         if (item.checkState(0) == Qt.Checked) :
             if not (addr in self.selected_list) :
                 self.selected_list.append(addr)
+
+            is_exist = False
+            for each in self.recently_delegates :
+                if each.get('address') == addr :
+                    is_exist = True
+            if not is_exist :
+                self.recently_delegates.append({'name' : name, 'address' : addr})                
         elif (item.checkState(0) == Qt.Unchecked) :
             if addr in self.selected_list :
                 self.selected_list.remove(addr)
+            #self.recently_delegates.filter(lambda x: x.get('address') == addr, self.recently_delegates)
+            self.recently_delegates = [x for x in self.recently_delegates if not (addr == x.get('address'))]
         self.print_error("selected :", self.selected_list)
+        self.print_error("recently_delegates :", self.recently_delegates)
 
     def on_permit_edit(self, item, column):
         # openalias items shouldn't be editable
@@ -199,26 +217,35 @@ class DelegateList(MyTreeWidget, PrintError):
             self.print_error("error: " + str(e))
             
     def on_update(self):
-        self.out_vote = []
         #self.out_vote = self.parent.get_out_vote()
         #self.print_error("out_vote : ", self.out_vote)
         item = self.currentItem()
         current_key = item.data(2, Qt.UserRole) if item else None
         self.clear()
         self.print_error("delegate :", self.delegate_list)
-        self.print_error("selected :", self.selected_list)
+        #self.print_error("selected :", self.selected_list)
         #self.print_error("filter :", self.filter_status)
-        if self.filter_status == 0 : # all
+        if len(self.delegate_list) :
             for each in self.delegate_list:
                 item = QTreeWidgetItem(['', each.get('name'), each.get('address')])
                 #item.setData(3, Qt.UserRole, each.get('address'))
-                if each.get('address') in self.out_vote :
-                    item.setCheckState(0, Qt.Checked)
-                else :
-                    item.setCheckState(0, Qt.Unchecked)
+                item.setCheckState(0, Qt.Unchecked)
                 self.addTopLevelItem(item)
                 if each.get('address') == current_key:
                     self.setCurrentItem(item)
+        elif len(self.recently_delegates) :
+            for each in self.recently_delegates:
+                item = QTreeWidgetItem(['', each.get('name'), each.get('address')])
+                #item.setData(3, Qt.UserRole, each.get('address'))
+                item.setCheckState(0, Qt.Checked)
+                self.addTopLevelItem(item)
+                addr = each.get('address')
+                if not (addr in self.selected_list) :
+                    self.selected_list.append(addr)
+                
+                if each.get('address') == current_key:
+                    self.setCurrentItem(item)
+        self.print_error("selected :", self.selected_list)
         run_hook('update_contacts_tab', self)
 
 #################################### MyVoteList #########################################
@@ -239,6 +266,7 @@ class MyVoteList(MyTreeWidget, PrintError):
         self.selected_list = []
         self.vote_button = EnterButton(_("CancelVote"), self.toggle_cancelvote)
         self.refresh_button = EnterButton(_("Refresh"), self.toggle_refresh)
+        self.all_button = EnterButton(_("CancelAllShowedVote"), self.toggle_cancelallvote)
         self.filter_status = 0
         #self.filter_button = QComboBox(self)
         #for t in [_('All'), _('Voted'), _('Unvoted'), _('Selected')]:
@@ -253,7 +281,7 @@ class MyVoteList(MyTreeWidget, PrintError):
 
     def get_list_header(self):
         #return QLabel(_("Filter:")), self.filter_button, QLabel(_("Address:")), self.addr_e, self.vote_button
-        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.refresh_button
+        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.refresh_button, self.all_button
         
     def toggle_cancelvote(self):
         op_code = 0xc2
@@ -261,7 +289,20 @@ class MyVoteList(MyTreeWidget, PrintError):
         self.selected_list = []
         self.addr_e.setText('')
         self.update()
+        
+    def toggle_cancelallvote(self):
+        self.selected_list = []
+        for item in self.get_leaves(self.invisibleRootItem()):
+            if not item.isHidden() :
+                self.selected_list.append(item.text(3))
 
+        op_code = 0xc2
+        self.parent.do_vote(self.addr_e.text(), op_code, self.selected_list)
+        self.addr_e.setText('')
+        self.print_error("all cancel selected :", self.selected_list)
+        self.selected_list = []
+        #self.update()
+        
     def address_changed(self, addr):
         if not addr :
             self.toggle_refresh()
@@ -353,7 +394,7 @@ class MyVoteList(MyTreeWidget, PrintError):
             if col : # filter 0 col
                 column_title = self.headerItem().text(col)
                 copy_text = item.text(col)
-                #menu.addAction(_("Copy %s")%column_title, lambda: self.parent.app.clipboard().setText(copy_text))
+                menu.addAction(_("Copy %s")%column_title, lambda: self.parent.app.clipboard().setText(copy_text))
         run_hook('create_contact_menu', menu, selected)
         menu.exec_(self.viewport().mapToGlobal(position))
 
@@ -386,17 +427,14 @@ class MyVoteList(MyTreeWidget, PrintError):
                     and (vote.get('delegate') == revoke.get('delegate'))
                     and (vote.get('id') < revoke.get('id'))) :
                     vote['status'] = False
-                    self.print_error("vote :", vote)
-
-        for each in self.voter_ls : 
-            self.print_error("each :", each)
+                    #self.print_error("vote :", vote)
         
     def on_update(self):
         self.filter_vote_history()
         item = self.currentItem()
         current_key = item.data(1, Qt.UserRole) if item else None
         self.clear()
-        self.print_error("delegate :", self.delegate_list)
+        #self.print_error("delegate :", self.delegate_list)
         self.print_error("selected :", self.selected_list)
         #self.print_error("filter :", self.filter_status)
         for each in self.voter_ls:
