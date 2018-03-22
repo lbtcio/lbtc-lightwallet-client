@@ -1,17 +1,25 @@
-LBTC light weight wallet based on Electrum - 3.0.5
+Lightning Bitcoin light weight wallet
 =====================================
 
-  Licence: MIT Licence
-  
-  Author: Benjamin Smith
-  
-  Language: Python
-  
+Licence: MIT Licence
+
+Lightning Bitcoin light weight wallet is forked from [Electrum](https://github.com/spesmilo/electrum) v3.0.5
+
+
+
 
 Getting started
 ===============
 
+For Windows users, you can download latest release [here](http://downloadwallet.lbtc.io/index.php/s/HvkFNyCqVu3oc0r/downloads).
+
+
+
+If you are using Linux, read the following:
+
+
 > **NOTE :  All the following command work well on Ubuntu 16.04**
+
 Check out the code from Github:
 ```
 git clone git://github.com/lbtcio/lbtc-lightwallet-client
@@ -37,6 +45,15 @@ sudo apt-get install python-pycurl gettext
 ./contrib/make_locale
 ```
 
-**Benjamin Smith**  sunshine.benjamin.smith@gmail.com
+
+
+
+
+Author
+===============
+
+**Benjamin Smith**
+
+sunshine.benjamin.smith@gmail.com
 
 1ECSDWsm17fbCECgdb5MvR3EZMT6Sbd232
