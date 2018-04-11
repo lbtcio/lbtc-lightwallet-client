@@ -522,8 +522,8 @@ class Transaction:
         self._inputs = None
         self._outputs = None
         self.locktime = 0
-        self.version = 0xff01 # first lbtc version
-        #self.version = 0xff02 # second lbtc version
+        #self.version = 0xff01 # first lbtc version
+        self.version = 0xff02 # second lbtc version
 
     def update(self, raw):
         self.raw = raw

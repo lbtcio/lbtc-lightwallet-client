@@ -281,7 +281,7 @@ class MyVoteList(MyTreeWidget, PrintError):
 
     def get_list_header(self):
         #return QLabel(_("Filter:")), self.filter_button, QLabel(_("Address:")), self.addr_e, self.vote_button
-        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.refresh_button, self.all_button
+        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.refresh_button
         
     def toggle_cancelvote(self):
         op_code = 0xc2
@@ -333,21 +333,24 @@ class MyVoteList(MyTreeWidget, PrintError):
     def toggle_refresh(self):
         #self.print_address(self.parent.wallet.get_receiving_addresses())
         #self.print_address(self.parent.wallet.get_change_addresses())
-        self.fetch_delegate()
+        #self.fetch_delegate()
         self.voter_ls = []
         self.addr_e.setText('')
         addr_ls = self.parent.wallet.get_addresses()
         ret_ls = []
         for each in addr_ls :
             # ignore non-history address
+            self.print_error("error: ", each, len(self.parent.wallet.get_address_history(each)))
             if not len(self.parent.wallet.get_address_history(each)) :
                 continue;
             try :
                 ret_ls = self.parent.network.synchronous_get(('blockchain.address.listvoteddelegates', [each]))
+                self.print_error("error: ", ret_ls)
             except BaseException as e:
                 self.print_error("error: " + str(e))
             for item in ret_ls :
-                self.print_error("error: " + item.get('voter'))
+                #self.print_error("error: " + item.get('voter'))
+                item['voter'] = each
                 self.voter_ls.append(item)
             
         self.update()
@@ -430,7 +433,7 @@ class MyVoteList(MyTreeWidget, PrintError):
                     #self.print_error("vote :", vote)
         
     def on_update(self):
-        self.filter_vote_history()
+        #self.filter_vote_history()
         item = self.currentItem()
         current_key = item.data(1, Qt.UserRole) if item else None
         self.clear()
@@ -438,13 +441,9 @@ class MyVoteList(MyTreeWidget, PrintError):
         self.print_error("selected :", self.selected_list)
         #self.print_error("filter :", self.filter_status)
         for each in self.voter_ls:
-            if 'status' in each : # invalid vote
-                continue
-            if each.get('type') == 'revoke' :
-                continue
                 
             addr = each.get('delegate')
-            item = QTreeWidgetItem(['', each.get('voter'), self.get_address_name(addr), addr])
+            item = QTreeWidgetItem(['', each.get('voter'), each.get('name'), each.get('delegate')])
             #item.setData(3, Qt.UserRole, each.get('address'))
             item.setCheckState(0, Qt.Unchecked)
             self.addTopLevelItem(item)

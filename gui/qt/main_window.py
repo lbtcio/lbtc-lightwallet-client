@@ -1149,12 +1149,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.amount_label.show()
             self.amount_e.show()
             self.max_button.show()
-            self.fee_e_label.hide()
+            self.fee_e_label.show()
             self.fee_slider.hide()
-            self.fee_e.hide()
-            #self.fee_e_label.show()
-            #self.fee_slider.show()
-            #self.fee_e.show()
+            self.fee_e.show()
+            self.rbf_checkbox.hide()
             self.pw_label.hide()
             self.pw.hide()
             self.multi_name_label.hide()
@@ -1170,7 +1168,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.fee_e_label.hide()
             self.fee_slider.hide()
             self.fee_e.hide()
-            #self.rbf_checkbox.hide()
+            self.rbf_checkbox.hide()
             #if not isinstance(self.wallet, Imported_Wallet):
             if self.wallet.has_password():
                 self.pw_label.show()
@@ -1189,6 +1187,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.fee_e_label.hide()
             self.fee_slider.hide()
             self.fee_e.hide()
+            self.rbf_checkbox.hide()
             if not isinstance(self.wallet, Imported_Wallet):
                 self.pw_label.show()
                 self.pw.show()
@@ -1291,9 +1290,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         #if not self.config.get('show_fee', False):
             #self.fee_e.setVisible(False)
 
-        self.fee_e_label.hide()
+        #self.fee_e_label.hide()
         self.fee_slider.hide()
-        self.fee_e.setVisible(False)
+        #self.fee_e.setVisible(False)
         self.fee_e.setAmount(1000)
 
         self.fee_e.textEdited.connect(self.update_fee)
@@ -1456,8 +1455,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                     b = False
             elif rbf_policy == 2:
                 b = False
-            self.rbf_checkbox.setVisible(b)
-            self.rbf_checkbox.setChecked(b)
+            #self.rbf_checkbox.setVisible(b)
+            #self.rbf_checkbox.setChecked(b)
+            self.rbf_checkbox.setVisible(False)
 
 
     def from_list_delete(self, item):
@@ -1947,19 +1947,22 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         amount = tx.output_value() if self.is_max else sum(map(lambda x:x[2], outputs))
         fee = tx.get_fee()
 
-        use_rbf = self.rbf_checkbox.isChecked()
+        #use_rbf = self.rbf_checkbox.isChecked()
+        use_rbf = False
         if use_rbf:
             tx.set_rbf(True)
 
         self.print_error('test estimated fee:', self.wallet.relayfee())
         self.print_error('test estimated fee:', tx.estimated_size())
-        if fee < self.wallet.relayfee() * tx.estimated_size() / 1000:
+
+        tmp_relayfee = self.wallet.relayfee() * tx.estimated_size() / 1000
+        if fee < tmp_relayfee:
         #if fee < self.wallet.relayfee() * tx.estimated_size() :
             #self.show_error(_("This transaction requires a higher fee, or it will not be propagated by the network"))
             #self.show_error(_("This transaction requires not less than %d sataoshi, or it will not be propagated by the network")%(self.wallet.relayfee() * tx.estimated_size()))
             #return
-            fee = self.wallet.relayfee() * tx.estimated_size() / 1000
-
+            fee = tmp_relayfee
+                
         self.print_error('changed fee:', fee)
         if preview:
             self.show_transaction(tx, tx_desc)
