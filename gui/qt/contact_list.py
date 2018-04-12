@@ -157,7 +157,7 @@ class DelegateList(MyTreeWidget, PrintError):
         self.selected_list = []
         if len(self.recently_delegates) :
             self.parent.wallet.storage.put('recently_delegates', self.recently_delegates)
-        self.update()
+            self.update()
 
     def load_delegates(self):
         self.recently_delegates = self.parent.wallet.storage.get('recently_delegates', [])
@@ -267,7 +267,7 @@ class MyVoteList(MyTreeWidget, PrintError):
         self.vote_button = EnterButton(_("CancelVote"), self.toggle_cancelvote)
         self.refresh_button = EnterButton(_("Refresh"), self.toggle_refresh)
         self.all_button = EnterButton(_("CancelAllShowedVote"), self.toggle_cancelallvote)
-        self.filter_status = 0
+        #self.filter_status = 0
         #self.filter_button = QComboBox(self)
         #for t in [_('All'), _('Voted'), _('Unvoted'), _('Selected')]:
             #self.filter_button.addItem(t)
@@ -340,12 +340,10 @@ class MyVoteList(MyTreeWidget, PrintError):
         ret_ls = []
         for each in addr_ls :
             # ignore non-history address
-            self.print_error("error: ", each, len(self.parent.wallet.get_address_history(each)))
             if not len(self.parent.wallet.get_address_history(each)) :
                 continue;
             try :
                 ret_ls = self.parent.network.synchronous_get(('blockchain.address.listvoteddelegates', [each]))
-                self.print_error("error: ", ret_ls)
             except BaseException as e:
                 self.print_error("error: " + str(e))
             for item in ret_ls :
@@ -442,7 +440,6 @@ class MyVoteList(MyTreeWidget, PrintError):
         #self.print_error("filter :", self.filter_status)
         for each in self.voter_ls:
                 
-            addr = each.get('delegate')
             item = QTreeWidgetItem(['', each.get('voter'), each.get('name'), each.get('delegate')])
             #item.setData(3, Qt.UserRole, each.get('address'))
             item.setCheckState(0, Qt.Unchecked)
@@ -457,7 +454,7 @@ class MyVotedList(MyTreeWidget, PrintError):
     filter_columns = [0, 1, 2, 3]  
 
     def __init__(self, parent):
-        MyTreeWidget.__init__(self, parent, self.create_menu, [_('VoteName'), _('VoterAddress'), _('MyName'), _('MyAddress')], 1)
+        MyTreeWidget.__init__(self, parent, self.create_menu, [_('VoteName'), _('VoteAddress'), _('MyName'), _('MyAddress')], 1)
         self.parent = parent
         self.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.setSortingEnabled(True)

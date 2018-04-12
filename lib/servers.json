@@ -1,4 +1,16 @@
 {
+    "wallet-cn.lbtc.io": {
+        "pruning": "-",
+        "s": "50999",
+        "t": "50998",
+        "version": "1.1"
+    },
+    "wallet-hk.lbtc.io": {
+        "pruning": "-",
+        "s": "50999",
+        "t": "50998",
+        "version": "1.1"
+    }
     "wallet.lbtc.io": {
         "pruning": "-",
         "s": "50999",

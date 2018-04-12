@@ -1,0 +1,4567 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: electrum\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-03 00:51+0000\n"
+"PO-Revision-Date: 2018-04-02 20:51-0400\n"
+"Last-Translator: rdymac <rdy@aol.es>\n"
+"Language-Team: Chinese Simplified\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: electrum\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /electrum-client/messages.pot\n"
+
+#: lib/exchange_rate.py:538
+msgid "  (No FX rate available)"
+msgstr ""
+
+#: gui/qt/address_list.py:69
+msgid " Balance"
+msgstr "我的余额"
+
+#: gui/qt/main_window.py:2729
+msgid " These settings affects the fields in the Send tab"
+msgstr " 该设置会影响发送选项中的字段"
+
+#: plugins/keepkey/qt_generic.py:417 plugins/trezor/qt_generic.py:427
+#, python-format
+msgid "%2d minutes"
+msgstr " %2d 分钟"
+
+#: plugins/trezor/qt_generic.py:231
+#, python-format
+msgid "%d words"
+msgstr "%d 个词语"
+
+#: gui/qt/main_window.py:540
+msgid "&About"
+msgstr "关于(&A)"
+
+#: gui/qt/main_window.py:151 gui/qt/main_window.py:486
+msgid "&Addresses"
+msgstr "地址"
+
+#: gui/qt/main_window.py:543
+msgid "&Documentation"
+msgstr "帮助文档(&D)"
+
+#: gui/qt/main_window.py:546
+msgid "&Donate to server"
+msgstr "贊助服务器"
+
+#: gui/qt/main_window.py:526
+msgid "&Encrypt/decrypt message"
+msgstr "加密/解密消息(&E)"
+
+#: gui/qt/main_window.py:482 gui/qt/main_window.py:490
+#: gui/qt/main_window.py:495
+msgid "&Export"
+msgstr "导出(&E)"
+
+#: gui/qt/main_window.py:465
+msgid "&File"
+msgstr "文件(&F)"
+
+#: gui/qt/main_window.py:487 gui/qt/main_window.py:492
+msgid "&Filter"
+msgstr "过滤器(&F)"
+
+#: gui/qt/main_window.py:535
+msgid "&From QR code"
+msgstr "从二维码(&F)"
+
+#: gui/qt/main_window.py:532
+msgid "&From file"
+msgstr "从文件(&F)"
+
+#: gui/qt/main_window.py:533
+msgid "&From text"
+msgstr "从文本(&F)"
+
+#: gui/qt/main_window.py:534
+msgid "&From the blockchain"
+msgstr "从 Blockchain (&F)"
+
+#: gui/qt/main_window.py:539
+msgid "&Help"
+msgstr "帮助(&H)"
+
+#: gui/qt/main_window.py:491
+msgid "&History"
+msgstr "历史记录"
+
+#: gui/qt/main_window.py:481 gui/qt/main_window.py:489
+msgid "&Import"
+msgstr "导入(&I)"
+
+#: gui/qt/main_window.py:475
+msgid "&Information"
+msgstr "消息（&I）"
+
+#: gui/qt/main_window.py:488
+msgid "&Labels"
+msgstr "&标签"
+
+#: gui/qt/main_window.py:531
+msgid "&Load transaction"
+msgstr "加载交易(&L)"
+
+#: gui/qt/main_window.py:522
+msgid "&Network"
+msgstr "&网络"
+
+#: gui/qt/main_window.py:497
+msgid "&New"
+msgstr "新建"
+
+#: gui/qt/main_window.py:468
+msgid "&New/Restore"
+msgstr "新建/恢复(&N)"
+
+#: gui/qt/main_window.py:541
+msgid "&Official website"
+msgstr "官方网站(&O)"
+
+#: gui/qt/main_window.py:467
+msgid "&Open"
+msgstr "打开(&O)"
+
+#: gui/qt/main_window.py:477
+msgid "&Password"
+msgstr "密码(&P)"
+
+#: gui/qt/main_window.py:529
+msgid "&Pay to many"
+msgstr "&支付到多人"
+
+#: gui/qt/main_window.py:494
+msgid "&Plot"
+msgstr "绘图 (&P)"
+
+#: gui/qt/main_window.py:523
+msgid "&Plugins"
+msgstr "插件(&P)"
+
+#: gui/qt/main_window.py:479
+msgid "&Private keys"
+msgstr "私钥(&P)"
+
+#: gui/qt/main_window.py:472
+msgid "&Quit"
+msgstr "退出(&Q)"
+
+#: gui/qt/main_window.py:466
+msgid "&Recently open"
+msgstr "最近使用"
+
+#: gui/qt/main_window.py:544
+msgid "&Report Bug"
+msgstr "报告问题(&R)"
+
+#: gui/qt/main_window.py:469
+msgid "&Save Copy"
+msgstr "保存副本(&S)"
+
+#: gui/qt/main_window.py:478
+msgid "&Seed"
+msgstr "种子(&S)"
+
+#: gui/qt/main_window.py:525
+msgid "&Sign/verify message"
+msgstr "签名/验证消息(&S)"
+
+#: gui/qt/main_window.py:493
+msgid "&Summary"
+msgstr "概要(&S)"
+
+#: gui/qt/main_window.py:480
+msgid "&Sweep"
+msgstr "扫描(&S)"
+
+#: gui/qt/main_window.py:518
+msgid "&Tools"
+msgstr "工具(&T)"
+
+#: gui/qt/main_window.py:512
+msgid "&View"
+msgstr "视图"
+
+#: gui/qt/main_window.py:474
+msgid "&Wallet"
+msgstr "钱包(&W)"
+
+#: plugins/digitalbitbox/digitalbitbox.py:593
+msgid "(Touch {} of {})"
+msgstr ""
+
+#: plugins/virtualkeyboard/qt.py:14
+msgid "+"
+msgstr "+"
+
+#: gui/qt/util.py:42
+msgid "1 day"
+msgstr "1天"
+
+#: gui/qt/util.py:41
+msgid "1 hour"
+msgstr "1 小时"
+
+#: gui/qt/util.py:43
+msgid "1 week"
+msgstr "1 周"
+
+#: lib/base_wizard.py:354
+msgid "2FA seeds are not supported in this version"
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:168
+msgid "A backup is saved automatically when generating a new wallet."
+msgstr "生成一个新钱包的时候备份会自动保存。"
+
+#: gui/qt/main_window.py:420
+msgid "A copy of your wallet file was created in"
+msgstr "您钱包的副本文件已经保存在"
+
+#: lib/plugins.py:406
+msgid "A library is probably missing."
+msgstr "一个库可能遗失。"
+
+#: plugins/trustedcoin/trustedcoin.py:67
+msgid "A small fee will be charged on each transaction that uses the remote server.  You may check and modify your billing preferences once the installation is complete."
+msgstr "对使用远程服务器的每个交易都要收取少量费用。安装完成后，您可以检查和修改您的账单首选项。"
+
+#: gui/qt/main_window.py:1095
+msgid "A suggested fee is automatically added to this field. You may override it. The suggested fee increases with the size of the transaction."
+msgstr "一个建议的手续费将自动添加到这个选项。你可以将其废除。建议大小的交易都增加手续费。"
+
+#: gui/kivy/main.kv:444
+msgid "About"
+msgstr "关于"
+
+#: gui/kivy/uix/ui_screens/about.kv:4
+msgid "About Electrum"
+msgstr "关于 Electrum"
+
+#: plugins/trustedcoin/qt.py:207
+msgid "Accept"
+msgstr "接受"
+
+#: plugins/keepkey/qt_generic.py:69 plugins/trezor/qt_generic.py:69
+msgid "Accept Word"
+msgstr "接受单词"
+
+#: gui/qt/history_list.py:79
+msgid "Acquisition price"
+msgstr "采集费用"
+
+#: gui/kivy/uix/dialogs/installwizard.py:795 gui/qt/installwizard.py:385
+msgid "Add Cosigner"
+msgstr "加联合签名"
+
+#: lib/base_wizard.py:139
+msgid "Add a cosigner to your multi-sig wallet"
+msgstr ""
+
+#: plugins/virtualkeyboard/__init__.py:4
+msgid "Add an optional virtual keyboard to the password dialog."
+msgstr ""
+
+#: lib/base_wizard.py:128
+msgid "Add cosigner"
+msgstr "加联合签名"
+
+#: gui/qt/main_window.py:1544
+msgid "Additional fees"
+msgstr "附加费用："
+
+#: gui/qt/main_window.py:1032
+msgid "Additional {} satoshis are going to be added."
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/invoice.kv:40 gui/qt/address_dialog.py:40
+#: gui/qt/address_list.py:66 gui/qt/contact_list.py:42
+#: gui/qt/main_window.py:2021 gui/qt/main_window.py:2122
+#: gui/qt/main_window.py:2202 gui/qt/request_list.py:41 gui/qt/util.py:327
+#: gui/qt/utxo_list.py:33
+msgid "Address"
+msgstr "地址"
+
+#: gui/kivy/main.kv:107
+msgid "Address copied to clipboard"
+msgstr ""
+
+#: gui/qt/main_window.py:2154 lib/wallet.py:1596
+msgid "Address not in wallet."
+msgstr "地址不在钱包里。"
+
+#: gui/qt/address_dialog.py:52
+msgid "Address:"
+msgstr "地址"
+
+#: gui/text.py:63
+msgid "Addresses"
+msgstr "地址"
+
+#: lib/wallet.py:1298
+msgid "Addresses generated:"
+msgstr "地址已生成："
+
+#: plugins/keepkey/qt_generic.py:582 plugins/trezor/qt_generic.py:592
+msgid "Advanced"
+msgstr "高级设置"
+
+#: plugins/keepkey/qt_generic.py:361 plugins/trezor/qt_generic.py:365
+msgid "After disabling passphrases, you can only pair this Electrum wallet if it had an empty passphrase.  If its passphrase was not empty, you will need to create a new wallet with the install wizard.  You can use this wallet again at any time by re-enabling passphrases and entering its passphrase."
+msgstr ""
+
+#: gui/qt/address_list.py:47 gui/qt/address_list.py:51
+#: gui/qt/history_list.py:94 gui/qt/history_list.py:120
+msgid "All"
+msgstr "所有"
+
+#: plugins/greenaddress_instant/__init__.py:4
+msgid "Allows validating if your transactions have instant confirmations by GreenAddress"
+msgstr ""
+
+#: gui/qt/main_window.py:1157
+msgid "Also, dust is not kept as change, but added to the fee."
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/receive.kv:89 gui/kivy/uix/ui_screens/receive.kv:90
+#: gui/kivy/uix/ui_screens/send.kv:53 gui/kivy/uix/ui_screens/send.kv:54
+#: gui/qt/history_list.py:73 gui/qt/invoice_list.py:36
+#: gui/qt/main_window.py:1075 gui/qt/main_window.py:1854
+#: gui/qt/request_list.py:41 gui/qt/utxo_list.py:33 gui/stdio.py:103
+#: gui/text.py:103 gui/text.py:174
+msgid "Amount"
+msgstr "金额"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:34
+msgid "Amount received"
+msgstr "收到的金额:"
+
+#: gui/qt/transaction_dialog.py:241
+msgid "Amount received:"
+msgstr "收到的金额:"
+
+#: gui/qt/transaction_dialog.py:243
+msgid "Amount sent:"
+msgstr "发送的金额:"
+
+#: gui/kivy/uix/screens.py:281 gui/qt/main_window.py:1537
+msgid "Amount to be sent"
+msgstr "需要发送的金额。"
+
+#: gui/qt/main_window.py:1071
+msgid "Amount to be sent."
+msgstr "需要发送的金额。"
+
+#: gui/qt/exception_window.py:66
+msgid "An Error Occured"
+msgstr ""
+
+#: plugins/cosigner_pool/qt.py:202
+msgid "An encrypted transaction was retrieved from cosigning pool.\n"
+"Do you want to open it now?"
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:164
+msgid "An uninitialized Digital Bitbox is detected."
+msgstr ""
+
+#: lib/base_wizard.py:232
+msgid "An unnamed {}"
+msgstr ""
+
+#: gui/qt/main_window.py:2959
+msgid "Appearance"
+msgstr "界面外观"
+
+#: plugins/keepkey/qt_generic.py:468 plugins/trezor/qt_generic.py:478
+msgid "Apply"
+msgstr "应用"
+
+#: lib/i18n.py:41
+msgid "Arabic"
+msgstr "阿拉伯语"
+
+#: plugins/keepkey/qt_generic.py:408 plugins/trezor/qt_generic.py:418
+msgid "Are you SURE you want to wipe the device?\n"
+"Your wallet still has bitcoins in it!"
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:295
+msgid "Are you sure you want to erase the Digital Bitbox?"
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:372 plugins/trezor/qt_generic.py:376
+msgid "Are you sure you want to proceed?"
+msgstr ""
+
+#: gui/qt/history_list.py:361
+msgid "Are you sure you want to remove this transaction and {} child transactions?"
+msgstr ""
+
+#: gui/qt/history_list.py:358
+msgid "Are you sure you want to remove this transaction?"
+msgstr ""
+
+#: lib/i18n.py:51
+msgid "Armenian"
+msgstr "亚美尼亚语"
+
+#: gui/qt/main_window.py:1155
+msgid "At most 100 satoshis might be lost due to this rounding."
+msgstr ""
+
+#: plugins/audio_modem/__init__.py:3
+msgid "Audio MODEM"
+msgstr ""
+
+#: plugins/audio_modem/qt.py:49
+msgid "Audio Modem Settings"
+msgstr ""
+
+#: plugins/trustedcoin/qt.py:72
+msgid "Authorization"
+msgstr "授权"
+
+#: gui/qt/installwizard.py:549
+msgid "Auto connect"
+msgstr "自动连接"
+
+#: gui/kivy/uix/ui_screens/network.kv:36
+msgid "Auto-connect"
+msgstr "自动连接"
+
+#: gui/qt/seed_dialog.py:79
+msgid "BIP39 seed"
+msgstr "BIP39 种苗"
+
+#: gui/qt/seed_dialog.py:71
+msgid "BIP39 seeds can be imported in Electrum, so that users can access funds locked in other wallets."
+msgstr "可以在Electrum中导入BIP39种子，以便用户可以使用锁定在其他钱包的资金。"
+
+#: gui/qt/seed_dialog.py:73
+msgid "BIP39 seeds do not include a version number, which compromises compatibility with future software."
+msgstr ""
+
+#: gui/qt/installwizard.py:75 gui/qt/installwizard.py:111
+#: gui/qt/installwizard.py:112
+msgid "Back"
+msgstr "返回"
+
+#: gui/kivy/main.kv:391 gui/kivy/uix/ui_screens/invoice.kv:52
+#: gui/kivy/uix/ui_screens/status.kv:32 gui/qt/address_list.py:66
+#: gui/qt/history_list.py:73 gui/qt/main_window.py:724 gui/stdio.py:103
+#: gui/stdio.py:115 gui/text.py:103 gui/text.py:136
+msgid "Balance"
+msgstr "余额"
+
+#: gui/text.py:63
+msgid "Banner"
+msgstr "横幅"
+
+#: gui/qt/main_window.py:2730
+msgid "Base unit"
+msgstr "基本单位"
+
+#: gui/qt/main_window.py:2727
+msgid "Base unit of your wallet."
+msgstr "您的钱包使用的基本单位。"
+
+#: gui/qt/main_window.py:568
+msgid "Before reporting a bug, upgrade to the most recent version of Electrum (latest release or git HEAD), and include the version number in your report."
+msgstr "在报告Bug之前，请把Electrum升级到最新版，并把版本号写在错误报告里。"
+
+#: plugins/audio_modem/qt.py:52
+msgid "Bit rate [kbps]: "
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/receive.kv:71
+msgid "Bitcoin Address"
+msgstr "比特币地址"
+
+#: gui/qt/main_window.py:1477
+msgid "Bitcoin Address is None"
+msgstr "比特币地址为空"
+
+#: gui/qt/main_window.py:789
+msgid "Bitcoin address where the payment should be received. Note that each payment request uses a different Bitcoin address."
+msgstr "比特币收款地址。请注意每一笔比特币的交易使用的不同的比特币地址。"
+
+#: gui/qt/main_window.py:1093
+msgid "Bitcoin transactions are in general not free. A transaction fee is paid by the sender of the funds."
+msgstr "在一般情况下，比特币交易不是免费的。比特币的发送者需要支付一定的手续费。"
+
+#: gui/kivy/uix/ui_screens/network.kv:43 gui/qt/network_dialog.py:300
+msgid "Blockchain"
+msgstr "Blockchain"
+
+#: plugins/keepkey/qt_generic.py:444 plugins/trezor/qt_generic.py:454
+msgid "Bootloader Hash"
+msgstr "引导程序的哈希值"
+
+#: lib/i18n.py:60
+msgid "Brasilian"
+msgstr "巴西"
+
+#: gui/qt/transaction_dialog.py:113
+msgid "Broadcast"
+msgstr "广播"
+
+#: gui/qt/main_window.py:1631
+msgid "Broadcasting transaction..."
+msgstr "交易播报"
+
+#: gui/qt/main_window.py:3139
+msgid "Bump Fee"
+msgstr "交易费用"
+
+#: gui/qt/util.py:340
+msgid "CSV"
+msgstr "CSV"
+
+#: gui/qt/history_list.py:202
+msgid "Can't plot history."
+msgstr "不能绘出历史。"
+
+#: gui/qt/installwizard.py:75 gui/qt/installwizard.py:112
+#: gui/qt/installwizard.py:552 gui/qt/util.py:164
+#: plugins/keepkey/qt_generic.py:77 plugins/trezor/qt_generic.py:77
+#: plugins/trustedcoin/trustedcoin.py:433
+msgid "Cancel"
+msgstr "取消"
+
+#: plugins/ledger/ledger.py:273 plugins/ledger/ledger.py:284
+#: plugins/ledger/ledger.py:475
+msgid "Cancelled by user"
+msgstr "已被用户取消"
+
+#: lib/base_wizard.py:399
+msgid "Cannot add this cosigner:"
+msgstr "不能添加此操作。"
+
+#: gui/kivy/main_window.py:827
+msgid "Cannot broadcast transaction"
+msgstr "无法广播交易"
+
+#: lib/wallet.py:1344 lib/wallet.py:1375
+msgid "Cannot bump fee"
+msgstr "不能增加交易费"
+
+#: gui/qt/__init__.py:231
+msgid "Cannot create window for wallet"
+msgstr "不能创建钱包窗口"
+
+#: plugins/hw_wallet/qt.py:190
+msgid "Cannot find python library for"
+msgstr "不能发现python库"
+
+#: gui/qt/__init__.py:195 gui/qt/__init__.py:210
+msgid "Cannot load wallet"
+msgstr "不能加载钱包"
+
+#: gui/qt/installwizard.py:217
+msgid "Cannot read file"
+msgstr "无法读取文件"
+
+#: gui/qt/main_window.py:2158
+msgid "Cannot sign messages with this type of address:"
+msgstr "不能为这种类型的地址签署信息："
+
+#: gui/qt/history_list.py:80
+msgid "Capital Gains"
+msgstr "资本收益"
+
+#: gui/qt/history_list.py:190
+msgid "Capital gains"
+msgstr "资本收益"
+
+#: gui/qt/network_dialog.py:361
+#, python-brace-format
+msgid "Chain split detected at block {0}"
+msgstr "在区块%d探测到链分裂"
+
+#: gui/qt/address_list.py:47
+msgid "Change"
+msgstr "找零"
+
+#: plugins/keepkey/qt_generic.py:328 plugins/trezor/qt_generic.py:332
+msgid "Change PIN"
+msgstr "更改PIN码"
+
+#: gui/qt/password_dialog.py:58
+msgid "Change Password"
+msgstr "更改密码："
+
+#: plugins/keepkey/qt_generic.py:494 plugins/trezor/qt_generic.py:504
+msgid "Change..."
+msgstr "改变..."
+
+#: gui/kivy/main_window.py:950
+msgid "Changing PIN code."
+msgstr "更改PIN"
+
+#: plugins/trustedcoin/qt.py:277
+msgid "Check this box to request a new secret. You will need to retype your seed."
+msgstr "查看这个窗口需要请求新的加密信息。你需要重新输入你的种子。"
+
+#: plugins/keepkey/clientbase.py:22 plugins/trezor/clientbase.py:22
+msgid "Check your {} device to continue"
+msgstr "查看你的 {} 设备然后继续"
+
+#: gui/qt/main_window.py:3084
+msgid "Child Pays for Parent"
+msgstr "子女为父母支付"
+
+#: gui/qt/history_list.py:348
+msgid "Child pays for parent"
+msgstr "子女为父母支付"
+
+#: lib/i18n.py:69
+msgid "Chinese"
+msgstr "简体中文"
+
+#: plugins/keepkey/qt_generic.py:379 plugins/trezor/qt_generic.py:382
+msgid "Choose Homescreen"
+msgstr "选择主屏幕"
+
+#: gui/kivy/uix/dialogs/installwizard.py:814
+msgid "Choose PIN code"
+msgstr ""
+
+#: lib/base_wizard.py:479
+msgid "Choose Seed type"
+msgstr "选择种子类型"
+
+#: plugins/digitalbitbox/digitalbitbox.py:312
+msgid "Choose a backup file:"
+msgstr "选择备份文件:"
+
+#: gui/qt/installwizard.py:26
+msgid "Choose a password to encrypt your wallet keys."
+msgstr "输入用来加密您的钱包的密码"
+
+#: gui/kivy/main_window.py:108
+msgid "Choose a server"
+msgstr "选择服务器"
+
+#: gui/qt/main_window.py:2824
+msgid "Choose coin (UTXO) selection method.  The following are available:\n\n"
+msgstr "选择币(UTXO) 选择方法。有以下选择:\n\n"
+
+#: gui/kivy/uix/ui_screens/server.kv:43
+msgid "Choose from peers"
+msgstr "从节点选择"
+
+#: plugins/digitalbitbox/digitalbitbox.py:229
+msgid "Choose how to initialize your Digital Bitbox:"
+msgstr ""
+
+#: plugins/keepkey/plugin.py:143 plugins/trezor/trezor.py:179
+msgid "Choose how you want to initialize your {}.\n\n"
+"The first two methods are secure as no secret information is entered into your computer.\n\n"
+"For the last two methods you input secrets on your keyboard and upload them to your {}, and so you should only do those on a computer you know to be trustworthy and free of malware."
+msgstr ""
+
+#: gui/qt/installwizard.py:594
+msgid "Choose the number of signatures needed to unlock funds in your wallet:"
+msgstr "选择解锁钱包资金所需要的签名数目："
+
+#: gui/qt/main_window.py:2760
+msgid "Choose which online block explorer to use for functions that open a web browser"
+msgstr "打开网页浏览器，选择使用在线区块查询功能。"
+
+#: gui/kivy/main_window.py:120
+msgid "Choose your chain"
+msgstr "选择你的链"
+
+#: gui/qt/installwizard.py:158
+msgid "Choose..."
+msgstr "选择..."
+
+#: gui/kivy/uix/ui_screens/send.kv:116 gui/qt/main_window.py:1194
+msgid "Clear"
+msgstr "清除"
+
+#: plugins/keepkey/qt_generic.py:518 plugins/trezor/qt_generic.py:528
+msgid "Clear the session after the specified period of inactivity.  Once a session has timed out, your PIN and passphrase (if enabled) must be re-entered to use the device."
+msgstr ""
+
+#: plugins/ledger/auth2fa.py:34
+msgid "Click Pair button to begin pairing a mobile phone."
+msgstr ""
+
+#: gui/kivy/uix/screens.py:231
+msgid "Clipboard is empty"
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/about.kv:54 gui/kivy/uix/ui_screens/invoice.kv:82
+#: gui/qt/__init__.py:133 gui/qt/main_window.py:2220
+#: gui/qt/main_window.py:2285 gui/qt/qrcodewidget.py:127
+#: gui/qt/transaction_dialog.py:128 gui/qt/util.py:140
+msgid "Close"
+msgstr "关闭"
+
+#: gui/qt/main_window.py:152
+msgid "Co&ins"
+msgstr "币 Co&ins"
+
+#: plugins/trustedcoin/qt.py:79
+msgid "Code"
+msgstr "代码"
+
+#: gui/kivy/uix/dialogs/settings.py:152 gui/qt/main_window.py:2826
+msgid "Coin selection"
+msgstr "选择钱币"
+
+#: gui/qt/main_window.py:154
+msgid "Con&sole"
+msgstr "控制台 Con&sole"
+
+#: gui/qt/main_window.py:153
+msgid "Con&tacts"
+msgstr "联系 Con&tacts"
+
+#: plugins/keepkey/qt_generic.py:407 plugins/trezor/qt_generic.py:417
+msgid "Confirm Device Wipe"
+msgstr ""
+
+#: gui/qt/password_dialog.py:84
+msgid "Confirm Passphrase:"
+msgstr "确认密语"
+
+#: gui/qt/password_dialog.py:99
+msgid "Confirm Password:"
+msgstr "确认密码"
+
+#: gui/kivy/uix/dialogs/installwizard.py:783 gui/qt/installwizard.py:406
+msgid "Confirm Seed"
+msgstr "确认种子"
+
+#: lib/base_wizard.py:517
+msgid "Confirm Seed Extension"
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:358 plugins/trezor/qt_generic.py:362
+msgid "Confirm Toggle Passphrase Protection"
+msgstr ""
+
+#: plugins/ledger/ledger.py:389
+msgid "Confirm Transaction on your Ledger device..."
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:15 plugins/trezor/clientbase.py:15
+msgid "Confirm internal entropy on your {} device to begin"
+msgstr ""
+
+#: gui/kivy/uix/dialogs/password_dialog.py:134
+msgid "Confirm new PIN"
+msgstr "确认新PIN"
+
+#: plugins/keepkey/clientbase.py:18 plugins/trezor/clientbase.py:18
+msgid "Confirm on your {} device the message to sign"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:193 plugins/trezor/clientbase.py:199
+msgid "Confirm on your {} device to change your PIN"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:186 plugins/trezor/clientbase.py:192
+msgid "Confirm on your {} device to change your home screen"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:191 plugins/trezor/clientbase.py:197
+msgid "Confirm on your {} device to disable PIN protection"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:175 plugins/trezor/clientbase.py:181
+msgid "Confirm on your {} device to disable passphrases"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:177 plugins/trezor/clientbase.py:183
+msgid "Confirm on your {} device to enable passphrases"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:195 plugins/trezor/clientbase.py:201
+msgid "Confirm on your {} device to set a PIN"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:17 plugins/trezor/clientbase.py:17
+msgid "Confirm on your {} that you want to wipe it clean"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:182 plugins/trezor/clientbase.py:188
+msgid "Confirm the new label on your {} device"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:19 plugins/trezor/clientbase.py:19
+msgid "Confirm the total amount spent and the transaction fee on your {} device"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:14 plugins/trezor/clientbase.py:14
+msgid "Confirm the transaction output on your {} device"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:21 plugins/trezor/clientbase.py:21
+msgid "Confirm wallet address on your {} device"
+msgstr "确认钱包地址在你的 {} 设备"
+
+#: gui/kivy/uix/ui_screens/status.kv:35
+msgid "Confirmed"
+msgstr "已确认"
+
+#: plugins/ledger/ledger.py:436 plugins/ledger/ledger.py:465
+msgid "Confirmed. Signing Transaction..."
+msgstr ""
+
+#: gui/qt/network_dialog.py:70
+msgid "Connected node"
+msgstr "已连接节点"
+
+#: gui/kivy/uix/ui_screens/network.kv:51
+msgid "Connected nodes are on the same chain"
+msgstr ""
+
+#: gui/qt/network_dialog.py:354
+#, python-brace-format
+msgid "Connected to {0} nodes."
+msgstr ""
+
+#: lib/wallet.py:1305
+msgid "Connecting..."
+msgstr "连接中..."
+
+#: gui/kivy/uix/ui_screens/network.kv:16
+msgid "Connections with Electrum servers"
+msgstr ""
+
+#: gui/qt/main_window.py:496 gui/text.py:63
+msgid "Contacts"
+msgstr "联系人"
+
+#: gui/kivy/uix/ui_screens/receive.kv:124 gui/qt/qrcodewidget.py:119
+#: gui/qt/util.py:146
+msgid "Copy"
+msgstr "复制"
+
+#: gui/qt/request_list.py:119
+msgid "Copy URI"
+msgstr "复制 URI"
+
+#: gui/qt/util.py:151
+msgid "Copy and Close"
+msgstr "复制并关闭"
+
+#: gui/kivy/uix/ui_screens/send.kv:36
+msgid "Copy and paste the recipient address using the Paste button, or use the camera to scan a QR code."
+msgstr ""
+
+#: gui/qt/util.py:586
+msgid "Copy to clipboard"
+msgstr "复制到剪切板"
+
+#: gui/qt/address_list.py:158 gui/qt/contact_list.py:74
+#: gui/qt/history_list.py:337 gui/qt/invoice_list.py:78
+#: gui/qt/request_list.py:118
+msgid "Copy {}"
+msgstr "复制{}"
+
+#: lib/base_wizard.py:145
+msgid "Cosign with hardware device"
+msgstr "硬件设备联合签名"
+
+#: plugins/cosigner_pool/__init__.py:2
+msgid "Cosigner Pool"
+msgstr "联合签名池"
+
+#: gui/qt/main_window.py:2324
+msgid "Could not decode QR code"
+msgstr "不能解码二维码"
+
+#: plugins/trustedcoin/qt.py:215
+msgid "Could not retrieve Terms of Service:"
+msgstr "无法检索服务协议："
+
+#: plugins/digitalbitbox/digitalbitbox.py:478
+#: plugins/digitalbitbox/digitalbitbox.py:490
+msgid "Could not sign message"
+msgstr "不能签名信息"
+
+#: plugins/digitalbitbox/digitalbitbox.py:456
+#: plugins/digitalbitbox/digitalbitbox.py:469
+msgid "Could not sign message."
+msgstr "不能签名信息。"
+
+#: lib/base_wizard.py:86
+msgid "Create"
+msgstr "创建"
+
+#: plugins/trustedcoin/trustedcoin.py:377 lib/base_wizard.py:132
+msgid "Create a new seed"
+msgstr "创建新种子"
+
+#: plugins/digitalbitbox/digitalbitbox.py:208
+msgid "Create a wallet using the current seed"
+msgstr "使用当前种子创建钱包"
+
+#: lib/base_wizard.py:177
+msgid "Create keystore from a master key"
+msgstr "从主键创建密钥库"
+
+#: plugins/trustedcoin/trustedcoin.py:374
+msgid "Create or restore"
+msgstr "创建或恢复"
+
+#: gui/qt/util.py:196
+msgid "Critical Error"
+msgstr "重大错误"
+
+#: gui/qt/password_dialog.py:101
+msgid "Current Password:"
+msgstr "当前密码"
+
+#: gui/qt/main_window.py:3141
+msgid "Current fee"
+msgstr "当前费用"
+
+#: gui/qt/fee_slider.py:36
+msgid "Current rate"
+msgstr "当前利率"
+
+#: gui/qt/history_list.py:91 gui/qt/history_list.py:120
+msgid "Custom"
+msgstr "自定义"
+
+#: lib/i18n.py:42
+msgid "Czech"
+msgstr "捷克语"
+
+#: lib/i18n.py:43
+msgid "Danish"
+msgstr "丹麦语"
+
+#: gui/qt/__init__.py:134
+msgid "Dark/Light"
+msgstr "暗/亮"
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:114 gui/qt/history_list.py:73
+#: gui/qt/request_list.py:41 gui/stdio.py:103 gui/text.py:103
+msgid "Date"
+msgstr "日期"
+
+#: gui/qt/transaction_dialog.py:230
+msgid "Date: {}"
+msgstr "日期: {}"
+
+#: gui/qt/main_window.py:2281
+msgid "Decrypt"
+msgstr "解密"
+
+#: lib/i18n.py:40
+msgid "Default"
+msgstr "默认"
+
+#: gui/qt/network_dialog.py:227
+msgid "Default Servers"
+msgstr "默认服务器"
+
+#: gui/kivy/uix/dialogs/requests.py:126 gui/kivy/uix/ui_screens/status.kv:71
+#: gui/qt/contact_list.py:79 gui/qt/invoice_list.py:82
+#: gui/qt/main_window.py:470 gui/qt/main_window.py:1880
+#: gui/qt/request_list.py:121
+msgid "Delete"
+msgstr "删除"
+
+#: gui/kivy/uix/dialogs/invoices.py:158 gui/qt/main_window.py:1875
+msgid "Delete invoice?"
+msgstr "删除发票？"
+
+#: gui/kivy/uix/dialogs/requests.py:146
+msgid "Delete request"
+msgstr "删除请求"
+
+#: gui/kivy/uix/dialogs/addresses.py:202
+msgid "Delete request?"
+msgstr "删除请求？"
+
+#: gui/qt/main_window.py:2072
+msgid "Delete wallet file?"
+msgstr "删除钱包文件？"
+
+#: gui/kivy/main_window.py:896
+msgid "Delete wallet?"
+msgstr "删除钱包？"
+
+#: gui/kivy/uix/dialogs/settings.py:139
+msgid "Denomination"
+msgstr "面额"
+
+#: lib/base_wizard.py:295
+msgid "Derivation"
+msgstr "推导"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:49
+#: gui/kivy/uix/ui_screens/receive.kv:108 gui/kivy/uix/ui_screens/send.kv:72
+#: gui/qt/history_list.py:73 gui/qt/invoice_list.py:36
+#: gui/qt/main_window.py:797 gui/qt/main_window.py:1058
+#: gui/qt/request_list.py:41 gui/qt/transaction_dialog.py:224 gui/stdio.py:103
+#: gui/text.py:103 gui/text.py:173
+msgid "Description"
+msgstr "说明"
+
+#: gui/qt/main_window.py:1056
+msgid "Description of the transaction (not mandatory)."
+msgstr "交易说明(非强制)。"
+
+#: gui/kivy/uix/dialogs/addresses.py:133 gui/qt/address_list.py:159
+#: gui/qt/history_list.py:340 gui/qt/invoice_list.py:79 gui/qt/utxo_list.py:71
+msgid "Details"
+msgstr "详细"
+
+#: gui/kivy/uix/ui_screens/about.kv:35
+msgid "Developers"
+msgstr "开发者"
+
+#: plugins/keepkey/qt_generic.py:443 plugins/trezor/qt_generic.py:453
+msgid "Device ID"
+msgstr "设备ID"
+
+#: plugins/keepkey/qt_generic.py:439 plugins/keepkey/qt_generic.py:464
+#: plugins/trezor/qt_generic.py:449 plugins/trezor/qt_generic.py:474
+msgid "Device Label"
+msgstr "设备标签"
+
+#: plugins/digitalbitbox/digitalbitbox.py:116
+msgid "Device communication error. Please unplug and replug your Digital Bitbox."
+msgstr "设备通讯错误。请拔出并重新插入你的硬件钱包。"
+
+#: plugins/ledger/ledger.py:191
+msgid "Device not in Bitcoin mode"
+msgstr "设备没在比特币模式"
+
+#: plugins/digitalbitbox/__init__.py:5
+msgid "Digital Bitbox wallet"
+msgstr "硬件钱包"
+
+#: plugins/keepkey/qt_generic.py:540 plugins/trezor/qt_generic.py:550
+msgid "Disable PIN"
+msgstr "禁用PIN码"
+
+#: plugins/keepkey/qt_generic.py:326 plugins/trezor/qt_generic.py:330
+msgid "Disable Passphrases"
+msgstr "取消密码"
+
+#: plugins/keepkey/qt_generic.py:327 plugins/trezor/qt_generic.py:331
+msgid "Disabled"
+msgstr "已禁用 "
+
+#: gui/kivy/main_window.py:652
+msgid "Disconnected"
+msgstr "已断开"
+
+#: gui/qt/main_window.py:1192
+msgid "Display the details of your transaction before signing it."
+msgstr "请在提交之前确认交易细节。"
+
+#: gui/kivy/uix/ui_screens/about.kv:41
+msgid "Distributed by Electrum Technologies GmbH"
+msgstr "Electrum Technologies GmbH分发"
+
+#: plugins/digitalbitbox/digitalbitbox.py:267
+msgid "Do not pair"
+msgstr "无法配对"
+
+#: gui/qt/seed_dialog.py:46
+msgid "Do not store it electronically."
+msgstr "不要存储电子版"
+
+#: plugins/trustedcoin/trustedcoin.py:375 lib/base_wizard.py:130
+msgid "Do you want to create a new seed, or to restore a wallet using an existing seed?"
+msgstr "想要创建一个新种子，或者用已存在的种子去恢复一个钱包？"
+
+#: gui/qt/installwizard.py:302
+msgid "Do you want to delete '{}'?"
+msgstr "确认删除'{}'?"
+
+#: gui/qt/installwizard.py:285
+msgid "Do you want to delete the old file"
+msgstr "确认删除旧文件吗？"
+
+#: gui/qt/main_window.py:1780
+msgid "Do you want to remove"
+msgstr "你想要删除"
+
+#: gui/qt/exception_window.py:91
+msgid "Do you want to send this report?"
+msgstr "您想要发送这个报告吗？"
+
+#: gui/qt/main_window.py:1467
+msgid "Do you wish to continue?"
+msgstr "确认继续吗？"
+
+#: lib/i18n.py:57
+msgid "Dutch"
+msgstr "荷兰语"
+
+#: lib/util.py:53
+msgid "Dynamic fee estimates not available"
+msgstr ""
+
+#: gui/qt/main_window.py:2647
+msgid "ETA"
+msgstr ""
+
+#: gui/qt/main_window.py:2656
+msgid "Edit fees manually"
+msgstr "手工编辑费用"
+
+#: gui/qt/address_list.py:161 gui/qt/contact_list.py:77
+#: gui/qt/history_list.py:339
+msgid "Edit {}"
+msgstr ""
+
+#: gui/kivy/main_window.py:251
+msgid "Electrum App"
+msgstr "Electrum应用"
+
+#: gui/qt/main_window.py:3019
+msgid "Electrum Plugins"
+msgstr "Electrum 插件"
+
+#: lib/plugins.py:455
+msgid "Electrum cannot pair with your {}.\n\n"
+"Before you request bitcoins to be sent to addresses in this wallet, ensure you can pair with your device, or that you have its seed (and passphrase, if any).  Otherwise all bitcoins you receive will be unspendable."
+msgstr ""
+
+#: gui/qt/installwizard.py:543
+msgid "Electrum communicates with remote servers to get information about your transactions and addresses. The servers all fulfill the same purpose only differing in hardware. In most cases you simply want to let Electrum pick one at random.  However if you prefer feel free to select a server manually."
+msgstr "Electrum 与远程服务器连接以获取您的交易记录和地址信息。这些服务器节点都能够实现连接目的只是使用硬件不同。在大多数情况下，你只需要让 Electrum 随便挑一个节点，如果你有一个偏好设置，随时都可以手动选择服务器。"
+
+#: gui/qt/network_dialog.py:284
+msgid "Electrum connects to several nodes in order to download block headers and find out the longest blockchain."
+msgstr "Electrum 会连接数个节点以下载区块头并找出最长的区块链。"
+
+#: lib/simple_config.py:238
+msgid "Electrum datadir does not exist. Was it deleted while running?"
+msgstr "Electrum数据目录不存在。在运行时被删除了？"
+
+#: lib/base_wizard.py:531
+msgid "Electrum is generating your addresses, please wait..."
+msgstr "Electrum 正在生成地址，请稍等。"
+
+#: gui/qt/main_window.py:521
+msgid "Electrum preferences"
+msgstr "Electrum 偏好设置"
+
+#: gui/kivy/uix/ui_screens/server.kv:9
+msgid "Electrum requests your transaction history from a single server. The returned history is checked against blockchain headers sent by other nodes, using Simple Payment Verification (SPV)."
+msgstr ""
+
+#: gui/qt/network_dialog.py:293
+msgid "Electrum sends your wallet addresses to a single server, in order to receive your transaction history."
+msgstr "Electrum 将你的钱包地址发送到一台服务器，以获得您的交易记录。"
+
+#: gui/qt/installwizard.py:173
+msgid "Electrum wallet"
+msgstr "Electrum钱包"
+
+#: gui/qt/main_window.py:422
+msgid "Electrum was unable to copy your wallet file to the specified location."
+msgstr "Electrum 不会复制你的钱包文件到其他地方。"
+
+#: gui/qt/transaction_dialog.py:53
+msgid "Electrum was unable to deserialize the transaction:"
+msgstr "Electrum 无法解析这个交易记录："
+
+#: gui/qt/main_window.py:2339
+msgid "Electrum was unable to open your transaction file"
+msgstr "Electrum 无法打开您的交易文件"
+
+#: gui/qt/main_window.py:2304
+msgid "Electrum was unable to parse your transaction"
+msgstr "Electrum 无法解析您的交易记录"
+
+#: gui/qt/main_window.py:2450
+msgid "Electrum was unable to produce a private key-export."
+msgstr "Electrum 无法生成私匙导出。"
+
+#: gui/qt/history_list.py:401
+msgid "Electrum was unable to produce a transaction export."
+msgstr "Electrum 无法生成交易记录导出。"
+
+#: gui/qt/main_window.py:561
+msgid "Electrum's focus is speed, with low resource usage and simplifying Bitcoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Bitcoin system.\n\n"
+msgstr "Electrum专注于是速度，具有较低的内存使用率并简化比特币。你不需要定期备份，因为你可以从一个记忆中或者写在纸上的秘密的短语来恢复你的钱包。 因为它与高性能服务器相结合运作来处理比特币系统中最复杂的部分，所以可以即使启动。\n\n"
+
+#: plugins/email_requests/__init__.py:3
+msgid "Email"
+msgstr "电子邮件"
+
+#: plugins/email_requests/qt.py:200
+msgid "Email settings"
+msgstr "邮件设置"
+
+#: plugins/keepkey/qt_generic.py:235 plugins/trezor/qt_generic.py:236
+msgid "Enable PIN protection"
+msgstr "启用PIN码保护"
+
+#: plugins/keepkey/qt_generic.py:326 plugins/trezor/qt_generic.py:330
+msgid "Enable Passphrases"
+msgstr "启用密码"
+
+#: gui/qt/main_window.py:2849
+msgid "Enable output value rounding"
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:269 plugins/trezor/qt_generic.py:270
+msgid "Enable passphrases"
+msgstr "启用密码"
+
+#: plugins/keepkey/qt_generic.py:327 plugins/trezor/qt_generic.py:331
+msgid "Enabled"
+msgstr "启用"
+
+#: gui/qt/main_window.py:2277
+msgid "Encrypt"
+msgstr "加密"
+
+#: gui/qt/password_dialog.py:121 gui/qt/password_dialog.py:205
+msgid "Encrypt wallet file"
+msgstr "加密钱包文件"
+
+#: gui/qt/main_window.py:2254
+msgid "Encrypt/decrypt Message"
+msgstr "加密/解密信息"
+
+#: gui/qt/address_list.py:167
+msgid "Encrypt/decrypt message"
+msgstr "加密/解密信息"
+
+#: gui/qt/main_window.py:2272
+msgid "Encrypted"
+msgstr "已加密"
+
+#: plugins/digitalbitbox/digitalbitbox.py:437 plugins/ledger/ledger.py:257
+msgid "Encryption and decryption are currently not supported for {}"
+msgstr ""
+
+#: plugins/keepkey/plugin.py:32 plugins/trezor/trezor.py:47
+msgid "Encryption and decryption are not implemented by {}"
+msgstr ""
+
+#: gui/qt/history_list.py:176
+msgid "End"
+msgstr ""
+
+#: lib/i18n.py:47
+msgid "English"
+msgstr "英语"
+
+#: gui/kivy/main_window.py:702 plugins/keepkey/qt_generic.py:162
+#: plugins/trezor/qt_generic.py:162
+msgid "Enter PIN"
+msgstr "输入PIN码"
+
+#: gui/kivy/main_window.py:498
+msgid "Enter PIN code"
+msgstr ""
+
+#: plugins/ledger/auth2fa.py:110 plugins/ledger/auth2fa.py:143
+msgid "Enter PIN:"
+msgstr "输入PIN码："
+
+#: gui/qt/password_dialog.py:58 plugins/hw_wallet/qt.py:118
+msgid "Enter Passphrase"
+msgstr "输入密语"
+
+#: gui/qt/password_dialog.py:58 gui/qt/password_dialog.py:288
+msgid "Enter Password"
+msgstr "输入密码"
+
+#: gui/kivy/uix/dialogs/installwizard.py:567 gui/qt/installwizard.py:399
+msgid "Enter Seed"
+msgstr "输入种子"
+
+#: gui/kivy/uix/screens.py:127
+msgid "Enter Transaction Label"
+msgstr "输入交易标签"
+
+#: gui/qt/main_window.py:413
+msgid "Enter a filename for the copy of your wallet"
+msgstr "给你的钱包副本输入文件名"
+
+#: plugins/keepkey/qt_generic.py:207 plugins/trezor/qt_generic.py:208
+msgid "Enter a label to name your device:"
+msgstr "输入一个标签来命名你的设备："
+
+#: lib/base_wizard.py:152
+msgid "Enter a list of Bitcoin addresses (this will create a watching-only wallet), or a list of private keys."
+msgstr "输入比特币地址列表（这将创建一个观察钱包），或者一个私钥列表。"
+
+#: gui/qt/main_window.py:1800
+msgid "Enter a list of outputs in the 'Pay to' field."
+msgstr "在'付给'域填写输出列表"
+
+#: plugins/keepkey/clientbase.py:46 plugins/trezor/clientbase.py:46
+msgid "Enter a new PIN for your {}:"
+msgstr "输入你的 {} 新PIN码:"
+
+#: plugins/digitalbitbox/digitalbitbox.py:165
+msgid "Enter a new password below."
+msgstr "请在下面输入您的新密码。"
+
+#: plugins/keepkey/clientbase.py:62 plugins/trezor/clientbase.py:65
+msgid "Enter a passphrase to generate this wallet.  Each time you use this wallet your {} will prompt you for the passphrase.  If you forget the passphrase you cannot access the bitcoins in the wallet."
+msgstr ""
+
+#: gui/qt/main_window.py:2571
+msgid "Enter addresses"
+msgstr "输入地址"
+
+#: lib/base_wizard.py:141
+msgid "Enter cosigner key"
+msgstr "输入联合签名键"
+
+#: lib/base_wizard.py:142
+msgid "Enter cosigner seed"
+msgstr "输入联合签名种子"
+
+#: gui/kivy/main_window.py:834
+msgid "Enter description"
+msgstr "输入描述"
+
+#: gui/kivy/uix/dialogs/password_dialog.py:129
+msgid "Enter new PIN"
+msgstr "输入新的 PIN 码"
+
+#: plugins/digitalbitbox/digitalbitbox.py:135
+#: plugins/digitalbitbox/digitalbitbox.py:138
+#: plugins/digitalbitbox/digitalbitbox.py:150
+#: plugins/digitalbitbox/digitalbitbox.py:153
+msgid "Enter password:"
+msgstr "输入密码:"
+
+#: gui/qt/main_window.py:2578
+msgid "Enter private keys"
+msgstr "输入私钥"
+
+#: gui/qt/main_window.py:2496
+msgid "Enter private keys:"
+msgstr "输入私钥："
+
+#: plugins/keepkey/qt_generic.py:243 plugins/trezor/qt_generic.py:244
+msgid "Enter the master private key beginning with xprv:"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:67 plugins/trezor/clientbase.py:70
+msgid "Enter the passphrase to unlock this wallet:"
+msgstr "输入密码解锁这个钱包："
+
+#: plugins/digitalbitbox/digitalbitbox.py:128
+msgid "Enter the password used when the backup was created:"
+msgstr ""
+
+#: plugins/trustedcoin/trustedcoin.py:78
+msgid "Enter the seed for your 2-factor wallet:"
+msgstr ""
+
+#: gui/qt/installwizard.py:388
+msgid "Enter their master private key (xprv) if you want to be able to sign for them."
+msgstr "如果你想为他们签名请输入主密钥(xprv)。"
+
+#: gui/kivy/uix/dialogs/wallets.py:60
+msgid "Enter wallet name"
+msgstr "输入钱包的名称"
+
+#: plugins/keepkey/qt_generic.py:241 plugins/trezor/qt_generic.py:242
+msgid "Enter your BIP39 mnemonic:"
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:175
+#: plugins/digitalbitbox/digitalbitbox.py:185
+#: plugins/digitalbitbox/digitalbitbox.py:190
+msgid "Enter your Digital Bitbox password:"
+msgstr "输入你硬件钱包的密码："
+
+#: plugins/keepkey/qt_generic.py:256 plugins/trezor/qt_generic.py:257
+msgid "Enter your PIN (digits 1-9):"
+msgstr "输入你的PIN（数字1-9）："
+
+#: gui/kivy/main_window.py:973
+msgid "Enter your PIN code in order to decrypt your private key"
+msgstr ""
+
+#: gui/kivy/main_window.py:923
+msgid "Enter your PIN code in order to decrypt your seed"
+msgstr "请输入您的PIN码以解锁您的种苗"
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:161
+msgid "Enter your PIN code in order to sign this transaction"
+msgstr ""
+
+#: gui/kivy/main_window.py:902
+msgid "Enter your PIN code to confirm deletion of {}"
+msgstr ""
+
+#: gui/kivy/uix/screens.py:286
+msgid "Enter your PIN code to proceed"
+msgstr ""
+
+#: gui/kivy/main_window.py:950
+msgid "Enter your current PIN:"
+msgstr "请输入您当前的PIN码："
+
+#: plugins/keepkey/clientbase.py:51 plugins/trezor/clientbase.py:51
+msgid "Enter your current {} PIN:"
+msgstr ""
+
+#: gui/qt/installwizard.py:203
+msgid "Enter your password or choose another file."
+msgstr "请输入密码或选择另一个文件。"
+
+#: gui/qt/main_window.py:1552
+msgid "Enter your password to proceed"
+msgstr "请输入您的密码以继续。"
+
+#: lib/base_wizard.py:285
+msgid "Enter your wallet derivation here."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:210
+msgid "Erase the Digital Bitbox"
+msgstr ""
+
+#: gui/qt/__init__.py:194 gui/qt/__init__.py:209 gui/qt/__init__.py:230
+#: gui/qt/installwizard.py:250 gui/qt/installwizard.py:254
+#: gui/qt/installwizard.py:261 gui/qt/installwizard.py:268 gui/qt/util.py:192
+#: gui/stdio.py:208 gui/text.py:359 plugins/trustedcoin/trustedcoin.py:517
+msgid "Error"
+msgstr "错误"
+
+#: gui/kivy/uix/screens.py:383 gui/qt/main_window.py:929
+msgid "Error adding payment request"
+msgstr ""
+
+#: gui/qt/qrtextedit.py:53
+msgid "Error opening file"
+msgstr "文件打开出错"
+
+#: plugins/labels/qt.py:66
+msgid "Error synchronising labels"
+msgstr ""
+
+#: lib/base_wizard.py:393
+msgid "Error: duplicate master public key"
+msgstr ""
+
+#: lib/i18n.py:45
+msgid "Esperanto"
+msgstr "世界语"
+
+#: gui/qt/fee_slider.py:38
+msgid "Estimate"
+msgstr "估计"
+
+#: gui/qt/__init__.py:136
+msgid "Exit Electrum"
+msgstr "退出 Electrum"
+
+#: gui/qt/history_list.py:187
+msgid "Expenditures"
+msgstr "支出"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:46
+msgid "Expiration"
+msgstr "过期"
+
+#: gui/qt/main_window.py:817
+msgid "Expiration date of your request."
+msgstr "您的要求的截止日期。"
+
+#: gui/kivy/uix/dialogs/invoices.py:88 gui/kivy/uix/dialogs/requests.py:92
+#: gui/qt/util.py:37
+msgid "Expired"
+msgstr "已过期"
+
+#: gui/qt/main_window.py:819
+msgid "Expired requests have to be deleted manually from your list, in order to free the corresponding Bitcoin addresses."
+msgstr "为了释放相应的比特币地址过期的请求必须从你的列表中手工删除。"
+
+#: gui/qt/invoice_list.py:36 gui/qt/main_window.py:1863
+msgid "Expires"
+msgstr "过期"
+
+#: gui/qt/history_list.py:389 gui/qt/main_window.py:499
+#: gui/qt/main_window.py:502 gui/qt/main_window.py:2397
+#: gui/qt/transaction_dialog.py:125
+msgid "Export"
+msgstr "导出"
+
+#: gui/qt/history_list.py:381
+msgid "Export History"
+msgstr "导出历史记录"
+
+#: gui/qt/contact_list.py:67
+msgid "Export file"
+msgstr "导出文件"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:87
+msgid "Export private key"
+msgstr "导出私钥"
+
+#: gui/qt/main_window.py:2384
+msgid "Exposing a single private key can compromise your entire wallet!"
+msgstr "泄漏一个私有密钥可能会危及整个钱包！"
+
+#: gui/qt/seed_dialog.py:60
+msgid "Extend this seed with custom words"
+msgstr "用自定义单词扩展这个种子"
+
+#: gui/qt/installwizard.py:262
+msgid "Failed to decrypt using this hardware device."
+msgstr ""
+
+#: lib/util.py:74
+msgid "Failed to export to file."
+msgstr "导出文件失败。"
+
+#: lib/util.py:66
+msgid "Failed to import from file."
+msgstr "导入文件失败。"
+
+#: gui/qt/main_window.py:1990
+msgid "Failed to update password"
+msgstr "无法更新密码"
+
+#: gui/kivy/uix/ui_screens/send.kv:90 gui/qt/main_window.py:1096
+#: gui/qt/transaction_dialog.py:245 gui/text.py:175
+msgid "Fee"
+msgstr "费用"
+
+#: gui/qt/main_window.py:2645
+msgid "Fee estimation"
+msgstr "费用估计"
+
+#: gui/qt/main_window.py:3114
+msgid "Fee:"
+msgstr "费用："
+
+#: gui/qt/main_window.py:2957
+msgid "Fees"
+msgstr "费用"
+
+#: gui/qt/main_window.py:2960
+msgid "Fiat"
+msgstr "法定货币"
+
+#: gui/qt/main_window.py:2950
+msgid "Fiat currency"
+msgstr "法定货币"
+
+#: gui/qt/util.py:361
+msgid "File"
+msgstr "文件"
+
+#: gui/qt/address_list.py:55
+msgid "Filter:"
+msgstr "过滤:"
+
+#: gui/qt/main_window.py:3153
+msgid "Final"
+msgstr "最后"
+
+#: gui/qt/history_list.py:181
+msgid "Final balance"
+msgstr "当前余额"
+
+#: gui/qt/main_window.py:505
+msgid "Find"
+msgstr "查找"
+
+#: plugins/keepkey/qt_generic.py:442 plugins/trezor/qt_generic.py:452
+msgid "Firmware Version"
+msgstr "固件版本"
+
+#: plugins/ledger/ledger.py:30
+msgid "Firmware version (or \"Bitcoin\" app) too old for Segwit support. Please update at"
+msgstr "固件版本（或比特币软件）对Segwit的支持太低。请更新"
+
+#: plugins/ledger/ledger.py:28
+msgid "Firmware version too old. Please update at"
+msgstr "固件版本太低。请更新"
+
+#: gui/qt/fee_slider.py:38
+msgid "Fixed rate"
+msgstr "固定比率"
+
+#: gui/qt/network_dialog.py:85
+msgid "Follow this branch"
+msgstr "关注这个分支"
+
+#: plugins/trustedcoin/__init__.py:6 plugins/trustedcoin/qt.py:139
+msgid "For more information, visit"
+msgstr "更多信息，请参考"
+
+#: gui/kivy/uix/ui_screens/network.kv:49
+msgid "Fork detected at block {}"
+msgstr ""
+
+#: gui/qt/util.py:337
+msgid "Format"
+msgstr "格式"
+
+#: gui/qt/main_window.py:1802
+msgid "Format: address, amount"
+msgstr "格式：地址，总额"
+
+#: gui/qt/address_list.py:175
+msgid "Freeze"
+msgstr "冻结"
+
+#: lib/i18n.py:49
+msgid "French"
+msgstr "法语"
+
+#: gui/qt/history_list.py:108 gui/qt/main_window.py:1063
+msgid "From"
+msgstr "来自"
+
+#: gui/qt/installwizard.py:585
+#, python-brace-format
+msgid "From {0} cosigners"
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:223
+msgid "Full 2FA enabled. This is not supported yet."
+msgstr ""
+
+#: gui/kivy/uix/dialogs/addresses.py:128 gui/qt/address_list.py:51
+msgid "Funded"
+msgstr "提供资金"
+
+#: plugins/digitalbitbox/digitalbitbox.py:231
+msgid "Generate a new random wallet"
+msgstr "产生一个新的随机钱包"
+
+#: lib/i18n.py:44
+msgid "German"
+msgstr "德语"
+
+#: plugins/trustedcoin/qt.py:266
+msgid "Google Authenticator code:"
+msgstr "Google 身份验证器："
+
+#: lib/i18n.py:46
+msgid "Greek"
+msgstr "希腊语"
+
+#: plugins/greenaddress_instant/qt.py:76
+msgid "GreenAddress requires your signature \n"
+"to verify that transaction is instant.\n"
+"Please enter your password to sign a\n"
+"verification request."
+msgstr ""
+
+#: lib/plugins.py:406
+msgid "Handler not found for"
+msgstr ""
+
+#: lib/base_wizard.py:192
+msgid "Hardware Keystore"
+msgstr "硬件密钥"
+
+#: gui/qt/network_dialog.py:70 gui/qt/utxo_list.py:33
+msgid "Height"
+msgstr "高度"
+
+#: gui/kivy/main_window.py:740
+msgid "Hello World"
+msgstr "Hello World"
+
+#: gui/qt/installwizard.py:533
+msgid "Here is your master public key."
+msgstr "这是你的主公钥"
+
+#: gui/qt/main_window.py:231 gui/qt/main_window.py:509
+msgid "Hide"
+msgstr "隐藏"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:87
+msgid "Hide private key"
+msgstr "隐藏私钥"
+
+#: gui/kivy/uix/ui_screens/status.kv:64
+msgid "Hide seed"
+msgstr "隐藏种子"
+
+#: gui/qt/address_dialog.py:81 gui/qt/main_window.py:139 gui/text.py:63
+msgid "History"
+msgstr "历史"
+
+#: gui/kivy/uix/ui_screens/about.kv:25
+msgid "Homepage"
+msgstr "主页"
+
+#: plugins/keepkey/qt_generic.py:493 plugins/trezor/qt_generic.py:503
+msgid "Homescreen"
+msgstr "主屏"
+
+#: gui/kivy/uix/ui_screens/proxy.kv:19 gui/kivy/uix/ui_screens/server.kv:19
+#: gui/qt/network_dialog.py:135
+msgid "Host"
+msgstr "主机"
+
+#: gui/qt/installwizard.py:550
+msgid "How do you want to connect to a server? "
+msgstr "你想怎么连接服务器？"
+
+#: gui/qt/seed_dialog.py:72
+msgid "However, we do not generate BIP39 seeds, because they do not meet our safety standard."
+msgstr ""
+
+#: lib/i18n.py:50
+msgid "Hungarian"
+msgstr "匈牙利语"
+
+#: plugins/trustedcoin/trustedcoin.py:378 lib/base_wizard.py:133
+msgid "I already have a seed"
+msgstr "我已经有一个种子"
+
+#: plugins/trustedcoin/qt.py:276
+msgid "I have lost my Google Authenticator account"
+msgstr ""
+
+#: gui/qt/main_window.py:2961
+msgid "Identity"
+msgstr "身份"
+
+#: gui/qt/network_dialog.py:217
+msgid "If auto-connect is enabled, Electrum will always use a server that is on the longest blockchain."
+msgstr "如果自动连接已启用，Electrum 将总是使用拥有最长的数据区块链的服务器。"
+
+#: gui/qt/main_window.py:2853
+msgid "If enabled, at most 100 satoshis might be lost due to this, per transaction."
+msgstr ""
+
+#: gui/qt/network_dialog.py:218
+msgid "If it is disabled, you have to choose a server you want to use. Electrum will warn you if your server is lagging."
+msgstr "如果禁用，则必须选择要使用的服务器。 如果你的服务器滞后，Electrum会警告你。"
+
+#: lib/base_wizard.py:286
+msgid "If you are not sure what this is, leave this field unchanged."
+msgstr ""
+
+#: plugins/trustedcoin/trustedcoin.py:434
+msgid "If you are online, click on \"{}\" to continue."
+msgstr ""
+
+#: gui/qt/main_window.py:2668
+msgid "If you check this box, your transactions will be marked as non-final,"
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:543 plugins/trezor/qt_generic.py:553
+msgid "If you disable your PIN, anyone with physical access to your {} device can spend your bitcoins."
+msgstr ""
+
+#: lib/base_wizard.py:331
+msgid "If you do not know what this is, leave this field empty."
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:28 plugins/trezor/qt_generic.py:28
+msgid "If you forget a passphrase you will be unable to access any bitcoins in the wallet behind it.  A passphrase is not a PIN. Only change this if you are sure you understand it."
+msgstr ""
+
+#: gui/kivy/uix/dialogs/installwizard.py:527
+msgid "If you forget your PIN or lose your device, your seed phrase will be the only way to recover your funds."
+msgstr "如果你忘记密码或者丢失你的设备，你的种子短语将是你回复你的财产的唯一渠道。"
+
+#: plugins/trustedcoin/qt.py:82
+msgid "If you have lost your second factor, you need to restore your wallet from seed in order to request a new code."
+msgstr ""
+
+#: gui/qt/installwizard.py:409
+msgid "If you lose your seed, your money will be permanently lost."
+msgstr "如果你丢失你的种子，你的财产将会永远丢失。"
+
+#: gui/qt/installwizard.py:263
+msgid "If you use a passphrase, make sure it is correct."
+msgstr ""
+
+#: gui/qt/main_window.py:967
+msgid "If you want to create new addresses, use a deterministic wallet instead."
+msgstr "如果你想创建新地址，请使用一个确定钱包。"
+
+#: lib/base_wizard.py:222
+msgid "If your device is not detected on Windows, go to \"Settings\", \"Devices\", \"Connected devices\", and do \"Remove device\". Then, plug your device again."
+msgstr ""
+
+#: gui/qt/main_window.py:2074
+msgid "If your wallet contains funds, make sure you have saved its seed."
+msgstr ""
+
+#: gui/qt/main_window.py:498 gui/qt/main_window.py:501
+#: gui/qt/main_window.py:2548
+msgid "Import"
+msgstr "导入"
+
+#: lib/base_wizard.py:151
+msgid "Import Bitcoin Addresses"
+msgstr "导入比特币地址"
+
+#: lib/base_wizard.py:94
+msgid "Import Bitcoin addresses or private keys"
+msgstr "导入比特币地址或私钥"
+
+#: gui/qt/main_window.py:483 gui/qt/main_window.py:2571
+msgid "Import addresses"
+msgstr "导入地址"
+
+#: gui/qt/contact_list.py:66
+msgid "Import file"
+msgstr "导入文件"
+
+#: plugins/digitalbitbox/digitalbitbox.py:268
+msgid "Import pairing from the digital bitbox desktop app"
+msgstr ""
+
+#: gui/qt/main_window.py:2578
+msgid "Import private keys"
+msgstr "导入私钥"
+
+#: gui/qt/main_window.py:2385
+msgid "In particular, DO NOT use 'redeem private key' services proposed by third parties."
+msgstr "特别是，不要使用由第三方服务提供的“赎回私钥”。"
+
+#: gui/qt/main_window.py:2809
+msgid "In some cases, use up to 3 change addresses in order to break up large coin amounts and obfuscate the recipient address."
+msgstr "在某些情况下，可以使用最多3个更改地址来分割大额货币并混淆收件人地址。"
+
+#: lib/simple_config.py:350
+msgid "In the next block"
+msgstr "在下一个区块"
+
+#: gui/qt/history_list.py:184
+msgid "Income"
+msgstr "收入"
+
+#: plugins/trustedcoin/trustedcoin.py:547 lib/util.py:58
+msgid "Incorrect password"
+msgstr "密码错误"
+
+#: plugins/digitalbitbox/digitalbitbox.py:183
+msgid "Incorrect password entered."
+msgstr ""
+
+#: plugins/trustedcoin/trustedcoin.py:562
+msgid "Incorrect seed"
+msgstr "错误的种子"
+
+#: gui/qt/history_list.py:344
+msgid "Increase fee"
+msgstr "增加费用"
+
+#: lib/i18n.py:52
+msgid "Indonesian"
+msgstr "印度尼西亚语"
+
+#: gui/qt/main_window.py:396 gui/qt/util.py:200
+#: plugins/keepkey/qt_generic.py:580 plugins/trezor/qt_generic.py:590
+msgid "Information"
+msgstr "消息"
+
+#: gui/qt/history_list.py:178
+msgid "Initial balance"
+msgstr "初始金额"
+
+#: plugins/ledger/qt.py:78
+msgid "Initialization of Ledger HW devices is currently disabled."
+msgstr ""
+
+#: plugins/keepkey/plugin.py:165 plugins/trezor/trezor.py:201
+msgid "Initialize Device"
+msgstr "初始化设备"
+
+#: plugins/keepkey/qt_generic.py:447 plugins/trezor/qt_generic.py:457
+msgid "Initialized"
+msgstr "已初始化"
+
+#: gui/qt/main_window.py:3101
+msgid "Input amount"
+msgstr "输入数量"
+
+#: gui/qt/main_window.py:2344
+msgid "Input raw transaction"
+msgstr "导入原始交易"
+
+#: gui/qt/transaction_dialog.py:261
+msgid "Inputs"
+msgstr "收入"
+
+#: gui/qt/installwizard.py:101
+msgid "Install Wizard"
+msgstr "安装向导"
+
+#: gui/qt/main_window.py:2780
+msgid "Install the zbar package to enable this."
+msgstr "安装zbar包以启用此功能。"
+
+#: gui/qt/main_window.py:1506
+msgid "Insufficient funds"
+msgstr "资金不足"
+
+#: gui/qt/main_window.py:1820
+msgid "Invalid Address"
+msgstr "地址无效"
+
+#: gui/qt/main_window.py:1483 gui/stdio.py:171 gui/text.py:328
+msgid "Invalid Amount"
+msgstr "金额不对"
+
+#: gui/kivy/uix/screens.py:247 gui/qt/main_window.py:1480
+msgid "Invalid Bitcoin Address"
+msgstr "比特币地址不对"
+
+#: gui/stdio.py:166 gui/text.py:323
+msgid "Invalid Bitcoin address"
+msgstr "无效的比特币地址"
+
+#: gui/qt/main_window.py:2148 gui/qt/main_window.py:2176 lib/wallet.py:1594
+msgid "Invalid Bitcoin address."
+msgstr "无效的比特币地址"
+
+#: gui/stdio.py:176 gui/text.py:333
+msgid "Invalid Fee"
+msgstr "费用不对"
+
+#: lib/util.py:819
+msgid "Invalid JSON code."
+msgstr "无效的JSON代码。"
+
+#: gui/qt/main_window.py:1459
+msgid "Invalid Lines found:"
+msgstr "发现无效的行:"
+
+#: gui/kivy/main_window.py:802 gui/kivy/uix/dialogs/tx_dialog.py:171
+msgid "Invalid PIN"
+msgstr "PIN 无效"
+
+#: gui/kivy/uix/screens.py:252
+msgid "Invalid amount"
+msgstr "无效的金额"
+
+#: gui/qt/main_window.py:1700
+msgid "Invalid bitcoin URI:"
+msgstr "无效的比特币 URI："
+
+#: gui/kivy/uix/ui_screens/invoice.kv:17 gui/qt/main_window.py:1849
+msgid "Invoice"
+msgstr "凭证"
+
+#: gui/kivy/uix/screens.py:220
+msgid "Invoice saved"
+msgstr "收据已保存"
+
+#: gui/qt/main_window.py:1872
+msgid "Invoice saved as "
+msgstr "发票存为 "
+
+#: gui/kivy/uix/ui_screens/send.kv:101 gui/qt/main_window.py:500
+#: gui/qt/main_window.py:1249
+msgid "Invoices"
+msgstr "收据"
+
+#: gui/qt/installwizard.py:30
+msgid "It also contains your master public key that allows watching your addresses."
+msgstr ""
+
+#: gui/qt/main_window.py:2377
+msgid "It can not be \"backed up\" by simply exporting these private keys."
+msgstr ""
+
+#: gui/qt/main_window.py:3177
+msgid "It conflicts with current history."
+msgstr ""
+
+#: plugins/cosigner_pool/__init__.py:5
+msgid "It sends and receives partially signed transactions from/to your cosigner wallet."
+msgstr ""
+
+#: lib/i18n.py:53
+msgid "Italian"
+msgstr "意大利语"
+
+#: lib/i18n.py:54
+msgid "Japanese"
+msgstr "日语"
+
+#: plugins/keepkey/qt_generic.py:53 plugins/trezor/qt_generic.py:53
+msgid "KeepKey Seed Recovery"
+msgstr ""
+
+#: plugins/keepkey/__init__.py:6
+msgid "KeepKey wallet"
+msgstr "KeepKey钱包"
+
+#: gui/qt/main_window.py:1074
+msgid "Keyboard shortcut: type \"!\" to send all your coins."
+msgstr "键盘快捷键: 输入 \"!\" 发送你所有的币。"
+
+#: lib/base_wizard.py:128
+msgid "Keystore"
+msgstr "密钥库"
+
+#: lib/i18n.py:55
+msgid "Kyrgyz"
+msgstr "吉尔吉斯坦语"
+
+#: gui/qt/address_list.py:66 gui/qt/utxo_list.py:33
+msgid "Label"
+msgstr "标签"
+
+#: plugins/labels/qt.py:37
+msgid "Label Settings"
+msgstr "标签设置"
+
+#: plugins/labels/__init__.py:3
+msgid "LabelSync"
+msgstr "标签同步"
+
+#: plugins/labels/__init__.py:6
+msgid "Labels, transactions IDs and addresses are encrypted before they are sent to the remote server."
+msgstr ""
+
+#: gui/kivy/uix/dialogs/settings.py:131 gui/qt/main_window.py:2603
+#: plugins/keepkey/qt_generic.py:446 plugins/trezor/qt_generic.py:456
+msgid "Language"
+msgstr "语言"
+
+#: lib/i18n.py:56
+msgid "Latvian"
+msgstr "拉脱维亚语"
+
+#: gui/qt/installwizard.py:27
+msgid "Leave this field empty if you want to disable encryption."
+msgstr "若您想要停用加密功能，请将此栏留空。"
+
+#: plugins/ledger/qt.py:48
+msgid "Ledger Status"
+msgstr "分类账状态"
+
+#: plugins/ledger/auth2fa.py:49
+msgid "Ledger Wallet Authentication"
+msgstr "分类账钱包授权"
+
+#: plugins/ledger/__init__.py:6
+msgid "Ledger wallet"
+msgstr "分类账钱包"
+
+#: plugins/keepkey/plugin.py:153 plugins/trezor/trezor.py:189
+msgid "Let the device generate a completely new seed randomly"
+msgstr ""
+
+#: plugins/trezor/trezor.py:106
+msgid "Library version for '{}' is too old."
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/about.kv:19
+msgid "Licence"
+msgstr "授权条款"
+
+#: gui/qt/main_window.py:1459
+msgid "Line #"
+msgstr "行号 #"
+
+#: plugins/digitalbitbox/digitalbitbox.py:232
+msgid "Load a wallet from the micro SD card"
+msgstr "从微型存储卡加载钱包"
+
+#: plugins/digitalbitbox/digitalbitbox.py:209
+msgid "Load a wallet from the micro SD card (the current seed is overwritten)"
+msgstr "从微型存储卡加载钱包（覆盖当前种子）"
+
+#: gui/qt/main_window.py:2344
+msgid "Load transaction"
+msgstr "载入交易"
+
+#: plugins/digitalbitbox/digitalbitbox.py:320
+msgid "Loading backup..."
+msgstr "加载备份..."
+
+#: lib/wallet.py:72 lib/wallet.py:608
+msgid "Local"
+msgstr "本地"
+
+#: gui/qt/main_window.py:2358
+msgid "Lookup transaction"
+msgstr "查询交易记录"
+
+#: lib/simple_config.py:348
+msgid "Low fee"
+msgstr "低手续费"
+
+#: plugins/hw_wallet/qt.py:191
+msgid "Make sure you install it with python3"
+msgstr "确信在python3下安装"
+
+#: gui/qt/main_window.py:394
+msgid "Make sure you own the seed phrase or the private keys, before you request Bitcoins to be sent to this wallet."
+msgstr "在你要去将比特币送到这个钱包前，确保你拥有种子短语或者密钥。"
+
+#: gui/kivy/uix/dialogs/installwizard.py:690
+#: gui/kivy/uix/dialogs/installwizard.py:694
+#: gui/kivy/uix/ui_screens/status.kv:50 gui/kivy/uix/ui_screens/status.kv:53
+#: gui/qt/installwizard.py:539 gui/qt/main_window.py:2062
+msgid "Master Public Key"
+msgstr "主要公钥:"
+
+#: gui/qt/main_window.py:2059
+msgid "Master Public Keys"
+msgstr "主要公匙"
+
+#: gui/qt/main_window.py:1086
+msgid "Max"
+msgstr "最大值"
+
+#: gui/qt/main_window.py:3129
+msgid "Max fee exceeded"
+msgstr "超出最高交易费"
+
+#: gui/qt/main_window.py:1858
+msgid "Memo"
+msgstr "备注"
+
+#: gui/qt/main_window.py:2647
+msgid "Mempool"
+msgstr "内存池"
+
+#: gui/qt/main_window.py:2642
+msgid "Mempool based: fee rate is targeting a depth in the memory pool"
+msgstr ""
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:117
+msgid "Mempool depth"
+msgstr ""
+
+#: gui/qt/main_window.py:2196 gui/qt/main_window.py:2260
+msgid "Message"
+msgstr "消息"
+
+#: plugins/ledger/auth2fa.py:84
+msgid "Method:"
+msgstr "方式:"
+
+#: gui/kivy/uix/screens.py:282 gui/qt/main_window.py:1538
+msgid "Mining fee"
+msgstr "挖矿费用"
+
+#: plugins/ledger/auth2fa.py:179
+msgid "Mobile - Not paired"
+msgstr "手机-没配对"
+
+#: plugins/ledger/auth2fa.py:181
+msgid "Mobile - {}"
+msgstr "手机 - {}"
+
+#: plugins/digitalbitbox/digitalbitbox.py:271
+msgid "Mobile pairing options"
+msgstr "手机配对设置"
+
+#: gui/qt/installwizard.py:596
+msgid "Multi-Signature Wallet"
+msgstr "多人签名钱包"
+
+#: lib/base_wizard.py:93
+msgid "Multi-signature wallet"
+msgstr "多重签名钱包"
+
+#: plugins/ledger/auth2fa.py:112 plugins/ledger/auth2fa.py:150
+msgid "NOT DEVICE PIN - see above"
+msgstr ""
+
+#: gui/qt/contact_list.py:42 gui/qt/main_window.py:2023
+msgid "Name"
+msgstr "名字"
+
+#: plugins/keepkey/qt_generic.py:460 plugins/trezor/qt_generic.py:470
+msgid "Name this {}.  If you have mutiple devices their labels help distinguish them."
+msgstr ""
+
+#: gui/kivy/main.kv:450 gui/kivy/uix/ui_screens/network.kv:3
+#: gui/qt/main_window.py:1943 gui/qt/network_dialog.py:46 gui/text.py:149
+msgid "Network"
+msgstr "网络"
+
+#: gui/kivy/uix/dialogs/invoices.py:128 gui/qt/exception_window.py:100
+#: gui/qt/invoice_list.py:49 gui/qt/request_list.py:55 gui/qt/util.py:44
+msgid "Never"
+msgstr "永远不会"
+
+#: gui/qt/seed_dialog.py:44
+msgid "Never disclose your seed."
+msgstr "请妥善保存您的种子"
+
+#: gui/qt/seed_dialog.py:45
+msgid "Never type it on a website."
+msgstr "请勿在任何网页中输入"
+
+#: gui/kivy/uix/ui_screens/receive.kv:139 gui/qt/main_window.py:833
+msgid "New"
+msgstr "新建"
+
+#: gui/qt/main_window.py:2013 gui/qt/main_window.py:2015
+msgid "New Contact"
+msgstr "新建联系人"
+
+#: gui/qt/password_dialog.py:98
+msgid "New Password:"
+msgstr "新密码："
+
+#: gui/qt/contact_list.py:65
+msgid "New contact"
+msgstr "新建联系人"
+
+#: gui/qt/main_window.py:3142
+msgid "New fee:"
+msgstr "新的交易费："
+
+#: gui/qt/main_window.py:595
+msgid "New transaction received: {}"
+msgstr "新的交易已接收：{}"
+
+#: gui/qt/installwizard.py:113 plugins/trustedcoin/trustedcoin.py:434
+msgid "Next"
+msgstr "下一步"
+
+#: plugins/keepkey/qt_generic.py:325 plugins/trezor/qt_generic.py:329
+msgid "No"
+msgstr "无"
+
+#: gui/kivy/uix/dialogs/invoices.py:125
+msgid "No Amount"
+msgstr ""
+
+#: lib/util.py:123
+msgid "No Data"
+msgstr "无数据"
+
+#: gui/kivy/uix/ui_screens/send.kv:72
+msgid "No Description"
+msgstr "无描述"
+
+#: gui/kivy/main_window.py:638
+msgid "No Wallet"
+msgstr "无钱包"
+
+#: gui/kivy/uix/dialogs/addresses.py:161
+msgid "No address matching your search"
+msgstr "没有匹配您的搜索的地址"
+
+#: lib/exchange_rate.py:549
+msgid "No data"
+msgstr "无数据"
+
+#: gui/qt/main_window.py:556
+msgid "No donation address for this server"
+msgstr "服务器上无此捐赠地址"
+
+#: gui/kivy/uix/ui_screens/network.kv:49
+msgid "No fork detected"
+msgstr "没有检测到分叉"
+
+#: lib/base_wizard.py:220
+msgid "No hardware device detected."
+msgstr "没有检测到硬件设备。"
+
+#: lib/base_wizard.py:197
+msgid "No hardware wallet support found on your system."
+msgstr "你的系统中没找到硬件钱包支持。"
+
+#: lib/wallet.py:134
+msgid "No inputs found. (Note that inputs need to be confirmed)"
+msgstr "没有输入。（注意输入需要确认）"
+
+#: gui/qt/main_window.py:920
+msgid "No message or amount"
+msgstr "没有信息或者数量"
+
+#: gui/qt/main_window.py:965
+msgid "No more addresses in your wallet."
+msgstr "你的钱包中没有更多的地址。"
+
+#: gui/qt/main_window.py:1472
+msgid "No outputs"
+msgstr "无转出"
+
+#: gui/kivy/main_window.py:852
+msgid "No saved invoices."
+msgstr "没有已保存的收据。"
+
+#: gui/kivy/main_window.py:864
+msgid "No saved requests."
+msgstr "没有保存的请求。"
+
+#: gui/qt/installwizard.py:452
+msgid "No transactions found for this seed"
+msgstr "没有找到与该种子关联的交易"
+
+#: gui/kivy/uix/dialogs/fx_dialog.py:97 gui/kivy/uix/dialogs/fx_dialog.py:98
+#: gui/kivy/uix/dialogs/fx_dialog.py:103 gui/kivy/uix/dialogs/settings.py:157
+#: gui/kivy/uix/dialogs/settings.py:211 gui/kivy/uix/ui_screens/network.kv:30
+#: gui/qt/history_list.py:70 gui/qt/main_window.py:2869
+#: gui/qt/network_dialog.py:343
+msgid "None"
+msgstr "无"
+
+#: lib/i18n.py:58
+msgid "Norwegian"
+msgstr "挪威语"
+
+#: gui/qt/exception_window.py:104
+msgid "Not Now"
+msgstr "现在不"
+
+#: lib/wallet.py:71
+msgid "Not Verified"
+msgstr "未验证"
+
+#: gui/kivy/uix/screens.py:175
+msgid "Not a Bitcoin URI"
+msgstr "没有比特币地址"
+
+#: gui/kivy/main_window.py:827 gui/kivy/uix/ui_screens/network.kv:14
+#: gui/qt/main_window.py:739 gui/qt/network_dialog.py:354 gui/stdio.py:121
+#: gui/text.py:142
+msgid "Not connected"
+msgstr "无连接"
+
+#: gui/kivy/uix/screens.py:271 gui/qt/main_window.py:1222
+msgid "Not enough funds"
+msgstr "余额不足"
+
+#: lib/wallet.py:147 lib/wallet.py:149
+msgid "Not enough funds on address."
+msgstr "地址没有足够的资金。"
+
+#: lib/wallet.py:597
+msgid "Not verified"
+msgstr "未验证"
+
+#: gui/qt/main_window.py:1073
+msgid "Note that if you have frozen some of your addresses, the available funds will be lower than your total balance."
+msgstr "注意如果你冻结了一些自己的地址，可用资金将会低于你的总余额。"
+
+#: gui/qt/main_window.py:2670
+msgid "Note that some merchants do not accept non-final transactions until they are confirmed."
+msgstr "请注意，一些商家在确认之前不接受非最终交易。"
+
+#: lib/base_wizard.py:330
+msgid "Note that this is NOT your encryption password."
+msgstr ""
+
+#: plugins/trustedcoin/trustedcoin.py:70
+msgid "Note that your coins are not locked in this service.  You may withdraw your funds at any time and at no cost, without the remote server, by using the 'restore wallet' option with your wallet seed."
+msgstr ""
+
+#: gui/qt/installwizard.py:31 gui/qt/password_dialog.py:274
+msgid "Note: If you enable this setting, you will need your hardware device to open your wallet."
+msgstr ""
+
+#: gui/kivy/uix/dialogs/__init__.py:93
+msgid "Nothing set !"
+msgstr "未设置"
+
+#: lib/plot.py:15
+msgid "Nothing to plot."
+msgstr ""
+
+#: gui/qt/history_list.py:165
+msgid "Nothing to summarize."
+msgstr ""
+
+#: gui/qt/main_window.py:2622
+msgid "Number of zeros displayed after the decimal point. For example, if this is set to 2, \"1.\" will be displayed as \"1.00\""
+msgstr "小数点后的位数。例如，若此项设置为 2，则“1”将会显示未“1.00”"
+
+#: gui/kivy/uix/ui_screens/proxy.kv:64 gui/kivy/uix/ui_screens/server.kv:57
+#: gui/qt/util.py:158 plugins/audio_modem/qt.py:65
+msgid "OK"
+msgstr "确认"
+
+#: gui/kivy/main_window.py:641 gui/qt/__init__.py:168
+#: gui/qt/main_window.py:707 gui/text.py:130
+msgid "Offline"
+msgstr "离线"
+
+#: lib/base_wizard.py:223
+msgid "On Linux, you might have to add a new permission to your udev rules."
+msgstr ""
+
+#: gui/qt/main_window.py:1801
+msgid "One output per line."
+msgstr "每列一条结果。"
+
+#: gui/qt/main_window.py:2761
+msgid "Online Block Explorer"
+msgstr "在线查看区块数据"
+
+#: lib/wallet.py:172
+msgid "Only transactions with inputs owned by the wallet can be added."
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:568 plugins/trezor/qt_generic.py:578
+msgid "Only wipe a device if you have the recovery seed written down and the device wallet(s) are empty, otherwise the bitcoins will be lost forever."
+msgstr ""
+
+#: gui/qt/util.py:727
+msgid "Open {} file"
+msgstr ""
+
+#: gui/qt/main_window.py:2680
+msgid "OpenAlias"
+msgstr "OpenAlias"
+
+#: gui/qt/main_window.py:2676
+msgid "OpenAlias record, used to receive coins and to sign payment requests."
+msgstr "OpenAlias记录，用于接收货币并且签署付款请求。"
+
+#: lib/util.py:83
+msgid "Operation timed out."
+msgstr ""
+
+#: gui/qt/seed_dialog.py:117
+msgid "Options"
+msgstr "选项"
+
+#: plugins/keepkey/plugin.py:119 plugins/trezor/trezor.py:155
+msgid "Outdated {} firmware for device labelled {}. Please download the updated firmware from {}"
+msgstr ""
+
+#: gui/qt/main_window.py:3104
+msgid "Output amount"
+msgstr "输出数量"
+
+#: gui/qt/utxo_list.py:33
+msgid "Output point"
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/invoice.kv:62 gui/qt/transaction_dialog.py:304
+msgid "Outputs"
+msgstr "转出"
+
+#: gui/qt/network_dialog.py:196
+msgid "Overview"
+msgstr "总览"
+
+#: plugins/keepkey/qt_generic.py:477 plugins/trezor/qt_generic.py:487
+msgid "PIN Protection"
+msgstr ""
+
+#: gui/kivy/main_window.py:954
+msgid "PIN codes do not match"
+msgstr ""
+
+#: gui/kivy/uix/dialogs/installwizard.py:810
+msgid "PIN mismatch"
+msgstr "PIN 错误"
+
+#: plugins/keepkey/qt_generic.py:482 plugins/trezor/qt_generic.py:492
+msgid "PIN protection is strongly recommended.  A PIN is your only protection against someone stealing your bitcoins if they obtain physical access to your {}."
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:440 plugins/trezor/qt_generic.py:450
+msgid "PIN set"
+msgstr "PIN码设置"
+
+#: gui/kivy/uix/dialogs/invoices.py:87 gui/qt/util.py:36
+msgid "Paid"
+msgstr "付款"
+
+#: plugins/ledger/auth2fa.py:87 plugins/ledger/auth2fa.py:187
+msgid "Pair"
+msgstr "配对"
+
+#: lib/wallet.py:615
+msgid "Partially signed"
+msgstr "部分成交"
+
+#: gui/kivy/main_window.py:937
+msgid "Passphrase"
+msgstr "密语"
+
+#: gui/qt/password_dialog.py:84
+msgid "Passphrase:"
+msgstr "密語："
+
+#: plugins/keepkey/qt_generic.py:441 plugins/trezor/qt_generic.py:451
+msgid "Passphrases"
+msgstr "密语"
+
+#: plugins/keepkey/qt_generic.py:17 plugins/trezor/qt_generic.py:17
+msgid "Passphrases allow you to access new wallets, each hidden behind a particular case-sensitive passphrase."
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/proxy.kv:47 gui/qt/installwizard.py:168
+#: gui/qt/main_window.py:1937 gui/qt/network_dialog.py:250
+#: gui/qt/password_dialog.py:295
+msgid "Password"
+msgstr "密码"
+
+#: gui/qt/password_dialog.py:148
+msgid "Password Strength"
+msgstr "密钥强度"
+
+#: gui/qt/main_window.py:1992
+msgid "Password is disabled, this wallet is not protected"
+msgstr "密码被禁用，此钱包没有被保护。"
+
+#: plugins/digitalbitbox/digitalbitbox.py:134
+#: plugins/digitalbitbox/digitalbitbox.py:149
+msgid "Password must have at least 4 characters."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:137
+#: plugins/digitalbitbox/digitalbitbox.py:152
+msgid "Password must have less than 64 characters."
+msgstr ""
+
+#: gui/qt/main_window.py:1992
+msgid "Password was updated successfully"
+msgstr "密码已成功更新"
+
+#: gui/qt/password_dialog.py:98
+msgid "Password:"
+msgstr "密码："
+
+#: gui/kivy/uix/ui_screens/send.kv:105
+msgid "Paste"
+msgstr "粘贴"
+
+#: gui/kivy/uix/ui_screens/send.kv:121
+msgid "Pay"
+msgstr "支付"
+
+#: gui/qt/invoice_list.py:81
+msgid "Pay Now"
+msgstr "立即付款"
+
+#: gui/qt/contact_list.py:78 gui/qt/main_window.py:1047 gui/text.py:172
+msgid "Pay to"
+msgstr "支付给"
+
+#: gui/qt/main_window.py:1805
+msgid "Pay to many"
+msgstr "多方支付"
+
+#: gui/qt/qrwindow.py:49
+msgid "Payment Request"
+msgstr "支付请求"
+
+#: gui/kivy/uix/screens.py:316 gui/kivy/uix/screens.py:344
+msgid "Payment received"
+msgstr "收到付款"
+
+#: gui/kivy/main_window.py:297 gui/kivy/uix/screens.py:238
+#: gui/qt/main_window.py:1450 gui/qt/main_window.py:1603
+msgid "Payment request has expired"
+msgstr "付款请求已超时"
+
+#: gui/kivy/main_window.py:813 gui/qt/main_window.py:1625 gui/stdio.py:204
+#: gui/text.py:355
+msgid "Payment sent."
+msgstr "已支付。"
+
+#: gui/kivy/uix/dialogs/invoices.py:85 gui/kivy/uix/dialogs/requests.py:89
+#: gui/qt/util.py:35
+msgid "Pending"
+msgstr "等待处理"
+
+#: gui/qt/history_list.py:203
+msgid "Perhaps some dependencies are missing..."
+msgstr ""
+
+#: gui/qt/exception_window.py:85
+msgid "Please briefly describe what led to the error (optional):"
+msgstr ""
+
+#: plugins/email_requests/qt.py:243
+msgid "Please check your connection and credentials."
+msgstr ""
+
+#: plugins/hw_wallet/qt.py:147
+msgid "Please check your {} device"
+msgstr ""
+
+#: gui/qt/history_list.py:363
+msgid "Please confirm"
+msgstr "请确认"
+
+#: gui/qt/installwizard.py:387
+msgid "Please enter the master public key (xpub) of your cosigner."
+msgstr "请输入你的担保人的主公钥(xpub)"
+
+#: plugins/trustedcoin/qt.py:75
+msgid "Please enter your Google Authenticator code"
+msgstr ""
+
+#: plugins/trustedcoin/cmdline.py:40
+msgid "Please enter your Google Authenticator code:"
+msgstr ""
+
+#: plugins/trustedcoin/qt.py:201
+msgid "Please enter your e-mail address"
+msgstr ""
+
+#: gui/qt/main_window.py:901 gui/qt/password_dialog.py:287
+msgid "Please enter your password"
+msgstr "请输入您的密码"
+
+#: gui/qt/installwizard.py:400
+msgid "Please enter your seed phrase in order to restore your wallet."
+msgstr "请输入你的种子短语以恢复你的钱包。"
+
+#: lib/plugins.py:485
+msgid "Please insert your {}"
+msgstr ""
+
+#: lib/base_wizard.py:198
+msgid "Please install the relevant libraries (eg python-trezor for Trezor)."
+msgstr ""
+
+#: lib/base_wizard.py:483
+msgid "Please note that websites and other wallets may not support these addresses yet."
+msgstr ""
+
+#: gui/kivy/uix/dialogs/installwizard.py:796
+msgid "Please paste your cosigners master public key, or scan it using the camera button."
+msgstr "请粘贴你的担保人主公钥，或者用相机键扫描它。"
+
+#: gui/qt/main_window.py:566
+msgid "Please report any bugs as issues on github:<br/>"
+msgstr "请在github上报告任何错误与问题:<br/>"
+
+#: gui/qt/exception_window.py:116 gui/qt/exception_window.py:127
+msgid "Please report this issue manually."
+msgstr ""
+
+#: gui/qt/main_window.py:2992
+msgid "Please restart Electrum to activate the new GUI settings"
+msgstr "请重启 Electrum 以激活用户界面设置"
+
+#: gui/kivy/uix/dialogs/installwizard.py:784
+msgid "Please retype your seed phrase, to confirm that you properly saved it"
+msgstr "请重新输入你的种子短语，以确认你正确地保存了它。"
+
+#: gui/qt/seed_dialog.py:38
+#, python-brace-format
+msgid "Please save these {0} words on paper (order is important). "
+msgstr ""
+
+#: gui/kivy/uix/screens.py:244
+msgid "Please scan a Bitcoin address or a payment request"
+msgstr ""
+
+#: lib/plugins.py:502
+msgid "Please select which {} device to use:"
+msgstr ""
+
+#: gui/qt/installwizard.py:534
+msgid "Please share it with your cosigners."
+msgstr "请与你的担保人分享。"
+
+#: gui/qt/transaction_dialog.py:120
+msgid "Please sign this transaction in order to save it"
+msgstr ""
+
+#: lib/base_wizard.py:246
+msgid "Please try again."
+msgstr "请重试。"
+
+#: lib/base_wizard.py:520
+msgid "Please type it here."
+msgstr "请在这儿输入。"
+
+#: gui/kivy/uix/dialogs/installwizard.py:566
+msgid "Please type your seed phrase using the virtual keyboard."
+msgstr "请用虚拟键盘输入你的种子短语。"
+
+#: gui/kivy/uix/screens.py:395
+msgid "Please use the existing requests first."
+msgstr ""
+
+#: gui/qt/util.py:232
+msgid "Please wait"
+msgstr "请稍后"
+
+#: gui/kivy/uix/dialogs/password_dialog.py:125 gui/qt/installwizard.py:116
+#: gui/stdio.py:200 gui/text.py:351 lib/wallet.py:1297
+msgid "Please wait..."
+msgstr "请稍候..."
+
+#: lib/i18n.py:59
+msgid "Polish"
+msgstr "波兰语"
+
+#: gui/kivy/uix/ui_screens/proxy.kv:28 gui/kivy/uix/ui_screens/server.kv:31
+#: gui/qt/network_dialog.py:135
+msgid "Port"
+msgstr "端口"
+
+#: lib/i18n.py:61
+msgid "Portuguese"
+msgstr "葡萄牙语"
+
+#: gui/qt/transaction_dialog.py:234
+msgid "Position in mempool"
+msgstr ""
+
+#: gui/qt/main_window.py:521 gui/qt/main_window.py:1156
+#: gui/qt/main_window.py:1940 gui/qt/main_window.py:2593
+msgid "Preferences"
+msgstr "偏好设置"
+
+#: gui/qt/installwizard.py:207
+msgid "Press 'Next' to choose device to decrypt."
+msgstr ""
+
+#: gui/qt/installwizard.py:198
+msgid "Press 'Next' to create this wallet, or choose another file."
+msgstr "按'下一步'创建这个钱包，或者选择另一个文件。"
+
+#: gui/qt/installwizard.py:214
+msgid "Press 'Next' to create/focus window."
+msgstr ""
+
+#: gui/qt/installwizard.py:210
+msgid "Press 'Next' to open this wallet."
+msgstr "按'下一步'打开这个钱包"
+
+#: plugins/ledger/auth2fa.py:139
+msgid "Press Enter"
+msgstr "按下回车键。"
+
+#: gui/kivy/main_window.py:540
+msgid "Press again to exit"
+msgstr "确认退出"
+
+#: gui/qt/main_window.py:1191
+msgid "Preview"
+msgstr "预览"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:55
+msgid "Private Key"
+msgstr "私钥"
+
+#: gui/qt/address_list.py:164 gui/qt/main_window.py:2119
+#: gui/qt/main_window.py:2124
+msgid "Private key"
+msgstr "私钥"
+
+#: gui/qt/main_window.py:2379
+msgid "Private keys"
+msgstr "私钥"
+
+#: gui/qt/main_window.py:2459
+msgid "Private keys exported."
+msgstr "私钥已导出。"
+
+#: gui/qt/main_window.py:1557
+msgid "Proceed?"
+msgstr "要继续吗？"
+
+#: plugins/digitalbitbox/__init__.py:4
+msgid "Provides support for Digital Bitbox hardware wallet"
+msgstr ""
+
+#: plugins/keepkey/__init__.py:4
+msgid "Provides support for KeepKey hardware wallet"
+msgstr ""
+
+#: plugins/trezor/__init__.py:4
+msgid "Provides support for TREZOR hardware wallet"
+msgstr ""
+
+#: plugins/audio_modem/__init__.py:4
+msgid "Provides support for air-gapped transaction signing."
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/network.kv:30 gui/kivy/uix/ui_screens/proxy.kv:3
+#: gui/qt/network_dialog.py:198
+msgid "Proxy"
+msgstr "代理"
+
+#: gui/kivy/uix/ui_screens/network.kv:31
+msgid "Proxy configuration"
+msgstr "代理配置"
+
+#: gui/kivy/uix/ui_screens/proxy.kv:11
+msgid "Proxy mode"
+msgstr "代理类型"
+
+#: gui/qt/network_dialog.py:273
+msgid "Proxy settings apply to all connections: with Electrum servers, but also with third-party services."
+msgstr ""
+
+#: gui/qt/network_dialog.py:248
+msgid "Proxy user"
+msgstr "代理用户"
+
+#: gui/kivy/uix/screens.py:133
+msgid "Pruned transaction outputs"
+msgstr ""
+
+#: gui/qt/main_window.py:2268
+msgid "Public key"
+msgstr "公钥"
+
+#: gui/qt/address_dialog.py:65
+msgid "Public keys"
+msgstr "公钥"
+
+#: gui/qt/main_window.py:2102
+msgid "QR code"
+msgstr "二维码"
+
+#: gui/qt/qrcodewidget.py:117
+msgid "QR code copied to clipboard"
+msgstr "二维码复制到剪贴板"
+
+#: gui/qt/qrcodewidget.py:112
+msgid "QR code saved to file"
+msgstr "二维码保存为文件"
+
+#: gui/kivy/uix/dialogs/question.py:51
+msgid "Question"
+msgstr "问题"
+
+#: gui/text.py:149
+msgid "Quit"
+msgstr "退出"
+
+#: plugins/digitalbitbox/digitalbitbox.py:166
+msgid "REMEMBER THE PASSWORD!"
+msgstr ""
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:181
+msgid "Raw Transaction"
+msgstr "原始交易记录"
+
+#: plugins/ledger/auth2fa.py:187
+msgid "Re-Pair"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:48 plugins/trezor/clientbase.py:48
+msgid "Re-enter the new PIN for your {}.\n\n"
+"NOTE: the positions of the numbers have changed!"
+msgstr "为你的 {} 重输入新的PIN。\n\n"
+" 注意：数字的位置已经改变！"
+
+#: gui/qt/qrtextedit.py:42 gui/qt/qrtextedit.py:75
+msgid "Read QR code"
+msgstr "扫描二维码"
+
+#: gui/qt/qrtextedit.py:40
+msgid "Read file"
+msgstr "读取文件"
+
+#: plugins/audio_modem/qt.py:85
+msgid "Read from microphone"
+msgstr "从麦克风读取"
+
+#: gui/kivy/main.kv:395 gui/qt/main_window.py:141 gui/text.py:63
+msgid "Receive"
+msgstr "接收"
+
+#: gui/kivy/uix/dialogs/requests.py:91 gui/kivy/uix/ui_screens/history.kv:24
+msgid "Received"
+msgstr "已收到"
+
+#: gui/qt/address_list.py:47
+msgid "Receiving"
+msgstr "正在接收"
+
+#: gui/qt/main_window.py:790
+msgid "Receiving address"
+msgstr "接收地址"
+
+#: gui/kivy/uix/ui_screens/send.kv:34
+msgid "Recipient"
+msgstr "接收方"
+
+#: gui/kivy/uix/screens.py:244
+msgid "Recipient not specified."
+msgstr "无理由接受。"
+
+#: gui/qt/main_window.py:1045
+msgid "Recipient of the funds."
+msgstr "资金接收者。"
+
+#: plugins/keepkey/plugin.py:154 plugins/trezor/trezor.py:190
+msgid "Recover from a seed you have previously written down"
+msgstr "覆盖你以前写下来的种子"
+
+#: gui/qt/installwizard.py:450
+msgid "Recovery successful"
+msgstr "恢复成功"
+
+#: gui/qt/address_dialog.py:76 gui/qt/main_window.py:2129
+msgid "Redeem Script"
+msgstr "兑换脚本"
+
+#: gui/qt/history_list.py:336 gui/qt/main_window.py:1377
+msgid "Remove"
+msgstr "删除"
+
+#: gui/qt/address_list.py:169
+msgid "Remove from wallet"
+msgstr "从钱包删除"
+
+#: gui/qt/main_window.py:1830
+msgid "Remove {} from your list of contacts?"
+msgstr "从你的联系人名单删除 {} ？"
+
+#: gui/qt/main_window.py:571
+msgid "Reporting Bugs"
+msgstr "报告错误"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:17
+msgid "Request"
+msgstr "请求"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:37
+msgid "Request amount"
+msgstr "请求的金额"
+
+#: gui/kivy/uix/screens.py:369
+msgid "Request copied to clipboard"
+msgstr "请求已复制到剪贴板"
+
+#: gui/qt/main_window.py:822
+msgid "Request expires"
+msgstr "请求已过期"
+
+#: gui/qt/address_list.py:162
+msgid "Request payment"
+msgstr "请求付款"
+
+#: plugins/trustedcoin/trustedcoin.py:578
+msgid "Request rejected by server"
+msgstr "请求被服务器拒绝"
+
+#: gui/qt/main_window.py:957
+msgid "Request saved successfully"
+msgstr "申请成功保存"
+
+#: plugins/email_requests/qt.py:191
+msgid "Request sent."
+msgstr "已发送请求。"
+
+#: gui/kivy/uix/screens.py:399
+msgid "Request was saved."
+msgstr "请求已保存。"
+
+#: gui/qt/main_window.py:802
+msgid "Requested amount"
+msgstr "请求的金额"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:40 gui/qt/invoice_list.py:36
+#: gui/qt/main_window.py:1852
+msgid "Requestor"
+msgstr "申请人"
+
+#: gui/kivy/uix/ui_screens/receive.kv:119 gui/qt/main_window.py:847
+msgid "Requests"
+msgstr "请求"
+
+#: gui/qt/installwizard.py:582
+#, python-brace-format
+msgid "Require {0} signatures"
+msgstr "需要 {0} 签名"
+
+#: gui/qt/main_window.py:3073
+msgid "Requires"
+msgstr "需要"
+
+#: plugins/keepkey/qt_generic.py:495 plugins/trezor/qt_generic.py:505
+msgid "Reset"
+msgstr "重置"
+
+#: plugins/trustedcoin/trustedcoin.py:454
+msgid "Restore 2FA wallet"
+msgstr "恢复2FA钱包"
+
+#: plugins/trustedcoin/trustedcoin.py:443
+msgid "Restore two-factor Wallet"
+msgstr "回复双重验证钱包"
+
+#: lib/i18n.py:62
+msgid "Romanian"
+msgstr "罗马尼亚语"
+
+#: lib/i18n.py:63
+msgid "Russian"
+msgstr "俄语"
+
+#: gui/qt/main_window.py:2718
+msgid "SSL certificate"
+msgstr "SSL 证书"
+
+#: gui/qt/main_window.py:2705
+msgid "SSL certificate used to sign payment requests."
+msgstr "SSL证书用于签署付款请求。"
+
+#: gui/qt/main_window.py:830 gui/qt/main_window.py:1873
+#: gui/qt/qrcodewidget.py:123 gui/qt/transaction_dialog.py:116
+msgid "Save"
+msgstr "保存"
+
+#: gui/qt/request_list.py:120
+msgid "Save as BIP70 file"
+msgstr "保存为 BIP70 文件"
+
+#: gui/qt/main_window.py:1867
+msgid "Save invoice to file"
+msgstr "发票保存为文件"
+
+#: plugins/labels/__init__.py:5
+msgid "Save your wallet labels on a remote server, and synchronize them across multiple devices where you use Electrum."
+msgstr ""
+
+#: plugins/ledger/auth2fa.py:35
+msgid "Scan this QR code with your LedgerWallet phone app to pair it with this Ledger device.<br>To complete pairing you will need your security card to answer a challenge."
+msgstr ""
+
+#: gui/qt/main_window.py:2042 gui/qt/main_window.py:2123
+msgid "Script type"
+msgstr "脚本类型"
+
+#: plugins/ledger/auth2fa.py:177
+msgid "Security Card Challenge"
+msgstr "安全卡挑战"
+
+#: gui/kivy/main_window.py:935 gui/qt/main_window.py:1941
+#: gui/qt/seed_dialog.py:175
+msgid "Seed"
+msgstr "种子"
+
+#: plugins/keepkey/qt_generic.py:76 plugins/trezor/qt_generic.py:76
+msgid "Seed Entered"
+msgstr "种子已输入"
+
+#: gui/qt/seed_dialog.py:144
+msgid "Seed Type"
+msgstr "种子类型"
+
+#: lib/base_wizard.py:324
+msgid "Seed extension"
+msgstr "种子扩展"
+
+#: lib/base_wizard.py:488
+msgid "Segwit"
+msgstr ""
+
+#: lib/base_wizard.py:482
+msgid "Segwit wallets use bech32 addresses, defined in BIP173."
+msgstr ""
+
+#: lib/base_wizard.py:235
+msgid "Select a device"
+msgstr "选择设备"
+
+#: gui/qt/history_list.py:143
+msgid "Select date"
+msgstr "选择日期"
+
+#: gui/qt/main_window.py:2393
+msgid "Select file to export your private keys to"
+msgstr "选择导出私钥的文件"
+
+#: gui/qt/history_list.py:385
+msgid "Select file to export your wallet transactions to"
+msgstr "选择你钱包要导出的交易文件"
+
+#: gui/qt/util.py:741
+msgid "Select file to save your {}"
+msgstr "选择文件来保存你的 {}"
+
+#: gui/qt/network_dialog.py:208
+msgid "Select server automatically"
+msgstr "自动选择服务器"
+
+#: gui/qt/installwizard.py:549
+msgid "Select server manually"
+msgstr "手动选择服务器"
+
+#: gui/qt/main_window.py:953
+msgid "Select where to save your payment request"
+msgstr "选择存储你付款请求的位置"
+
+#: gui/qt/transaction_dialog.py:203
+msgid "Select where to save your signed transaction"
+msgstr "选择将您已签署的交易保存在何处"
+
+#: gui/qt/main_window.py:2602
+msgid "Select which language is used in the GUI (after restart)."
+msgstr "选择用户界面使用哪种语言 (重启后)."
+
+#: plugins/keepkey/qt_generic.py:226 plugins/trezor/qt_generic.py:227
+msgid "Select your seed length:"
+msgstr "选择你的种子长度："
+
+#: gui/kivy/uix/ui_screens/network.kv:37
+msgid "Select your server automatically"
+msgstr "自动选择服务器"
+
+#: gui/qt/main_window.py:2332
+msgid "Select your transaction file"
+msgstr "选择您的交易文件"
+
+#: gui/kivy/main.kv:387 gui/qt/main_window.py:140 gui/qt/main_window.py:1193
+#: gui/text.py:63
+msgid "Send"
+msgstr "发送"
+
+#: gui/qt/exception_window.py:95
+msgid "Send Bug Report"
+msgstr "发送错误报告"
+
+#: plugins/email_requests/__init__.py:4
+msgid "Send and receive payment request with an email account"
+msgstr ""
+
+#: plugins/email_requests/qt.py:128
+msgid "Send and receive payment requests via email"
+msgstr ""
+
+#: plugins/cosigner_pool/qt.py:145
+msgid "Send to cosigner"
+msgstr "发送给联合签名者"
+
+#: plugins/audio_modem/qt.py:92
+msgid "Send to speaker"
+msgstr "发送给发言人"
+
+#: plugins/email_requests/qt.py:166
+msgid "Send via e-mail"
+msgstr "通过电子邮件发送"
+
+#: gui/kivy/main_window.py:824
+msgid "Sending"
+msgstr "正在发送"
+
+#: gui/kivy/uix/ui_screens/history.kv:24
+msgid "Sent"
+msgstr "已发送"
+
+#: gui/kivy/uix/ui_screens/network.kv:21 gui/kivy/uix/ui_screens/server.kv:3
+#: gui/qt/network_dialog.py:197 gui/qt/network_dialog.py:223
+#: gui/qt/network_dialog.py:294
+msgid "Server"
+msgstr "服务器"
+
+#: lib/network.py:1074
+msgid "Server did not answer"
+msgstr "服务器无响应"
+
+#: plugins/email_requests/qt.py:204
+msgid "Server hosting your email acount"
+msgstr "服务器托管了你的邮件账户"
+
+#: gui/qt/main_window.py:720
+msgid "Server is lagging ({} blocks)"
+msgstr "服务器滞后 ( {} 个区块)"
+
+#: gui/kivy/main_window.py:648
+msgid "Server lagging"
+msgstr "服务器滞后"
+
+#: plugins/trustedcoin/qt.py:127
+msgid "Server not reachable."
+msgstr "服务器不可达。"
+
+#: gui/qt/network_dialog.py:227
+msgid "Server peers"
+msgstr "服务器伙伴"
+
+#: gui/kivy/uix/ui_screens/network.kv:22
+msgid "Server used to query your history."
+msgstr "服务器用于查询你的历史记录。"
+
+#: plugins/keepkey/qt_generic.py:509 plugins/trezor/qt_generic.py:519
+msgid "Session Timeout"
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:328 plugins/trezor/qt_generic.py:332
+msgid "Set a PIN"
+msgstr "设置 PIN 码"
+
+#: gui/qt/main_window.py:2851
+msgid "Set the value of the change output so that it has similar precision to the other outputs."
+msgstr ""
+
+#: gui/qt/installwizard.py:28
+msgid "Set wallet file encryption."
+msgstr ""
+
+#: gui/kivy/main.kv:453 gui/text.py:149 plugins/audio_modem/qt.py:46
+#: plugins/email_requests/qt.py:197 plugins/keepkey/qt_generic.py:581
+#: plugins/labels/qt.py:32 plugins/trezor/qt_generic.py:591
+msgid "Settings"
+msgstr "设置"
+
+#: gui/kivy/uix/screens.py:364
+msgid "Share Bitcoin Request"
+msgstr "共享比特币请求"
+
+#: lib/simple_config.py:239
+msgid "Should be at {}"
+msgstr ""
+
+#: gui/kivy/uix/screens.py:259
+msgid "Should this transaction be replaceable?"
+msgstr ""
+
+#: gui/kivy/uix/dialogs/requests.py:126 gui/qt/main_window.py:231
+#: gui/qt/main_window.py:509
+msgid "Show"
+msgstr "显示"
+
+#: gui/qt/main_window.py:2953
+msgid "Show Fiat balance for addresses"
+msgstr ""
+
+#: gui/qt/address_dialog.py:56
+msgid "Show QR Code"
+msgstr "显示二维码"
+
+#: gui/qt/qrtextedit.py:16 gui/qt/qrtextedit.py:30
+#: gui/qt/transaction_dialog.py:90
+msgid "Show as QR code"
+msgstr "以二维码方式查看"
+
+#: gui/qt/main_window.py:2952
+msgid "Show capital gains in history"
+msgstr ""
+
+#: gui/qt/main_window.py:2658
+msgid "Show fee edit box in send tab."
+msgstr "在发送栏显示费用编辑框。"
+
+#: gui/qt/main_window.py:2951
+msgid "Show history rates"
+msgstr "显示历史费率"
+
+#: plugins/ledger/qt.py:27
+msgid "Show on Ledger"
+msgstr ""
+
+#: plugins/digitalbitbox/qt.py:37 plugins/keepkey/qt_generic.py:197
+#: plugins/trezor/qt_generic.py:197
+msgid "Show on {}"
+msgstr ""
+
+#: gui/qt/exception_window.py:79
+msgid "Show report contents"
+msgstr "显示报告内容"
+
+#: gui/kivy/uix/ui_screens/status.kv:64
+msgid "Show seed"
+msgstr "展示种子"
+
+#: gui/qt/__init__.py:132
+msgid "Show/Hide"
+msgstr "显示/隐藏"
+
+#: plugins/ledger/ledger.py:498
+msgid "Showing address ..."
+msgstr "展示地址..."
+
+#: gui/qt/main_window.py:2212 gui/qt/transaction_dialog.py:110
+msgid "Sign"
+msgstr "签名"
+
+#: gui/qt/main_window.py:2190
+msgid "Sign/verify Message"
+msgstr "签名/验证信息"
+
+#: gui/qt/address_list.py:166
+msgid "Sign/verify message"
+msgstr "签名/验证消息"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:43 gui/qt/main_window.py:1860
+#: gui/qt/main_window.py:2206
+msgid "Signature"
+msgstr "签名"
+
+#: gui/qt/main_window.py:2185
+msgid "Signature verified"
+msgstr "验证签名"
+
+#: lib/wallet.py:611
+msgid "Signed"
+msgstr "签名"
+
+#: gui/kivy/main_window.py:853
+msgid "Signed invoices are saved automatically when you scan them."
+msgstr ""
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:164
+msgid "Signing"
+msgstr "签名"
+
+#: plugins/digitalbitbox/digitalbitbox.py:591
+msgid "Signing large transaction. Please be patient ..."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:459
+msgid "Signing message ..."
+msgstr "签名信息。。。"
+
+#: gui/qt/main_window.py:1593 plugins/digitalbitbox/digitalbitbox.py:596
+msgid "Signing transaction..."
+msgstr "签名交易"
+
+#: gui/qt/main_window.py:2137
+msgid "Signing with an address actually means signing with the corresponding private key, and verifying with the corresponding public key. The address you have entered does not have a unique public key, so these operations cannot be performed."
+msgstr ""
+
+#: gui/qt/transaction_dialog.py:244
+msgid "Size:"
+msgstr "大小："
+
+#: lib/i18n.py:64
+msgid "Slovak"
+msgstr "斯洛伐克语"
+
+#: lib/i18n.py:65
+msgid "Slovenian"
+msgstr "斯洛文尼亚语"
+
+#: gui/qt/exception_window.py:73
+msgid "Something went wrong while executing Electrum."
+msgstr "执行Electrum时出现错误。很抱歉。"
+
+#: gui/qt/exception_window.py:71
+msgid "Sorry!"
+msgstr "抱歉！"
+
+#: gui/qt/main_window.py:2954
+msgid "Source"
+msgstr "源"
+
+#: lib/i18n.py:48
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: gui/qt/utxo_list.py:67
+msgid "Spend"
+msgstr "支付"
+
+#: gui/qt/address_list.py:181
+msgid "Spend from"
+msgstr "支付启于"
+
+#: gui/qt/main_window.py:2840
+msgid "Spend only confirmed coins"
+msgstr "只花费确认的货币"
+
+#: gui/qt/main_window.py:2841
+msgid "Spend only confirmed inputs."
+msgstr "只花费确认的输入。"
+
+#: lib/base_wizard.py:487
+msgid "Standard"
+msgstr "标准"
+
+#: lib/base_wizard.py:91
+msgid "Standard wallet"
+msgstr "标准钱包"
+
+#: gui/qt/history_list.py:174
+msgid "Start"
+msgstr "开始"
+
+#: gui/qt/main_window.py:2647
+msgid "Static"
+msgstr "静态"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:34 gui/kivy/uix/ui_screens/network.kv:15
+#: gui/qt/invoice_list.py:36 gui/qt/network_dialog.py:288
+#: gui/qt/request_list.py:41
+msgid "Status"
+msgstr "状态"
+
+#: gui/qt/transaction_dialog.py:226
+msgid "Status:"
+msgstr "状态:"
+
+#: plugins/keepkey/clientbase.py:82 plugins/trezor/clientbase.py:88
+msgid "Step {}/24.  Enter seed word as explained on your {}:"
+msgstr ""
+
+#: gui/qt/main_window.py:1993 gui/qt/main_window.py:2992
+#: gui/qt/main_window.py:3186
+msgid "Success"
+msgstr "成功"
+
+#: gui/qt/history_list.py:170
+msgid "Summary"
+msgstr "概要"
+
+#: plugins/ledger/auth2fa.py:175
+msgid "Summary Text PIN (requires dongle replugging)"
+msgstr ""
+
+#: plugins/ledger/auth2fa.py:175
+msgid "Summary Text PIN is Disabled"
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:445 plugins/trezor/qt_generic.py:455
+msgid "Supported Coins"
+msgstr "已支持的数字货币"
+
+#: gui/qt/main_window.py:2512
+msgid "Sweep"
+msgstr "扫描"
+
+#: gui/qt/main_window.py:2492
+msgid "Sweep private keys"
+msgstr "扫描私钥"
+
+#: gui/kivy/main_window.py:646 gui/qt/main_window.py:717 gui/stdio.py:112
+#: gui/text.py:133
+msgid "Synchronizing..."
+msgstr "同步中..."
+
+#: plugins/trezor/__init__.py:6
+msgid "TREZOR wallet"
+msgstr "TREZOR钱包"
+
+#: lib/i18n.py:66
+msgid "Tamil"
+msgstr "泰米尔语"
+
+#: gui/qt/fee_slider.py:36
+msgid "Target"
+msgstr "目标"
+
+#: plugins/trustedcoin/qt.py:194
+msgid "Terms of Service"
+msgstr "服务条款"
+
+#: gui/qt/util.py:590
+msgid "Text copied to clipboard"
+msgstr "复制文本到剪贴板"
+
+#: gui/kivy/main_window.py:718
+msgid "Text copied to clipboard.\n"
+"Tap again to display it as QR code."
+msgstr "文字复制到剪贴板.\n"
+"再次点击将它显示为二维码。"
+
+#: lib/i18n.py:67
+msgid "Thai"
+msgstr "泰语"
+
+#: plugins/digitalbitbox/digitalbitbox.py:206
+msgid "The Digital Bitbox is already seeded. Choose an option:"
+msgstr "这个硬件钱包已经有种子。选择一种设置："
+
+#: plugins/keepkey/clientbase.py:54 plugins/trezor/clientbase.py:54
+msgid "The PIN cannot be longer than 9 characters."
+msgstr ""
+
+#: gui/qt/main_window.py:1094
+msgid "The amount of fee can be decided freely by the sender. However, transactions with low fees take more time to be processed."
+msgstr "手续费的多少由付款人决定。然而，越低的手续费交易时间就会越长。"
+
+#: gui/qt/main_window.py:1072
+msgid "The amount will be displayed in red if you do not have enough funds in your wallet."
+msgstr "若你的钱包中资金不足，将会以红色标示。"
+
+#: gui/qt/main_window.py:820
+msgid "The bitcoin address never expires and will always be part of this electrum wallet."
+msgstr "比特币地址用不过期并将永远是这个electrum钱包的一部分。"
+
+#: gui/qt/main_window.py:1057
+msgid "The description is not sent to the recipient of the funds. It is stored in your wallet file, and displayed in the 'History' tab."
+msgstr "这个标签描述不会发送给接收者，它只会保存在你的钱包里，并且显示在“历史记录”选项。"
+
+#: gui/kivy/uix/screens.py:285 gui/qt/main_window.py:1548
+msgid "The fee for this transaction seems unusually high."
+msgstr "这项交易的费用看上去过高"
+
+#: gui/qt/installwizard.py:299
+msgid "The file '{}' contains an incompletely created wallet.\n"
+"Do you want to complete its creation now?"
+msgstr ""
+
+#: gui/qt/installwizard.py:288 gui/qt/installwizard.py:304
+msgid "The file was removed"
+msgstr "文件已被移除"
+
+#: gui/qt/main_window.py:2562
+msgid "The following addresses were added"
+msgstr "以下地址已添加"
+
+#: gui/qt/main_window.py:2677
+msgid "The following alias providers are available:"
+msgstr "下列别名提供者可用："
+
+#: gui/qt/main_window.py:2564
+msgid "The following inputs could not be imported"
+msgstr "以下收入无法导入"
+
+#: plugins/trustedcoin/trustedcoin.py:73
+msgid "The next step will generate the seed of your wallet.  This seed will NOT be saved in your computer, and it must be stored on paper.  To be safe from malware, you may want to do this on an offline computer, and move your wallet later to an online computer."
+msgstr ""
+
+#: gui/qt/main_window.py:2141
+msgid "The operation is undefined. Not just in Electrum, but in general."
+msgstr ""
+
+#: lib/base_wizard.py:481
+msgid "The type of addresses used by your wallet will depend on your seed."
+msgstr ""
+
+#: gui/qt/installwizard.py:280
+msgid "The wallet '{}' contains multiple accounts, which are no longer supported since Electrum 2.7.\n\n"
+"Do you want to split your wallet into multiple files?"
+msgstr ""
+
+#: plugins/trustedcoin/qt.py:258
+msgid "Then, enter your Google Authenticator code:"
+msgstr ""
+
+#: gui/qt/exception_window.py:125
+msgid "There was a problem with the automatic reporting:"
+msgstr ""
+
+#: plugins/trustedcoin/qt.py:61
+msgid "Therefore, two-factor authentication is disabled."
+msgstr ""
+
+#: gui/qt/network_dialog.py:285
+msgid "This blockchain is used to verify the transactions sent by your transaction server."
+msgstr "这个区块链用语验证你的交易服务器发送的交易。"
+
+#: plugins/greenaddress_instant/qt.py:70
+msgid "This feature is not available for watch-only wallets."
+msgstr ""
+
+#: gui/qt/installwizard.py:197
+msgid "This file does not exist."
+msgstr "此文件不存在。"
+
+#: gui/qt/installwizard.py:213
+msgid "This file is already open in memory."
+msgstr "这个文件已经在内存中打开。"
+
+#: gui/qt/installwizard.py:206
+msgid "This file is encrypted using a hardware device."
+msgstr "这个文件使用硬件设备加密。"
+
+#: gui/qt/installwizard.py:202
+msgid "This file is encrypted with a password."
+msgstr "这个文件使用密码加密。"
+
+#: gui/qt/main_window.py:818
+msgid "This information is seen by the recipient if you send them a signed payment request."
+msgstr "如果您向他们发送签名的付款请求，收件人将看到此信息。"
+
+#: gui/qt/main_window.py:2372
+msgid "This is a watching-only wallet"
+msgstr "这是只能观看的钱包"
+
+#: gui/qt/main_window.py:2151 gui/qt/main_window.py:2229
+msgid "This is a watching-only wallet."
+msgstr "这是只能观看的钱包。"
+
+#: gui/kivy/main_window.py:960
+msgid "This is a watching-only wallet. It does not contain private keys."
+msgstr "这是一个只能观察的钱包。它不包含私钥。"
+
+#: gui/qt/network_dialog.py:299
+msgid "This is the height of your local copy of the blockchain."
+msgstr "这是您区块链本地副本的高度。"
+
+#: gui/qt/main_window.py:2811
+msgid "This may result in higher transactions fees."
+msgstr "这会造成更高的交易费。"
+
+#: gui/qt/main_window.py:393
+msgid "This means you will not be able to spend Bitcoins with it."
+msgstr "这意味着你将无法用它花费比特币。"
+
+#: gui/qt/main_window.py:2852
+msgid "This might improve your privacy somewhat."
+msgstr "这可能会改善你的隐私。"
+
+#: gui/qt/main_window.py:901
+msgid "This payment request will be signed."
+msgstr "支付请求将被签名"
+
+#: plugins/trustedcoin/__init__.py:5
+msgid "This plugin adds two-factor authentication to your wallet."
+msgstr "这个插件会给你的钱包增加双重认证。"
+
+#: plugins/cosigner_pool/__init__.py:4
+msgid "This plugin facilitates the use of multi-signatures wallets."
+msgstr "此插件便于使用多签名钱包。"
+
+#: gui/qt/seed_dialog.py:39
+msgid "This seed will allow you to recover your wallet in case of computer failure."
+msgstr "这颗安全种子可以在你电脑故障后在其他设备恢复你的钱包。"
+
+#: gui/qt/transaction_dialog.py:163
+msgid "This transaction is not saved. Close anyway?"
+msgstr "交易未保存，仍然关闭？"
+
+#: gui/qt/main_window.py:1522
+msgid "This transaction requires a higher fee, or it will not be propagated by your current server"
+msgstr "本次交易需要较高的手续费，否则它不会被当前服务器传播"
+
+#: plugins/keepkey/plugin.py:207
+msgid "This type of script is not supported with KeepKey."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:717
+msgid "This type of script is not supported with the Digital Bitbox."
+msgstr ""
+
+#: gui/qt/main_window.py:2089
+msgid "This wallet has no seed"
+msgstr "这个钱包没有安全种子"
+
+#: plugins/trustedcoin/qt.py:138
+msgid "This wallet is protected by TrustedCoin's two-factor authentication."
+msgstr ""
+
+#: gui/kivy/uix/ui_screens/status.kv:56
+msgid "This wallet is watching-only"
+msgstr "这是一个观察钱包"
+
+#: gui/qt/main_window.py:392
+msgid "This wallet is watching-only."
+msgstr "这个钱包是只读。"
+
+#: plugins/trustedcoin/qt.py:60
+msgid "This wallet was restored from seed, and it contains two master private keys."
+msgstr "这个钱包已经从种子恢复，它包含两个主私钥。"
+
+#: gui/qt/installwizard.py:459
+msgid "This wallet was restored offline. It may contain more addresses than displayed."
+msgstr "这个钱包恢复离线。他可能显示包含多个地址。"
+
+#: lib/base_wizard.py:484
+msgid "Thus, you might want to keep using a non-segwit wallet in order to be able to receive bitcoins during the transition period."
+msgstr ""
+
+#: gui/qt/main_window.py:2641
+msgid "Time based: fee rate is based on average confirmation time estimates"
+msgstr ""
+
+#: gui/qt/history_list.py:109
+msgid "To"
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:461
+#: plugins/digitalbitbox/digitalbitbox.py:594
+#: plugins/digitalbitbox/digitalbitbox.py:598
+msgid "To cancel, briefly touch the blinking light or wait for the timeout."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:297
+#: plugins/digitalbitbox/digitalbitbox.py:322
+msgid "To cancel, briefly touch the light or wait for the timeout."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:460
+#: plugins/digitalbitbox/digitalbitbox.py:592
+#: plugins/digitalbitbox/digitalbitbox.py:597
+msgid "To continue, touch the Digital Bitbox's blinking light for 3 seconds."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:296
+#: plugins/digitalbitbox/digitalbitbox.py:321
+msgid "To continue, touch the Digital Bitbox's light for 3 seconds."
+msgstr ""
+
+#: lib/base_wizard.py:180
+msgid "To create a spending wallet, please enter a master private key (xprv/yprv/zprv)."
+msgstr ""
+
+#: lib/base_wizard.py:179
+msgid "To create a watching-only wallet, please enter your master public key (xpub/ypub/zpub)."
+msgstr ""
+
+#: gui/qt/exception_window.py:76
+msgid "To help us diagnose and fix the problem, you can send us a bug report that contains useful debug information:"
+msgstr "为了帮助我们诊断和修复问题，您可以给我们发送一个包含有用调试信息的bug报告："
+
+#: gui/qt/installwizard.py:410
+msgid "To make sure that you have properly saved your seed, please retype it here."
+msgstr "为了确保你已经正确保存你的安全种子，请在此重新输入。"
+
+#: gui/qt/main_window.py:1154
+msgid "To somewhat protect your privacy, Electrum tries to create change with similar precision to other outputs."
+msgstr ""
+
+#: lib/base_wizard.py:221
+msgid "To trigger a rescan, press 'Next'."
+msgstr ""
+
+#: lib/base_wizard.py:245
+msgid "To try to fix this, we will now re-pair with your device."
+msgstr ""
+
+#: gui/qt/password_dialog.py:211
+msgid "Toggle Encryption"
+msgstr ""
+
+#: plugins/keepkey/clientbase.py:76 plugins/trezor/clientbase.py:79
+msgid "Too long passphrase ({} > 50 chars)."
+msgstr ""
+
+#: gui/qt/main_window.py:3098
+msgid "Total size"
+msgstr "总大小"
+
+#: gui/qt/transaction_dialog.py:82
+msgid "Transaction"
+msgstr "交易"
+
+#: gui/kivy/uix/ui_screens/invoice.kv:66 gui/kivy/uix/ui_screens/invoice.kv:69
+#: gui/qt/main_window.py:2358
+msgid "Transaction ID"
+msgstr "交易 ID"
+
+#: gui/qt/transaction_dialog.py:87
+msgid "Transaction ID:"
+msgstr "交易 ID:"
+
+#: plugins/ledger/auth2fa.py:33
+msgid "Transaction accepted by mobile phone. Waiting for confirmation."
+msgstr ""
+
+#: gui/qt/main_window.py:3186
+msgid "Transaction added to wallet history"
+msgstr "交易已增加到钱包历史。"
+
+#: gui/qt/main_window.py:3176
+msgid "Transaction could not be saved."
+msgstr "交易无法保存。"
+
+#: gui/qt/transaction_dialog.py:207
+msgid "Transaction exported successfully"
+msgstr "成功导出交易"
+
+#: lib/wallet.py:167
+msgid "Transaction is unrelated to this wallet."
+msgstr "与这个钱包无关交易。"
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:124 gui/qt/transaction_dialog.py:239
+msgid "Transaction unrelated to your wallet"
+msgstr "与你钱包无关交易"
+
+#: gui/qt/main_window.py:2344
+msgid "Transaction:"
+msgstr "交易:"
+
+#: gui/qt/main_window.py:2958
+msgid "Transactions"
+msgstr "交易"
+
+#: plugins/cosigner_pool/__init__.py:6
+msgid "Transactions are encrypted and stored on a remote server."
+msgstr "交易加密并存储在一个远程服务器。"
+
+#: plugins/trustedcoin/qt.py:67
+msgid "TrustedCoin"
+msgstr ""
+
+#: plugins/trustedcoin/qt.py:131
+msgid "TrustedCoin Information"
+msgstr ""
+
+#: plugins/trustedcoin/qt.py:152
+msgid "TrustedCoin charges a small fee to co-sign transactions. The fee depends on how many prepaid transactions you buy. An extra output is added to your transaction everytime you run out of prepaid transactions."
+msgstr ""
+
+#: lib/plugins.py:491
+msgid "Try to connect again?"
+msgstr ""
+
+#: gui/qt/main_window.py:569
+msgid "Try to explain not only what the bug is, but how it occurs."
+msgstr "请不仅解释错误是什么，并说明它如何发生。"
+
+#: gui/qt/main_window.py:1523
+msgid "Try to raise your transaction fee, or use a server with a lower relay fee."
+msgstr "试着提高你的交易费，或者使用一个较低中继费的服务器。"
+
+#: plugins/trustedcoin/__init__.py:3
+msgid "Two Factor Authentication"
+msgstr "双重验证"
+
+#: plugins/trustedcoin/trustedcoin.py:62
+msgid "Two-factor authentication is a service provided by TrustedCoin.  It uses a multi-signature wallet, where you own 2 of 3 keys.  The third key is stored on a remote server that signs transactions on your behalf.  To use this service, you will need a smartphone with Google Authenticator installed."
+msgstr ""
+
+#: gui/qt/address_list.py:70
+msgid "Tx"
+msgstr ""
+
+#: gui/qt/address_list.py:66
+msgid "Type"
+msgstr "类型"
+
+#: plugins/email_requests/qt.py:242
+msgid "Unable to connect to mail server:\n"
+" {}"
+msgstr ""
+
+#: gui/qt/main_window.py:422
+msgid "Unable to create backup"
+msgstr "无法创建备份"
+
+#: gui/qt/main_window.py:2453
+msgid "Unable to create csv"
+msgstr "无法创建CSV"
+
+#: gui/qt/history_list.py:402
+msgid "Unable to export history"
+msgstr "无法导出历史记录"
+
+#: gui/qt/main_window.py:2339
+msgid "Unable to read file or no transaction found"
+msgstr "无法读取文件或没有发现交易"
+
+#: gui/kivy/uix/ui_screens/status.kv:40 lib/wallet.py:69 lib/wallet.py:599
+msgid "Unconfirmed"
+msgstr "未确认"
+
+#: lib/wallet.py:70
+msgid "Unconfirmed parent"
+msgstr "未确认部分"
+
+#: plugins/digitalbitbox/digitalbitbox.py:188
+msgid "Unexpected error occurred."
+msgstr "发生了意外的错误。"
+
+#: gui/qt/address_list.py:177
+msgid "Unfreeze"
+msgstr "解冻"
+
+#: gui/kivy/uix/dialogs/invoices.py:86 gui/kivy/uix/dialogs/requests.py:90
+#: gui/qt/transaction_dialog.py:220 lib/util.py:444
+msgid "Unknown"
+msgstr "未知"
+
+#: gui/kivy/uix/ui_screens/status.kv:44
+msgid "Unmatured"
+msgstr ""
+
+#: gui/qt/history_list.py:192
+msgid "Unrealized gains"
+msgstr ""
+
+#: lib/wallet.py:615
+msgid "Unsigned"
+msgstr "无签名"
+
+#: gui/kivy/uix/dialogs/addresses.py:128 gui/qt/address_list.py:51
+msgid "Unused"
+msgstr "未使用"
+
+#: plugins/keepkey/plugin.py:155 plugins/trezor/trezor.py:191
+msgid "Upload a BIP39 mnemonic to generate the seed"
+msgstr ""
+
+#: plugins/keepkey/plugin.py:156 plugins/trezor/trezor.py:192
+msgid "Upload a master private key"
+msgstr "上传主私钥"
+
+#: gui/kivy/uix/dialogs/addresses.py:133
+msgid "Use"
+msgstr "使用"
+
+#: gui/qt/main_window.py:2665
+msgid "Use Replace-By-Fee"
+msgstr ""
+
+#: gui/qt/network_dialog.py:266
+msgid "Use Tor Proxy"
+msgstr "使用Tor代理"
+
+#: lib/base_wizard.py:137
+msgid "Use a hardware device"
+msgstr "使用硬件设备"
+
+#: lib/base_wizard.py:134
+msgid "Use a master key"
+msgstr "使用主键"
+
+#: gui/qt/network_dialog.py:82 gui/qt/network_dialog.py:145
+msgid "Use as server"
+msgstr "用作服务器"
+
+#: gui/qt/main_window.py:2787
+msgid "Use change addresses"
+msgstr "使用变更地址"
+
+#: gui/qt/main_window.py:2806
+msgid "Use multiple change addresses"
+msgstr "使用多个变更地址"
+
+#: gui/qt/network_dialog.py:237
+msgid "Use proxy"
+msgstr "使用代理"
+
+#: gui/qt/main_window.py:2706
+msgid "Use setconfig to set ssl_chain and ssl_privkey."
+msgstr "用setconfig设置set ssl_chain和ssl_privkey。"
+
+#: gui/kivy/uix/dialogs/installwizard.py:791
+msgid "Use the camera button to scan a QR code."
+msgstr "用相机键扫描二维码。"
+
+#: gui/qt/password_dialog.py:247
+msgid "Use this dialog to add a password to your wallet."
+msgstr "用这个对话框在你的钱包中加入一个密码。"
+
+#: gui/qt/password_dialog.py:253
+msgid "Use this dialog to change your password."
+msgstr "用这个对话框更改你的密码。"
+
+#: gui/qt/password_dialog.py:275
+msgid "Use this dialog to toggle encryption."
+msgstr ""
+
+#: gui/kivy/uix/dialogs/addresses.py:126 gui/qt/address_list.py:51
+msgid "Used"
+msgstr "已使用"
+
+#: gui/kivy/uix/ui_screens/proxy.kv:38
+msgid "Username"
+msgstr "用户名"
+
+#: gui/qt/main_window.py:562
+msgid "Uses icons from the Icons8 icon pack (icons8.com)."
+msgstr "使用Icons8图标包 (icons8.com)中的图标。"
+
+#: gui/qt/main_window.py:2797
+msgid "Using change addresses makes it more difficult for other people to track your transactions."
+msgstr "更改使用地址以防止他人跟踪你的交易。"
+
+#: gui/qt/history_list.py:76
+msgid "Value"
+msgstr "值"
+
+#: plugins/greenaddress_instant/qt.py:101
+msgid "Verification failed!"
+msgstr "验证失败 ！"
+
+#: plugins/greenaddress_instant/qt.py:99
+msgid "Verification successful!"
+msgstr "验证成功 ！"
+
+#: gui/kivy/uix/ui_screens/network.kv:44
+msgid "Verified block headers"
+msgstr "已确认区块头部"
+
+#: gui/qt/main_window.py:2216
+msgid "Verify"
+msgstr "验证"
+
+#: plugins/greenaddress_instant/qt.py:40
+msgid "Verify GA instant"
+msgstr ""
+
+#: plugins/ledger/auth2fa.py:31
+msgid "Verify the address below.<br>Type the character from your security card corresponding to the <u><b>BOLD</b></u> character."
+msgstr ""
+
+#: lib/plugins.py:489
+msgid "Verify the cable is connected and that no other application is using it."
+msgstr ""
+
+#: plugins/greenaddress_instant/qt.py:84
+msgid "Verifying..."
+msgstr "正在验证..."
+
+#: gui/kivy/uix/ui_screens/about.kv:13 gui/qt/main_window.py:560
+msgid "Version"
+msgstr "版本"
+
+#: gui/qt/main_window.py:2781
+msgid "Video Device"
+msgstr "视频设备"
+
+#: lib/i18n.py:68
+msgid "Vietnamese"
+msgstr "越南语"
+
+#: gui/qt/history_list.py:350
+msgid "View invoice"
+msgstr "查看发票"
+
+#: gui/qt/address_list.py:172 gui/qt/contact_list.py:82
+#: gui/qt/history_list.py:352
+msgid "View on block explorer"
+msgstr "在区块上查看交易"
+
+#: gui/qt/seed_dialog.py:42
+msgid "WARNING"
+msgstr "警告"
+
+#: gui/qt/main_window.py:2383
+msgid "WARNING: ALL your private keys are secret."
+msgstr "警告：你的所有私都钥是隐秘。"
+
+#: gui/qt/main_window.py:2376
+msgid "WARNING: This is a multi-signature wallet."
+msgstr ""
+
+#: gui/qt/main_window.py:1465
+msgid "WARNING: the alias \"{}\" could not be validated via an additional security check, DNSSEC, and thus may not be correct."
+msgstr ""
+
+#: plugins/ledger/auth2fa.py:32
+msgid "Waiting for authentication on your mobile phone"
+msgstr ""
+
+#: gui/qt/installwizard.py:155
+msgid "Wallet"
+msgstr "钱包"
+
+#: gui/qt/main_window.py:2031
+msgid "Wallet Information"
+msgstr "钱包信息"
+
+#: gui/kivy/uix/ui_screens/status.kv:26
+msgid "Wallet Name"
+msgstr "钱包名称"
+
+#: gui/qt/main_window.py:420
+msgid "Wallet backup created"
+msgstr "钱包备份已创建"
+
+#: gui/qt/transaction_dialog.py:268
+msgid "Wallet change address"
+msgstr "钱包变更地址"
+
+#: gui/qt/main_window.py:2038
+msgid "Wallet name"
+msgstr "钱包名称"
+
+#: gui/qt/transaction_dialog.py:265
+msgid "Wallet receive address"
+msgstr "钱包接收地址"
+
+#: gui/qt/main_window.py:2040
+msgid "Wallet type"
+msgstr "钱包类型"
+
+#: gui/kivy/uix/ui_screens/status.kv:29
+msgid "Wallet type:"
+msgstr "钱包类型："
+
+#: lib/base_wizard.py:92
+msgid "Wallet with two-factor authentication"
+msgstr "具有两步验证的钱包"
+
+#: gui/kivy/main.kv:447
+msgid "Wallets"
+msgstr "钱包"
+
+#: gui/kivy/uix/screens.py:285 gui/qt/main_window.py:1548
+#: gui/qt/seed_dialog.py:70 gui/qt/transaction_dialog.py:163
+#: gui/qt/transaction_dialog.py:251 gui/qt/util.py:188
+msgid "Warning"
+msgstr "警告"
+
+#: gui/qt/main_window.py:971
+msgid "Warning: The next address will not be recovered automatically if you restore your wallet from seed; you may need to add it manually.\n\n"
+"This occurs because you have too many unused addresses in your wallet. To avoid this situation, use the existing addresses first.\n\n"
+"Create anyway?"
+msgstr "警告: 下一个地址并不会自动恢复如果你想从种子恢复你的钱包；你需要手动添加。\n\n"
+"这是因为你钱包里有太多未设置的地址。为了避免这种情况，请首先使用存在的地址。\n\n"
+"依旧创建吗？"
+
+#: plugins/virtualkeyboard/__init__.py:4
+msgid "Warning: do not use this if it makes you pick a weaker password."
+msgstr ""
+
+#: gui/qt/seed_dialog.py:74
+msgid "We do not guarantee that BIP39 imports will always be supported in Electrum."
+msgstr "我们不能保证Electrum永远支持BIP39载入。"
+
+#: lib/base_wizard.py:243
+msgid "We encountered an error while connecting to your device:"
+msgstr ""
+
+#: lib/base_wizard.py:88
+msgid "What kind of wallet do you want to create?"
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:561 plugins/trezor/qt_generic.py:571
+msgid "Wipe Device"
+msgstr "重置设备"
+
+#: plugins/keepkey/qt_generic.py:564 plugins/trezor/qt_generic.py:574
+msgid "Wipe the device, removing all data from it.  The firmware is left unchanged."
+msgstr "重置设备，衣橱上面所有的数据。固件保留未改变的状态。"
+
+#: lib/simple_config.py:352
+msgid "Within {} blocks"
+msgstr "{} 次确认预计"
+
+#: plugins/keepkey/clientbase.py:16 plugins/trezor/clientbase.py:16
+msgid "Write down the seed word shown on your {}"
+msgstr "写下你的种子单词并展示在你的{}"
+
+#: gui/kivy/uix/dialogs/password_dialog.py:141
+msgid "Wrong PIN"
+msgstr ""
+
+#: lib/base_wizard.py:381 lib/base_wizard.py:389
+msgid "Wrong key type"
+msgstr "错误键类型"
+
+#: gui/qt/main_window.py:2187
+msgid "Wrong signature"
+msgstr "签名错误"
+
+#: plugins/keepkey/qt_generic.py:325 plugins/trezor/qt_generic.py:329
+msgid "Yes"
+msgstr "是"
+
+#: gui/kivy/uix/ui_screens/network.kv:50 gui/qt/network_dialog.py:362
+msgid "You are following branch"
+msgstr "你在关注分支"
+
+#: gui/qt/__init__.py:168
+msgid "You are using Electrum in offline mode; restart Electrum if you want to get connected"
+msgstr "你正在离线模式下使用 Electrum 。若想连接你需要重启 Electrum 。"
+
+#: gui/qt/main_window.py:966
+msgid "You are using a non-deterministic wallet, which cannot create new addresses."
+msgstr "你正在使用一个不能创建新地址的非确定性钱包。"
+
+#: gui/qt/main_window.py:1156
+msgid "You can disable this setting in '{}'."
+msgstr "你能在 '{}' 取消设置。"
+
+#: plugins/keepkey/qt_generic.py:498 plugins/trezor/qt_generic.py:508
+msgid "You can set the homescreen on your device to personalize it.  You must choose a {} x {} monochrome black and white image."
+msgstr ""
+
+#: gui/qt/main_window.py:1532
+msgid "You can't broadcast a transaction without a live network connection."
+msgstr ""
+
+#: plugins/digitalbitbox/digitalbitbox.py:167
+msgid "You cannot access your coins or a backup without the password."
+msgstr ""
+
+#: gui/kivy/main_window.py:854
+msgid "You may also save unsigned requests or contact addresses using the save button."
+msgstr ""
+
+#: gui/qt/main_window.py:1046
+msgid "You may enter a Bitcoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Bitcoin address)"
+msgstr "您可以输入比特币地址，您联系人列表 (将会弹出完整列表提示) 中的标签 ，或者昵称（转发到比特币地址就像转发电子邮件地址一样）"
+
+#: lib/base_wizard.py:326
+msgid "You may extend your seed with custom words."
+msgstr ""
+
+#: gui/qt/main_window.py:1803
+msgid "You may load a CSV file using the file icon."
+msgstr "你可以使用文件图标加载一个CSV文件。"
+
+#: plugins/trustedcoin/trustedcoin.py:429
+msgid "You need to be online in order to complete the creation of your wallet.  If you generated your seed on an offline computer, click on \"{}\" to close this window, move your wallet file to an online computer, and reopen it with Electrum."
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:20 plugins/trezor/qt_generic.py:20
+msgid "You need to create a separate Electrum wallet for each passphrase you use as they each generate different addresses.  Changing your passphrase does not lose other wallets, each is still accessible behind its own passphrase."
+msgstr ""
+
+#: plugins/keepkey/qt_generic.py:25 plugins/trezor/qt_generic.py:25
+msgid "You should enable PIN protection.  Your PIN is the only protection for your bitcoins if your device is lost or stolen."
+msgstr ""
+
+#: plugins/trezor/trezor.py:210
+msgid "You will be asked to enter 24 words regardless of your seed's actual length.  If you enter a word incorrectly or misspell it, you cannot change it or go back - you will need to start again from the beginning.\n\n"
+"So please enter the words carefully!"
+msgstr ""
+
+#: plugins/ledger/auth2fa.py:25
+msgid "Your Ledger Wallet wants to tell you a one-time PIN code.<br><br>For best security you should unplug your device, open a text editor on another computer, put your cursor into it, and plug your device into that computer. It will output a summary of the transaction being signed and a one-time PIN.<br><br>Verify the transaction summary and type the PIN code here.<br><br>Before pressing enter, plug the device back into this computer.<br>"
+msgstr ""
+
+#: plugins/ledger/ledger.py:76
+msgid "Your Ledger is locked. Please unlock it."
+msgstr "你的分账册已锁定。请解锁。"
+
+#: gui/kivy/main_window.py:953
+msgid "Your PIN code was updated"
+msgstr ""
+
+#: gui/qt/installwizard.py:285
+msgid "Your accounts have been moved to"
+msgstr "您的账户已被移至"
+
+#: gui/qt/password_dialog.py:250
+msgid "Your bitcoins are password protected. However, your wallet file is not encrypted."
+msgstr "你的比特币被密码保护。但是你的钱包文件没有加密。"
+
+#: plugins/keepkey/qt_generic.py:368 plugins/trezor/qt_generic.py:372
+msgid "Your current Electrum wallet can only be used with an empty passphrase.  You must create a separate wallet with the install wizard for other passphrases as each one generates a new set of addresses."
+msgstr ""
+
+#: plugins/keepkey/plugin.py:228 plugins/trezor/trezor.py:275
+msgid "Your device firmware is too old"
+msgstr "设备固件版本太旧"
+
+#: plugins/labels/qt.py:62
+msgid "Your labels have been synchronised."
+msgstr "您的标签已同步。"
+
+#: gui/qt/seed_dialog.py:125
+msgid "Your seed extension is"
+msgstr "你的种子扩充是"
+
+#: lib/base_wizard.py:327 lib/base_wizard.py:519
+msgid "Your seed extension must be saved together with your seed."
+msgstr ""
+
+#: gui/qt/installwizard.py:408
+msgid "Your seed is important!"
+msgstr "你的安全种子是非常重要的！"
+
+#: gui/kivy/uix/ui_screens/network.kv:50 gui/qt/network_dialog.py:362
+msgid "Your server is on branch"
+msgstr "你的服务器在分支上"
+
+#: gui/qt/installwizard.py:29
+msgid "Your wallet file does not contain secrets, mostly just metadata. "
+msgstr "你的钱包文件不包含秘密，大部分只是元数据。 "
+
+#: gui/qt/password_dialog.py:271
+msgid "Your wallet file is NOT encrypted."
+msgstr "您的钱包文件没加密。"
+
+#: gui/qt/password_dialog.py:273
+msgid "Your wallet file is encrypted."
+msgstr "您的钱包文件已加密。"
+
+#: plugins/trustedcoin/trustedcoin.py:428
+msgid "Your wallet file is: {}."
+msgstr "你的钱包文件：{}."
+
+#: gui/qt/installwizard.py:417 gui/qt/seed_dialog.py:178
+msgid "Your wallet generation seed is:"
+msgstr "你的钱包生成种子是："
+
+#: plugins/trustedcoin/qt.py:176
+msgid "Your wallet has {} prepaid transactions."
+msgstr ""
+
+#: gui/qt/history_list.py:404
+msgid "Your wallet history has been successfully exported."
+msgstr "你成功导出钱包历史记录。"
+
+#: gui/qt/password_dialog.py:246
+msgid "Your wallet is not protected."
+msgstr "你的钱包没有被保护。"
+
+#: gui/qt/password_dialog.py:252
+msgid "Your wallet is password protected and encrypted."
+msgstr "你的钱包被密码保护并被加密。"
+
+#: gui/qt/util.py:750
+#, python-brace-format
+msgid "Your {0} were exported to '{1}'"
+msgstr ""
+
+#: gui/qt/util.py:735
+msgid "Your {} were successfully imported"
+msgstr "你的{} 已经导入成功"
+
+#: gui/qt/main_window.py:2623
+msgid "Zeros after decimal point"
+msgstr "小数点后的个数"
+
+#: gui/text.py:177
+msgid "[Clear]"
+msgstr "[清除]"
+
+#: gui/text.py:176
+msgid "[Send]"
+msgstr ""
+
+#: gui/stdio.py:47
+msgid "[b] - print server banner"
+msgstr ""
+
+#: gui/stdio.py:46
+msgid "[c] - display contacts"
+msgstr ""
+
+#: gui/stdio.py:40
+msgid "[h] - displays this help text"
+msgstr ""
+
+#: gui/stdio.py:41
+msgid "[i] - display transaction history"
+msgstr ""
+
+#: gui/stdio.py:42
+msgid "[o] - enter payment order"
+msgstr ""
+
+#: gui/stdio.py:43
+msgid "[p] - print stored payment order"
+msgstr ""
+
+#: gui/stdio.py:48
+msgid "[q] - quit"
+msgstr ""
+
+#: gui/stdio.py:45
+msgid "[r] - show own receipt addresses"
+msgstr ""
+
+#: gui/stdio.py:44
+msgid "[s] - send stored payment order"
+msgstr ""
+
+#: gui/qt/main_window.py:2669
+msgid "and you will have the possibility, while they are unconfirmed, to replace them with transactions that pay higher fees."
+msgstr ""
+
+#: gui/qt/main_window.py:1225
+msgid "are frozen"
+msgstr "被冻结"
+
+#: gui/qt/network_dialog.py:351 gui/qt/network_dialog.py:363
+msgid "blocks"
+msgstr "区块"
+
+#: gui/kivy/uix/menus.py:21
+msgid "cancel"
+msgstr "取消"
+
+#: gui/qt/address_list.py:120
+msgid "change"
+msgstr "修改"
+
+#: gui/qt/contact_list.py:56 gui/qt/contact_list.py:59
+msgid "contacts"
+msgstr "联系人"
+
+#: gui/qt/main_window.py:2055
+msgid "cosigner"
+msgstr "担保人"
+
+#: lib/wallet.py:1375
+msgid "could not find suitable outputs"
+msgstr ""
+
+#: gui/qt/transaction_dialog.py:234
+msgid "from tip"
+msgstr ""
+
+#: gui/qt/main_window.py:1780
+msgid "from your wallet?"
+msgstr "从你的钱包？"
+
+#: gui/qt/transaction_dialog.py:251
+msgid "high fee"
+msgstr "高收费"
+
+#: lib/base_wizard.py:231 lib/plugins.py:503
+msgid "initialized"
+msgstr "已初始化"
+
+#: gui/qt/invoice_list.py:61 gui/qt/invoice_list.py:64
+msgid "invoices"
+msgstr "收据"
+
+#: gui/qt/util.py:343
+msgid "json"
+msgstr "json"
+
+#: gui/qt/main_window.py:2484 gui/qt/main_window.py:2489
+msgid "labels"
+msgstr "标签"
+
+#: gui/kivy/uix/menus.py:21
+msgid "ok"
+msgstr "成功"
+
+#: gui/qt/main_window.py:1654
+msgid "please wait..."
+msgstr "请稍候..."
+
+#: gui/qt/address_list.py:123
+msgid "receiving"
+msgstr "正在接收"
+
+#: lib/wallet.py:1344
+msgid "transaction is final"
+msgstr "交易完成"
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:131 gui/qt/transaction_dialog.py:245
+#: gui/qt/transaction_dialog.py:297 lib/wallet.py:1151
+msgid "unknown"
+msgstr "未知"
+
+#: lib/commands.py:784
+msgid "unknown parser {!r} (choices: {})"
+msgstr ""
+
+#: gui/qt/main_window.py:381
+msgid "watching only"
+msgstr "只看"
+
+#: lib/base_wizard.py:231 lib/plugins.py:503
+msgid "wiped"
+msgstr "已擦除"
+
+#: plugins/keepkey/qt_generic.py:295 plugins/trezor/qt_generic.py:296
+msgid "{} Settings"
+msgstr "{} 设置"
+
+#: lib/wallet.py:595
+msgid "{} confirmations"
+msgstr "{} 确认"
+
+#: gui/kivy/uix/ui_screens/network.kv:14
+msgid "{} connections."
+msgstr "{} 连接。"
+
+#: gui/kivy/uix/dialogs/tx_dialog.py:118
+msgid "{} from tip"
+msgstr ""
+
+#: plugins/greenaddress_instant/qt.py:99
+msgid "{} is covered by GreenAddress instant confirmation"
+msgstr ""
+
+#: plugins/greenaddress_instant/qt.py:101
+msgid "{} is not covered by GreenAddress instant confirmation"
+msgstr ""
+
+#: gui/qt/main_window.py:586
+msgid "{} new transactions received: Total amount received in the new transactions {}"
+msgstr "收到了{} 笔新的交易，共收到新交易 {}"
+
+#: plugins/keepkey/qt_generic.py:230
+msgid "{} words"
+msgstr "{} 个词语"
+
+msgid "Delegates"
+msgstr "代理人"
+
+msgid "MyVotes"
+msgstr "我投的票"
+
+msgid "ReceivedVotes"
+msgstr "投我的票"
+
+msgid "Transaction Type"
+msgstr "交易类型"
+
+msgid "Transfer"
+msgstr "转账"
+
+msgid "Register"
+msgstr "注册"
+
+msgid "Fee Address:"
+msgstr "缴费地址："
+
+msgid "Vote"
+msgstr "投票"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "StoreDelegates"
+msgstr "保存代理人"
+
+msgid "CancelVote"
+msgstr "取消投票"
+
+msgid "CancelAllShowedVote"
+msgstr "取消找到的投票"
+
+msgid "Voter"
+msgstr "投票地址"
+
+msgid "VotedName"
+msgstr "被投票人"
+
+msgid "VotedAddress"
+msgstr "被投票地址"
+
+msgid "VoteName"
+msgstr "投票人"
+
+msgid "VoteAddress"
+msgstr "投票地址"
+
+msgid "MyName"
+msgstr "被投票人"
+
+msgid "MyAddress"
+msgstr "被投票地址"
+
+msgid "Empty Name"
+msgstr "名字不能为空"
+
+msgid "Too long name"
+msgstr "名字太长"
+
+msgid "Not support Segwit Address : "
+msgstr "不支持隔离见证地址 ："
+
+msgid "Only operate on one address!"
+msgstr "只能向单个地址转账"
+
+msgid "Name already registered, try another one!"
+msgstr "该名字已注册！"
+
+msgid "Address already registered by"
+msgstr "该地址已注册过 "
+
+msgid "Unregistered name"
+msgstr "未注册的名字"
+
+msgid "please input address."
+msgstr "请输入投票地址！"
+
+msgid "please select candidate."
+msgstr "请选择代理人！"
+
+msgid "candidate not more than 51."
+msgstr "代理人不能超过51个！"
+
+msgid "Can not vote to voted address"
+msgstr "不能投票给已投过票的地址"
+
+msgid "Can not cancel vote to unvoted address"
+msgstr "不能取消投票给没有投过票地址"
+
+msgid "Unspported code"
+msgstr "不支持该业务"

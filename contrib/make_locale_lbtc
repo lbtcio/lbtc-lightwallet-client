@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+import os
+import io
+import zipfile
+import requests
+
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+os.chdir('..')
+os.chdir('lib')
+
+# Convert .po to .mo
+print('Installing')
+for lang in os.listdir('locale'):
+    if lang.startswith('messages'):
+        continue
+    # Check LC_MESSAGES folder
+    mo_dir = 'locale/%s/LC_MESSAGES' % lang
+    if not os.path.exists(mo_dir):
+        os.mkdir(mo_dir)
+    cmd = 'msgfmt --output-file="%s/electrum.mo" "locale/%s/electrum.po"' % (mo_dir,lang)
+    print('Installing', lang)
+    os.system(cmd)

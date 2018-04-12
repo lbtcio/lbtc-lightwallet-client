@@ -125,7 +125,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.create_status_bar()
         self.need_update = threading.Event()
 
-        self.decimal_point = config.get('decimal_point', 5)
+        #self.decimal_point = config.get('decimal_point', 5)
+        self.decimal_point = config.get('decimal_point', 8)
         self.fee_unit = config.get('fee_unit', 0)
         self.num_zeros     = int(config.get('num_zeros',0))
 
@@ -483,7 +484,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.password_menu = wallet_menu.addAction(_("&Password"), self.change_password_dialog)
         self.seed_menu = wallet_menu.addAction(_("&Seed"), self.show_seed_dialog)
         self.private_keys_menu = wallet_menu.addMenu(_("&Private keys"))
-        self.private_keys_menu.addAction(_("&Sweep"), self.sweep_key_dialog)
+        #self.private_keys_menu.addAction(_("&Sweep"), self.sweep_key_dialog)
         self.import_privkey_menu = self.private_keys_menu.addAction(_("&Import"), self.do_import_privkey)
         self.export_menu = self.private_keys_menu.addAction(_("&Export"), self.export_privkeys_dialog)
         self.import_address_menu = wallet_menu.addAction(_("Import addresses"), self.import_addresses)
@@ -495,10 +496,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         contacts_menu = wallet_menu.addMenu(_("Contacts"))
         contacts_menu.addAction(_("&New"), self.new_contact_dialog)
         contacts_menu.addAction(_("Import"), lambda: self.contact_list.import_contacts())
-        invoices_menu = wallet_menu.addMenu(_("Invoices"))
-        invoices_menu.addAction(_("Import"), lambda: self.invoice_list.import_invoices())
+        #invoices_menu = wallet_menu.addMenu(_("Invoices"))
+        #invoices_menu.addAction(_("Import"), lambda: self.invoice_list.import_invoices())
         hist_menu = wallet_menu.addMenu(_("&History"))
-        hist_menu.addAction("Plot", self.plot_history_dialog).setEnabled(plot_history is not None)
+        #hist_menu.addAction("Plot", self.plot_history_dialog).setEnabled(plot_history is not None)
         hist_menu.addAction("Export", self.export_history_dialog)
 
         wallet_menu.addSeparator()
@@ -532,7 +533,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         raw_transaction_menu.addAction(_("&From file"), self.do_process_from_file)
         raw_transaction_menu.addAction(_("&From text"), self.do_process_from_text)
         raw_transaction_menu.addAction(_("&From the blockchain"), self.do_process_from_txid)
-        raw_transaction_menu.addAction(_("&From QR code"), self.read_tx_from_qrcode)
+        #raw_transaction_menu.addAction(_("&From QR code"), self.read_tx_from_qrcode)
         self.raw_transaction_menu = raw_transaction_menu
         run_hook('init_menubar_tools', self, tools_menu)
 
@@ -1149,10 +1150,12 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.amount_label.show()
             self.amount_e.show()
             self.max_button.show()
-            self.fee_e_label.show()
+            self.fee_e_label.hide()
             self.fee_slider.hide()
-            self.fee_e.show()
-            self.rbf_checkbox.hide()
+            self.fee_e.hide()
+            #self.fee_e_label.show()
+            #self.fee_slider.show()
+            #self.fee_e.show()
             self.pw_label.hide()
             self.pw.hide()
             self.multi_name_label.hide()
@@ -1168,7 +1171,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.fee_e_label.hide()
             self.fee_slider.hide()
             self.fee_e.hide()
-            self.rbf_checkbox.hide()
+            #self.rbf_checkbox.hide()
             #if not isinstance(self.wallet, Imported_Wallet):
             if self.wallet.has_password():
                 self.pw_label.show()
@@ -1187,7 +1190,6 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.fee_e_label.hide()
             self.fee_slider.hide()
             self.fee_e.hide()
-            self.rbf_checkbox.hide()
             if not isinstance(self.wallet, Imported_Wallet):
                 self.pw_label.show()
                 self.pw.show()
@@ -1290,9 +1292,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         #if not self.config.get('show_fee', False):
             #self.fee_e.setVisible(False)
 
-        #self.fee_e_label.hide()
+        self.fee_e_label.hide()
         self.fee_slider.hide()
-        #self.fee_e.setVisible(False)
+        self.fee_e.setVisible(False)
         self.fee_e.setAmount(1000)
 
         self.fee_e.textEdited.connect(self.update_fee)
@@ -1455,9 +1457,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                     b = False
             elif rbf_policy == 2:
                 b = False
-            #self.rbf_checkbox.setVisible(b)
-            #self.rbf_checkbox.setChecked(b)
-            self.rbf_checkbox.setVisible(False)
+            self.rbf_checkbox.setVisible(b)
+            self.rbf_checkbox.setChecked(b)
 
 
     def from_list_delete(self, item):
@@ -1571,14 +1572,14 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         for each in selected_list :
             if (op_code == 0xc1) : # vote
                 if each in vote_ls :
-                    self.show_message('Can not vote to voted address : ' + each)
+                    self.show_message(_('Can not vote to voted address') + ' : ' + each)
                     return
             elif (op_code == 0xc2) : # cancelvote
                 if each not in vote_ls :
-                    self.show_message('Can not cancel vote to unvoted address : ' + each)
+                    self.show_message(_('Can not cancel vote to unvoted address') + ' : ' + each)
                     return
             else :
-                self.show_error('Unspported code : ' + op_code)
+                self.show_error(_('Unspported code') + ' : ' + op_code)
                 return
 
             addrtype, addr_hash = b58_address_to_hash160(each)
@@ -1633,15 +1634,15 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if run_hook('abort_send', self):
             return
         if not addr :
-            self.show_error('please input address.')
+            self.show_error(_('please input address.'))
             return
 
         if not selected_list :
-            self.show_error('please select candidate.')
+            self.show_error(_('please select candidate.'))
             return
 
         if len(selected_list) > 51 :
-            self.show_error('candidate not more than 51.')
+            self.show_error(_('candidate not more than 51.'))
             return
 
         r = self.read_vote_info(addr, op_code, selected_list)
@@ -1723,12 +1724,12 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         #data = bh2u(to_bytes(data)) + bh2u(b'\x00'*(32-len(data)))
         #data = bh2u(to_bytes(data))
         #sig = ''.join('{:02x}'.format(x) for x in sig)
-        prehash_content = var_int(len(pubkey)) + pubkey
-        prehash_content += var_int(len(epoch_time)) + epoch_time
-        prehash_content += var_int(len(sig)) + sig
-        prehash_content += var_int(len(int_to_hex(op_code))+len(data))
-        prehash_content += int_to_hex(op_code)
-        prehash_content += data
+        #prehash_content = var_int(len(pubkey)) + pubkey
+        #prehash_content += var_int(len(epoch_time)) + epoch_time
+        #prehash_content += var_int(len(sig)) + sig
+        #prehash_content += var_int(len(int_to_hex(op_code))+len(data))
+        #prehash_content += int_to_hex(op_code)
+        #prehash_content += data
         #hash = Hash(pubkey + epoch_time + sig + int_to_hex(op_code) + data)
         #hash = Hash(prehash_content)
         #hash = ''.join('{:02x}'.format(x) for x in hash)
@@ -1755,14 +1756,17 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def get_outputs(self) :
         # check target address
         has_segwit = False
+        self.print_error('get_recipient', self.payto_e.get_recipient())
         for each in self.payto_e.lines() :
             #each = 'bc1qpkm0c685lemc9pz5gfrz438hkf8hwla5h2v00k'
-            seg_addr = self.payto_e.parse_address(each)
-            if is_segwit_address(seg_addr) :
+            #seg_addr = self.payto_e.parse_address(each)
+            parts = each.strip().split(sep=',')  # assuming single line
+            if parts and len(parts) > 0 and bitcoin.is_segwit_address(parts[0]):
+            #if is_segwit_address(seg_addr) :
                 has_segwit = True
                 break
         if has_segwit :
-            self.show_error('Not support Segwit Address : ' + seg_addr)
+            self.show_error(_('Not support Segwit Address : ') + seg_addr)
             return
 
         if (self.show_business == 0) : # transfer
@@ -1801,7 +1805,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 self.print_error("user :", data)
                 #if len(to_bytes(data)) > 32 :
                 if len(data.encode('utf-8')) > 32 :
-                    self.show_error('Too long name : ' + data)
+                    self.show_error(_('Too long name') + ' : ' + data)
                     return
                 # name filter
                 try :
@@ -1822,7 +1826,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 for each in delegate_list :
                     if each.get('address') == addr :
                         #self.show_message(_("Address already registered wiht %s"))
-                        self.show_message(_("Address already registered by ") + " '%s'" % each.get('name'))
+                        self.show_message(_("Address already registered by") + " '%s'" % each.get('name'))
                         return
 
                 data = bh2u(to_bytes(data)) + bh2u(b'\x00'*(32-len(data.encode('utf-8'))))
@@ -1833,7 +1837,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 lines = [i for i in self.multi_name_e.toPlainText().split('\n') if i]
                 for each in lines :
                     if len(to_bytes(each)) > 32 :
-                        self.show_error('Too long name : ' + each)
+                        self.show_error(_('Too long name') + ' : ' + each)
                         return
                     try :
                         witness_json = self.network.synchronous_get(('blockchain.address.getwitness', [each]))
@@ -1846,7 +1850,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                     # Parse JSON into an object with attributes corresponding to dict keys.
                     #witness = json.loads(witness_json, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
                     if not witness_json.get('name') :
-                        self.show_message('Unregistered name : ' + each)
+                        self.show_message(_('Unregistered name') + ' : ' + each)
                         return
                     addrtype, addr_hash = b58_address_to_hash160(witness_json.get('address'))
                     _type, hash_data = self.payto_e.parse_output(bh2u(addr_hash))
@@ -1947,22 +1951,19 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         amount = tx.output_value() if self.is_max else sum(map(lambda x:x[2], outputs))
         fee = tx.get_fee()
 
-        #use_rbf = self.rbf_checkbox.isChecked()
-        use_rbf = False
+        use_rbf = self.rbf_checkbox.isChecked()
         if use_rbf:
             tx.set_rbf(True)
 
         self.print_error('test estimated fee:', self.wallet.relayfee())
         self.print_error('test estimated fee:', tx.estimated_size())
-
-        tmp_relayfee = self.wallet.relayfee() * tx.estimated_size() / 1000
-        if fee < tmp_relayfee:
+        if fee < self.wallet.relayfee() * tx.estimated_size() / 1000:
         #if fee < self.wallet.relayfee() * tx.estimated_size() :
             #self.show_error(_("This transaction requires a higher fee, or it will not be propagated by the network"))
             #self.show_error(_("This transaction requires not less than %d sataoshi, or it will not be propagated by the network")%(self.wallet.relayfee() * tx.estimated_size()))
             #return
-            fee = tmp_relayfee
-                
+            fee = self.wallet.relayfee() * tx.estimated_size() / 1000
+
         self.print_error('changed fee:', fee)
         if preview:
             self.show_transaction(tx, tx_desc)
@@ -3073,8 +3074,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         lang_label = HelpLabel(_('Language') + ':', lang_help)
         lang_combo = QComboBox()
         from electrum.i18n import languages
-        #lang_combo.addItems(list(languages.values()))
-        lang_combo.addItem(_('English'))
+        lang_combo.addItems(list(languages.values()))
+        #lang_combo.addItem(_('English'))
         try:
             index = languages.keys().index(self.config.get("language",''))
         except Exception:
@@ -3106,7 +3107,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 self.history_list.update()
                 self.address_list.update()
         nz.valueChanged.connect(on_nz)
-        gui_widgets.append((nz_label, nz))
+        #gui_widgets.append((nz_label, nz))
 
         def on_dynfee(x):
             self.config.set_key('dynamic_fees', x == Qt.Checked)
@@ -3260,7 +3261,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         qr_combo.setEnabled(qrscanner.libzbar is not None)
         on_video_device = lambda x: self.config.set_key("video_device", qr_combo.itemData(x), True)
         qr_combo.currentIndexChanged.connect(on_video_device)
-        gui_widgets.append((qr_label, qr_combo))
+        #gui_widgets.append((qr_label, qr_combo))
 
         usechange_cb = QCheckBox(_('Use change addresses'))
         usechange_cb.setChecked(self.wallet.use_change)
@@ -3290,7 +3291,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         ]))
         multiple_cb.setChecked(multiple_change)
         multiple_cb.stateChanged.connect(on_multiple)
-        tx_widgets.append((multiple_cb, None))
+        #tx_widgets.append((multiple_cb, None))
 
         def fmt_docs(key, klass):
             lines = [ln.lstrip(" ") for ln in klass.__doc__.split("\n")]
@@ -3309,7 +3310,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             chooser_name = choosers[chooser_combo.currentIndex()]
             self.config.set_key('coin_chooser', chooser_name)
         chooser_combo.currentIndexChanged.connect(on_chooser)
-        tx_widgets.append((chooser_label, chooser_combo))
+        #tx_widgets.append((chooser_label, chooser_combo))
 
         def on_unconf(x):
             self.config.set_key('confirmed_only', bool(x))

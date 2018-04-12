@@ -8,7 +8,7 @@ dist/
 contrib/pyinstaller/
 Electrum.egg-info/
 gui/qt/icons_rc.py
-locale/
+#locale/
 .devlocaltmp/
 *_trial_temp
 packages
