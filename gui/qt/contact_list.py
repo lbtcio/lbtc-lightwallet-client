@@ -166,10 +166,6 @@ class DelegateList(MyTreeWidget, PrintError):
     def on_itemclicked(self, item, column):
         name = item.text(1)
         addr = item.text(2)
-        #for each in self.out_vote :
-            #if (each == addr) :
-                #item.setCheckState(0, Qt.Checked)
-                #return
         
         if (item.checkState(0) == Qt.Checked) :
             if not (addr in self.selected_list) :
@@ -188,6 +184,17 @@ class DelegateList(MyTreeWidget, PrintError):
             self.recently_delegates = [x for x in self.recently_delegates if not (addr == x.get('address'))]
         self.print_error("selected :", self.selected_list)
         self.print_error("recently_delegates :", self.recently_delegates)
+
+    def keyPressEvent(self, event):
+        if event.key() in [ Qt.Key_Space ] :
+            item = self.currentItem()
+            if (item.checkState(0) == Qt.Checked) :
+                item.setCheckState(0, Qt.Unchecked)
+            else :
+                item.setCheckState(0, Qt.Checked)
+            self.on_itemclicked(item, self.currentColumn())
+        else :
+            super(DelegateList, self).keyPressEvent(event)
 
     def on_permit_edit(self, item, column):
         # openalias items shouldn't be editable
@@ -360,11 +367,7 @@ class MyVoteList(MyTreeWidget, PrintError):
         self.update()
         
     def on_itemclicked(self, item, column):
-        addr = item.text(3);
-        #for each in self.out_vote :
-            #if (each == addr) :
-                #item.setCheckState(0, Qt.Checked)
-                #return
+        addr = item.text(3)
         
         if (item.checkState(0) == Qt.Checked) :
             if not (addr in self.selected_list) :
@@ -373,6 +376,17 @@ class MyVoteList(MyTreeWidget, PrintError):
             if addr in self.selected_list :
                 self.selected_list.remove(addr)
         self.print_error("selected :", self.selected_list)
+
+    def keyPressEvent(self, event):
+        if event.key() in [ Qt.Key_Space ] :
+            item = self.currentItem()
+            if (item.checkState(0) == Qt.Checked) :
+                item.setCheckState(0, Qt.Unchecked)
+            else :
+                item.setCheckState(0, Qt.Checked)
+            self.on_itemclicked(item, self.currentColumn())
+        else :
+            super(MyVoteList, self).keyPressEvent(event)
 
     def on_permit_edit(self, item, column):
         # openalias items shouldn't be editable

@@ -25,7 +25,7 @@
 
 import signal
 import sys
-
+import locale
 
 try:
     import PyQt5
@@ -86,7 +86,13 @@ class QNetworkUpdatedSignalObject(QObject):
 class ElectrumGui:
 
     def __init__(self, config, daemon, plugins):
-        set_language(config.get('language'))
+        #set_language(config.get('language'))
+        cfg_lang = config.get('language', '')
+        if not cfg_lang :
+            loc_lang = locale.getdefaultlocale()
+            cfg_lang = loc_lang[0]
+        set_language(cfg_lang)
+            
         # Uncomment this call to verify objects are being properly
         # GC-ed when windows are closed
         #network.add_jobs([DebugMem([Abstract_Wallet, SPV, Synchronizer,

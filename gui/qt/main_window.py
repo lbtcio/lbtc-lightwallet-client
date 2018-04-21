@@ -144,6 +144,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.voted_tab = self.create_voted_tab()
         self.votes_tab = self.create_votes_tab()
         self.delegates_tab = self.create_delegates_tab()
+        self.passwd = None
 
         tabs.addTab(self.create_history_tab(), QIcon(":icons/tab_history.png"), _('History'))
         tabs.addTab(self.send_tab, QIcon(":icons/tab_send.png"), _('Send'))
@@ -151,8 +152,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 		# vote func
         #tabs.addTab(self.register_tab, QIcon(":icons/tab_send.png"), _('Register'))
         tabs.addTab(self.delegates_tab, QIcon(":icons/tab_contacts.png"), _('Delegates'))
-        tabs.addTab(self.votes_tab, QIcon(":icons/tab_contacts.png"), _('MyVotes'))
-        tabs.addTab(self.voted_tab, QIcon(":icons/tab_send.png"), _('ReceivedVotes'))
+        tabs.addTab(self.votes_tab, QIcon(":icons/tab_send.png"), _('MyVotes'))
+        tabs.addTab(self.voted_tab, QIcon(":icons/tab_receive.png"), _('ReceivedVotes'))
 
         def add_optional_tab(tabs, tab, icon, description, name):
             tab.tab_icon = icon
@@ -387,8 +388,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def watching_only_changed(self):
         #name = "LBTC Wallet Testnet" if NetworkConstants.TESTNET else "LBTC Wallet"
         name = "LBTC Wallet"
-        title = '%s %s based on electrum 3.0.5 -  %s' % (name, self.wallet.electrum_version,
-                                        self.wallet.basename())
+        title = '%s %s %s Electrum 3.0.5 -  %s' % (name, self.wallet.electrum_version,
+                                        _('based on'), self.wallet.basename())
         extra = [self.wallet.storage.get('wallet_type', '?')]
         if self.wallet.is_watching_only():
             self.warn_if_watching_only()
@@ -583,8 +584,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                     is_relevant, is_mine, v, fee = self.wallet.get_wallet_delta(tx)
                     if(v > 0):
                         total_amount += v
-                self.notify(_("%(txs)s new transactions received: Total amount received in the new transactions %(amount)s") \
-                            % { 'txs' : tx_amount, 'amount' : self.format_amount_and_units(total_amount)})
+                self.notify(_("%(txs)s %(tx_stat)s %(amount)s") \
+                            % { 'txs' : tx_amount, 'tx_stat' : _('new transactions received: Total amount received in the new transactions'), 'amount' : self.format_amount_and_units(total_amount)})
                 self.tx_notifications = []
             else:
               for tx in self.tx_notifications:
@@ -592,15 +593,16 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                       self.tx_notifications.remove(tx)
                       is_relevant, is_mine, v, fee = self.wallet.get_wallet_delta(tx)
                       if(v > 0):
-                          self.notify(_("New transaction received: %(amount)s") % { 'amount' : self.format_amount_and_units(v)})
+                          self.notify(_("%(notify_msg)s: %(amount)s") \
+                                % { 'notify_msg' : _('New transaction received'), 'amount' : self.format_amount_and_units(v)})
 
     def notify(self, message):
         if self.tray:
             try:
                 # this requires Qt 5.9
-                self.tray.showMessage("Electrum", message, QIcon(":icons/electrum_dark_icon"), 20000)
+                self.tray.showMessage("LBTC Wallet", message, QIcon(":icons/electrum_dark_icon"), 20000)
             except TypeError:
-                self.tray.showMessage("Electrum", message, QSystemTrayIcon.Information, 20000)
+                self.tray.showMessage("LBTC Wallet", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -1153,9 +1155,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.fee_e_label.hide()
             self.fee_slider.hide()
             self.fee_e.hide()
-            #self.fee_e_label.show()
-            #self.fee_slider.show()
-            #self.fee_e.show()
+            self.fee_e_label.show()
+            self.fee_slider.hide()
+            self.fee_e.show()
             self.pw_label.hide()
             self.pw.hide()
             self.multi_name_label.hide()
@@ -1292,9 +1294,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         #if not self.config.get('show_fee', False):
             #self.fee_e.setVisible(False)
 
-        self.fee_e_label.hide()
+        self.fee_e_label.show()
         self.fee_slider.hide()
-        self.fee_e.setVisible(False)
+        self.fee_e.setVisible(True)
         self.fee_e.setAmount(1000)
 
         self.fee_e.textEdited.connect(self.update_fee)
@@ -1312,8 +1314,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         grid.addWidget(self.fee_e_label, 7, 0)
         grid.addWidget(self.fee_e, 7, 1)
-        grid.addWidget(self.fee_slider, 7, 2)
-        grid.addWidget(self.rbf_checkbox, 7, 3)
+        #grid.addWidget(self.fee_slider, 7, 2)
+        #grid.addWidget(self.rbf_checkbox, 7, 3)
 
         self.pw_label = QLabel(_('Password'))
         #self.pw = QLineEdit()
@@ -1591,11 +1593,13 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             msg.append("")
             msg.append(_("Enter your password to proceed"))
             password = self.password_dialog('\n'.join(msg))
+            self.passwd = password
             if not password:
                 return
         else:
             msg.append(_('Proceed?'))
             password = None
+            self.passwd = password
             if not self.question('\n'.join(msg)):
                 return
 
@@ -1686,9 +1690,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
 
         if self.wallet.has_password():
-            msg.append("")
-            msg.append(_("Enter your password to proceed"))
-            password = self.password_dialog('\n'.join(msg))
+            #msg.append("")
+            #msg.append(_("Enter your password to proceed"))
+            #password = self.password_dialog('\n'.join(msg))
+            password = self.passwd
             if not password:
                 return
         else:
@@ -1707,6 +1712,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                     self.print_error("raw tx : ", tx.serialize())
                     self.broadcast_transaction(tx, tx_desc)
         self.sign_tx_with_password(tx, sign_done, password)
+        self.passwd = None
 
 
     def get_script(self, addr, op_code, data, passwd) :
@@ -1770,6 +1776,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             return
 
         if (self.show_business == 0) : # transfer
+            self.passwd = None
             if self.payment_request:
                 outputs = self.payment_request.get_outputs()
             else:
@@ -1857,6 +1864,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                     data = data + hash_data
 
             passwd = self.pw.text()
+            self.passwd = passwd # password not input twice bug
             if not passwd:
                 passwd = None
             _type, addr = self.get_script(addr, op_code, data, passwd)
@@ -1984,10 +1992,15 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if fee > confirm_rate * tx.estimated_size() / 1000:
             msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
 
+        password = None
         if self.wallet.has_password():
-            msg.append("")
-            msg.append(_("Enter your password to proceed"))
-            password = self.password_dialog('\n'.join(msg))
+            if (self.show_business == 0):
+                msg.append("")
+                msg.append(_("Enter your password to proceed"))
+                password = self.password_dialog('\n'.join(msg))
+            else:
+                password = self.passwd # register/vote/cancelvote passwd
+            
             if not password:
                 return
         else:
@@ -2006,6 +2019,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                     self.print_error("raw tx : ", tx.serialize())
                     self.broadcast_transaction(tx, tx_desc)
         self.sign_tx_with_password(tx, sign_done, password)
+        self.passwd = None
 
     @protected
     def sign_tx(self, tx, callback, password):

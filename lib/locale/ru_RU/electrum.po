@@ -4565,3 +4565,15 @@ msgstr "невозможно отозвать голос, вы не голосо
 
 msgid "Unspported code"
 msgstr "Команда не поддерживается"
+
+msgid "Connection"
+msgstr "Cоединение"
+
+msgid "New transaction received"
+msgstr "Новая входящая транзакция"
+
+msgid "new transactions received: Total amount received in the new transactions"
+msgstr "Новая входящая транзакция: Общая сумма полученных монет в транзакции "
+
+msgid "based on"
+msgstr "на базе"

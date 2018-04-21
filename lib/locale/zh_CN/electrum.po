@@ -832,7 +832,7 @@ msgstr ""
 #: gui/qt/network_dialog.py:354
 #, python-brace-format
 msgid "Connected to {0} nodes."
-msgstr ""
+msgstr "已连接{0}个节点"
 
 #: lib/wallet.py:1305
 msgid "Connecting..."
@@ -4565,3 +4565,15 @@ msgstr "不能取消投票给没有投过票地址"
 
 msgid "Unspported code"
 msgstr "不支持该业务"
+
+msgid "based on"
+msgstr "基于"
+
+msgid "Connection"
+msgstr "连接"
+
+msgid "New transaction received"
+msgstr "收到了"
+
+msgid "new transactions received: Total amount received in the new transactions"
+msgstr "条新交易，共计"
