@@ -106,6 +106,7 @@ class HistoryList(MyTreeWidget):
             self.insertTopLevelItem(0, item)
             if current_tx == tx_hash:
                 self.setCurrentItem(item)
+        self.scrollTo(self.currentIndex(), QAbstractItemView.PositionAtCenter)
 
     def on_doubleclick(self, item, column):
         if self.permit_edit(item, column):

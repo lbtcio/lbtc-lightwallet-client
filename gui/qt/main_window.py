@@ -1155,9 +1155,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.fee_e_label.hide()
             self.fee_slider.hide()
             self.fee_e.hide()
-            self.fee_e_label.show()
             self.fee_slider.hide()
-            self.fee_e.show()
             self.pw_label.hide()
             self.pw.hide()
             self.multi_name_label.hide()
@@ -1294,9 +1292,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         #if not self.config.get('show_fee', False):
             #self.fee_e.setVisible(False)
 
-        self.fee_e_label.show()
+        self.fee_e_label.hide()
         self.fee_slider.hide()
-        self.fee_e.setVisible(True)
+        self.fee_e.setVisible(False)
         self.fee_e.setAmount(1000)
 
         self.fee_e.textEdited.connect(self.update_fee)
@@ -1312,8 +1310,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.rbf_checkbox.setToolTip('<p>' + ' '.join(msg) + '</p>')
         self.rbf_checkbox.setVisible(False)
 
-        grid.addWidget(self.fee_e_label, 7, 0)
-        grid.addWidget(self.fee_e, 7, 1)
+        #grid.addWidget(self.fee_e_label, 7, 0)
+        #grid.addWidget(self.fee_e, 7, 1)
         #grid.addWidget(self.fee_slider, 7, 2)
         #grid.addWidget(self.rbf_checkbox, 7, 3)
 
@@ -1369,7 +1367,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.fee_e.setStyleSheet(fee_color.as_stylesheet())
 
         self.amount_e.textChanged.connect(entry_changed)
-        self.fee_e.textChanged.connect(entry_changed)
+        #self.fee_e.textChanged.connect(entry_changed)
 
         self.invoices_label = QLabel(_('Invoices'))
         from .invoice_list import InvoiceList
@@ -1420,6 +1418,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.statusBar().showMessage('')
         else:
             fee = self.fee_e.get_amount() if freeze_fee else None
+            self.print_error('test fee', fee)
             outputs = self.payto_e.get_outputs(self.is_max)
             if not outputs:
                 _type, addr = self.get_payto_or_dummy()
