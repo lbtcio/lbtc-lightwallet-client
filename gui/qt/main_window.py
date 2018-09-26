@@ -214,7 +214,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.network.register_callback(self.on_network, interests)
             # set initial message
             #self.console.showMessage(self.network.banner)
-            self.console.showMessage('Wecome on board!\nWebsite:lightningbitcoin.io\nTwitter/Telegram:LightningBTC\nWish you a greate journey.')
+            self.console.showMessage('Welcome on board!\nWebsite:lightningbitcoin.io\nTwitter/Telegram:LightningBTC\nWe wish you a great journey.')
             self.network.register_callback(self.on_quotes, ['on_quotes'])
             self.network.register_callback(self.on_history, ['on_history'])
             self.new_fx_quotes_signal.connect(self.on_fx_quotes)
