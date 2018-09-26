@@ -556,3 +556,426 @@ class MyVotedList(MyTreeWidget, PrintError):
                 self.setCurrentItem(item)
         run_hook('update_contacts_tab', self)
 
+#################################### CommitteeList #########################################
+class CommitteeList(MyTreeWidget, PrintError):
+    filter_columns = [0, 1, 2, 3]  # space, id, name, address
+
+    def __init__(self, parent):
+        MyTreeWidget.__init__(self, parent, self.create_menu, [_(' '), _('Name'), _('Address'), _("URL")], 1)
+        self.parent = parent
+        self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.setSortingEnabled(True)
+        self.itemClicked.connect(self.on_itemclicked)
+        self.committee_list = []
+        self.recently_committees = []
+        self.addr_e = QLineEdit(self)
+        self.addr_e.setText('')
+        self.selected_list = []
+        self.vote_button = EnterButton(_("Vote"), self.toggle_vote)
+        self.cancelvote_button = EnterButton(_("CancelVote"), self.toggle_cancelvote)
+        self.refresh_button = EnterButton(_("AllCommittee"), self.toggle_refresh)
+        self.myvote_button = EnterButton(_("MyVoteCommittee"), self.toggle_vote_committee)
+        self.selected_name = ''
+        self.voter_ls = []
+        self.status = 0 # default all committee list  0 -- all committee; 1 -- my vote committee
+        self.update()
+
+    def get_list_header(self):
+        #return QLabel(_("Filter:")), self.filter_button, QLabel(_("Address:")), self.addr_e, self.vote_button
+        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.cancelvote_button, self.refresh_button, self.myvote_button
+        
+    def toggle_vote(self):
+    
+        if not self.addr_e.text().strip() :
+            self.parent.show_error(_('please input address.'))
+            return
+            
+        if not self.parent.wallet.is_mine(self.addr_e.text()):
+            self.parent.show_message(self.addr_e.text() + _('is not your own address!'))
+            return
+            
+        # only vote once
+        vote_ls = self.parent.get_voter_committee(self.addr_e.text().strip())
+        if(vote_ls):
+            self.parent.show_message(_('You have voted to ') + vote_ls[0].get('name'))
+            return
+            
+        op_code = 0xc4
+        self.parent.do_vote(self.addr_e.text(), op_code, self.selected_list)
+        self.selected_list = []
+        self.addr_e.setText('')
+        self.update()
+        
+    def toggle_cancelvote(self):
+    
+        if not self.addr_e.text().strip() :
+            self.parent.show_error(_('please input address.'))
+            return
+            
+        if not self.parent.wallet.is_mine(self.addr_e.text()):
+            self.parent.show_message(self.addr_e.text() + _('is not your own address!'))
+            return
+
+        vote_ls = self.parent.get_committee_voter(self.selected_name)
+        voted = False
+        for each in vote_ls:
+            if(self.addr_e.text() and each.get('address') == self.addr_e.text()):
+                voted = True
+                break
+        if self.addr_e.text() and not voted:     
+            self.parent.show_message(_('You have not voted to ') + self.selected_name)
+            return
+            
+        op_code = 0xc5
+        self.parent.do_vote(self.addr_e.text(), op_code, self.selected_list)
+        self.selected_list = []
+        self.addr_e.setText('')
+        self.update()
+
+    def toggle_refresh(self):
+        self.committee_list = []
+        self.selected_list = []
+        self.selected_name = ''
+        self.status = 0
+        try :
+            self.committee_list = self.parent.network.synchronous_get(('blockchain.address.getcommittee', ['']))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            self.committee_list = []
+        self.update()
+
+    def toggle_vote_committee(self):
+        self.voter_ls = []
+        self.addr_e.setText('')
+        self.status = 1
+        addr_ls = self.parent.wallet.get_addresses()
+        ret_ls = []
+        for each in addr_ls :
+            # ignore non-history address
+            if not len(self.parent.wallet.get_address_history(each)) :
+                continue;
+            ret_ls = self.parent.get_voter_committee(each)
+            for item in ret_ls :
+                #self.print_error("error: " + item.get('voter'))
+                self.voter_ls.append(item)
+            
+        self.update()
+
+    def load_committees(self):
+        self.recently_committees = self.parent.wallet.storage.get('recently_committees', [])
+        self.update()
+        
+    def add_selected(self, name, addr):
+        self.selected_list.clear()
+        self.selected_name = name
+        self.selected_list.append(addr)
+        
+    def on_itemclicked(self, item, column):
+        name = item.text(1)
+        addr = item.text(2)
+        
+        if (item.checkState(0) == Qt.Checked) :
+            self.add_selected(name, addr)
+        self.update()
+        self.print_error("selected :", self.selected_list)
+
+    def keyPressEvent(self, event):
+        if event.key() in [ Qt.Key_Space ] :
+            item = self.currentItem()
+            if (item.checkState(0) == Qt.Checked) :
+                item.setCheckState(0, Qt.Unchecked)
+            else :
+                item.setCheckState(0, Qt.Checked)
+            self.on_itemclicked(item, self.currentColumn())
+        else :
+            super(CommitteeList, self).keyPressEvent(event)
+
+    def on_permit_edit(self, item, column):
+        # openalias items shouldn't be editable
+        return False
+
+    def on_edited(self, item, column, prior):
+        pass
+
+    def create_menu(self, position):
+        item = self.currentItem()
+        if not item:
+            return
+        column = self.currentColumn()
+        if column is 0:
+            column_title = ""
+            column_data = ''
+        else:
+            column_title = self.headerItem().text(column)
+            column_data = item.text(column)
+    
+        menu = QMenu()
+        #selected = self.selectedItems()
+        item = self.itemAt(position)
+        url = item.text(3)
+        if (column == 3) and url:
+            menu.addAction(_("View on explorer"), lambda: webbrowser.open(url))
+        if column:
+            menu.addAction(_("Copy ") + column_title, lambda: self.parent.app.clipboard().setText(column_data))
+        #run_hook('create_contact_menu', menu, selected)
+        menu.exec_(self.viewport().mapToGlobal(position))
+
+    def fetch_committee(self):
+        try :
+            self.committee_list = self.parent.network.synchronous_get(('blockchain.address.getcommittee', ['']))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            
+    def on_update(self):
+        #self.out_vote = self.parent.get_out_vote()
+        #self.print_error("out_vote : ", self.out_vote)
+        item = self.currentItem()
+        current_key = item.data(2, Qt.UserRole) if item else None
+        self.clear()
+        self.print_error("committee :", self.committee_list)
+        #self.print_error("selected :", self.selected_list)
+        #self.print_error("filter :", self.filter_status)
+        if self.status == 1 :
+            tmp_ls = self.voter_ls
+        else:
+            tmp_ls = self.committee_list
+            
+        if len(tmp_ls) :
+            for each in tmp_ls:
+                item = QTreeWidgetItem(['', each.get('name'), each.get('address'), each.get('url')])
+                #item.setData(3, Qt.UserRole, each.get('address'))
+                if(self.selected_list and self.selected_list[0] == each.get('address')):
+                    item.setCheckState(0, Qt.Checked)
+                else:
+                    item.setCheckState(0, Qt.Unchecked)
+                self.addTopLevelItem(item)
+                if each.get('address') == current_key:
+                    self.setCurrentItem(item)
+        self.print_error("selected :", self.selected_list)
+        #run_hook('update_contacts_tab', self)
+
+#################################### BillList #########################################
+from electrum.util import format_time
+import json,time
+
+class BillList(MyTreeWidget, PrintError):
+    filter_columns = [1, 2, 3, 4]  # title, detail, url, endtime, options
+
+    def __init__(self, parent):
+        MyTreeWidget.__init__(self, parent, self.create_menu, [_(' '), _('Title'), _('Detail'), _('URL'), _('EndTime'), _('Options')], 1)
+        self.parent = parent
+        self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.setSortingEnabled(True)
+        self.itemClicked.connect(self.on_itemclicked)
+        self.bill_list = []
+        self.recently_bills = []
+        self.addr_e = QLineEdit(self)
+        self.addr_e.setText('')
+        self.selected_list = []
+        self.voter_ls = []
+        self.vote_button = EnterButton(_("Vote"), self.toggle_vote)
+        #self.cancelvote_button = EnterButton(_("CancelVote"), self.toggle_cancelvote)
+        self.refresh_button = EnterButton(_("AllBill"), self.toggle_refresh)
+        self.myvote_button = EnterButton(_("MyVoteBill"), self.toggle_myvote_bill)
+        self.selected_name = ''
+        self.filter_status = 0
+        self.status = 0 
+        
+        self.update()
+
+    def get_list_header(self):
+        #return QLabel(_("Filter:")), self.filter_button, QLabel(_("Address:")), self.addr_e, self.vote_button
+        return QLabel(_("Fee Address:")), self.addr_e, self.vote_button, self.refresh_button, self.myvote_button
+        
+    def toggle_vote(self):
+        if self.selected_list and (self.selected_list[0].get('endtime') <= str(int(time.time()))):
+            self.parent.show_message(_('not vote to expired bill!'))
+            return
+            
+        if not self.addr_e.text().strip() :
+            self.parent.show_error(_('please input address.'))
+            return
+            
+        if not self.parent.wallet.is_mine(self.addr_e.text()):
+            self.parent.show_message(self.addr_e.text() + _('is not your own address!'))
+            return
+            
+        if self.selected_list:
+            vote_ls = self.parent.get_voter_bill(self.addr_e.text().strip())
+            for each in vote_ls:
+                if(each.get('id') == self.selected_list[0].get('id')):
+                    self.parent.show_message(_('You have voted to ') + self.selected_list[0].get('title'))
+                    return
+            
+        op_code = 0xc7 # vote for bill
+        self.parent.do_bill_vote(self.addr_e.text(), op_code, self.selected_list)
+        self.selected_list = []
+        self.addr_e.setText('')
+        self.update()
+        
+    def toggle_cancelvote(self):
+        op_code = 0xff
+        self.parent.do_bill_vote(self.addr_e.text(), op_code, self.selected_list)
+        self.selected_list = []
+        self.addr_e.setText('')
+        self.update()
+
+    def toggle_refresh(self):
+        self.bill_list = []
+        self.selected_list = []
+        self.voter_ls = []
+        self.selected_name = ''
+        self.status = 0
+        try :
+            self.bill_list = self.parent.network.synchronous_get(('blockchain.address.getbill', ['']))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            self.bill_list = []
+        self.update()
+
+    def toggle_myvote_bill(self):
+        if not self.bill_list:
+            self.fetch_bill()
+        self.selected_list = []
+        self.voter_ls = []
+        self.addr_e.setText('')
+        self.status = 1
+        addr_ls = self.parent.wallet.get_addresses()
+        ret_ls = []
+        for each in addr_ls :
+            # ignore non-history address
+            if not len(self.parent.wallet.get_address_history(each)) :
+                continue;
+            ret_ls = self.parent.get_voter_bill(each)
+            for item in ret_ls :
+                #self.print_error("error: " + item.get('voter'))
+                for bill in self.bill_list:
+                    if item.get('id') == bill.get('id'):
+                        self.print_error("item: ", item)
+                        bill['index'] = bill['options'][item['index']]['option']
+                        self.voter_ls.append(bill)
+        self.update()
+
+    def load_bills(self):
+        self.recently_bills = self.parent.wallet.storage.get('recently_bills', [])
+        self.update()
+        
+    def on_itemclicked(self, item, column):
+        title_hash = item.text(6)
+        title = item.text(1)
+        endtime = item.text(7)
+        if (item.checkState(0) == Qt.Checked) :
+            self.selected_list.clear()
+            self.selected_list.append({'id':title_hash, 'title':title, 'index':self.filter_status, 'endtime':endtime})
+        self.update()
+        self.print_error("selected :", self.selected_list)
+
+    def keyPressEvent(self, event):
+        if event.key() in [ Qt.Key_Space ] :
+            item = self.currentItem()
+            if (item.checkState(0) == Qt.Checked) :
+                item.setCheckState(0, Qt.Unchecked)
+            else :
+                item.setCheckState(0, Qt.Checked)
+            self.on_itemclicked(item, self.currentColumn())
+        else :
+            super(BillList, self).keyPressEvent(event)
+
+    def on_permit_edit(self, item, column):
+        # openalias items shouldn't be editable
+        return False
+
+    def on_edited(self, item, column, prior):
+        pass
+
+    def create_menu(self, position):
+        item = self.currentItem()
+        if not item:
+            return
+        column = self.currentColumn()
+        if column is 0:
+            column_title = ""
+            column_data = ''
+        else:
+            column_title = self.headerItem().text(column)
+            column_data = item.text(column)
+    
+        menu = QMenu()
+        #selected = self.selectedItems()
+        item = self.itemAt(position)
+        url = item.text(3)
+        if (column == 3) and url:
+            menu.addAction(_("View on explorer"), lambda: webbrowser.open(url))
+        if column:
+            menu.addAction(_("Copy ") + column_title, lambda: self.parent.app.clipboard().setText(column_data))
+        #run_hook('create_contact_menu', menu, selected)
+        menu.exec_(self.viewport().mapToGlobal(position))
+
+    def fetch_bill(self):
+        try :
+            self.bill_list = self.parent.network.synchronous_get(('blockchain.address.getbill', ['']))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+
+    def toggle_filter(self, state):
+        if state == self.filter_status:
+            return
+        self.filter_status = state
+        if(self.selected_list):
+            self.selected_list[0]['index'] = state
+        self.print_error("filter :", self.filter_status)
+        self.print_error("toggle_filter selected :", self.selected_list)
+        #self.update()
+
+    def on_update(self):
+        #self.out_vote = self.parent.get_out_vote()
+        #self.print_error("out_vote : ", self.out_vote)
+        item = self.currentItem()
+        current_key = item.data(6, Qt.UserRole) if item else None
+        self.clear()
+        #self.print_error("bill :", self.bill_list)
+        self.print_error("status :", self.status)
+        self.print_error("voted :", self.voter_ls)
+        if self.status == 1 :
+            tmp_ls = self.voter_ls
+        else:
+            tmp_ls = self.bill_list
+        if len(tmp_ls) :
+            for each in tmp_ls:
+                item = QTreeWidgetItem(self)
+                if(self.selected_list and each.get('id') == self.selected_list[0].get('id')):
+                    item.setCheckState(0, Qt.Checked)
+                else:
+                    item.setCheckState(0, Qt.Unchecked)
+                item.setText(1, each.get('title'))
+                item.setText(2, each.get('detail'))
+                item.setText(3, each.get('url'))
+                item.setText(4, format_time(each.get('endtime')))
+                filter_button = QComboBox(self)
+                filter_button.currentIndexChanged.connect(self.toggle_filter)
+                #self.connect(filter_button, QtCore.SIGNAL("currentIndexChanged(int)"), self.toggle_filter)
+                for option in each.get('options'):
+                    filter_button.addItem(option.get('option'))
+                if(self.selected_list and each.get('id') == self.selected_list[0].get('id')):
+                    filter_button.setCurrentIndex(self.selected_list[0].get('index'))
+                #if hasattr(each, 'index'): # myvote bill
+                    #filter_button.setCurrentIndex(each.get('index'))
+                if (self.status == 1):
+                    self.print_error("each :", each)
+                    if 'index' in each: # myvote bill
+                        item.setText(5, each.get('index'))
+                else:
+                    self.setItemWidget(item, 5, filter_button)
+                item.setText(6, each.get('id'))
+                item.setText(7, str(each.get('endtime')))
+                if(each.get('endtime') <= (int(time.time()))):
+                    for i in range(8):
+                        item.setBackground(i, QColor('red'))
+                #item = QTreeWidgetItem([each.get('title'), each.get('detail'), each.get('url'), format_time(each.get('endtime')), json.dumps(each.get('options'), indent=4)])
+                self.addTopLevelItem(item)
+                if each.get('id') == current_key:
+                    self.setCurrentItem(item)
+        self.print_error("selected :", self.selected_list)
+        #run_hook('update_contacts_tab', self)
+
+

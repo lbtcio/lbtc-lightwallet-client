@@ -144,6 +144,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.voted_tab = self.create_voted_tab()
         self.votes_tab = self.create_votes_tab()
         self.delegates_tab = self.create_delegates_tab()
+        self.committees_tab = self.create_committees_tab()
+        self.proposal_tab = self.create_proposal_tab()
+        self.bill_tab = self.create_bill_tab()
         self.passwd = None
 
         tabs.addTab(self.create_history_tab(), QIcon(":icons/tab_history.png"), _('History'))
@@ -151,9 +154,12 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         #tabs.addTab(self.receive_tab, QIcon(":icons/tab_receive.png"), _('Receive'))
 		# vote func
         #tabs.addTab(self.register_tab, QIcon(":icons/tab_send.png"), _('Register'))
-        tabs.addTab(self.delegates_tab, QIcon(":icons/tab_contacts.png"), _('Delegates'))
-        tabs.addTab(self.votes_tab, QIcon(":icons/tab_send.png"), _('MyVotes'))
-        tabs.addTab(self.voted_tab, QIcon(":icons/tab_receive.png"), _('ReceivedVotes'))
+        #tabs.addTab(self.delegates_tab, QIcon(":icons/tab_contacts.png"), _('Delegates'))
+        #tabs.addTab(self.votes_tab, QIcon(":icons/tab_send.png"), _('MyVotes'))
+        #tabs.addTab(self.voted_tab, QIcon(":icons/tab_receive.png"), _('ReceivedVotes'))
+        tabs.addTab(self.committees_tab, QIcon(":icons/tab_contacts.png"), _('CommitteeMembers'))
+        tabs.addTab(self.proposal_tab, QIcon(":icons/tab_send.png"), _('InitBill'))
+        tabs.addTab(self.bill_tab, QIcon(":icons/tab_send.png"), _('Bills'))
 
         def add_optional_tab(tabs, tab, icon, description, name):
             tab.tab_icon = icon
@@ -167,6 +173,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         add_optional_tab(tabs, self.utxo_tab, QIcon(":icons/tab_coins.png"), _("Co&ins"), "utxo")
         add_optional_tab(tabs, self.contacts_tab, QIcon(":icons/tab_contacts.png"), _("Con&tacts"), "contacts")
         add_optional_tab(tabs, self.console_tab, QIcon(":icons/tab_console.png"), _("Con&sole"), "console")
+
+        add_optional_tab(tabs, self.delegates_tab, QIcon(":icons/tab_contacts.png"), _("Delegates"), "delegates")
+        add_optional_tab(tabs, self.votes_tab, QIcon(":icons/tab_send.png"), _("MyVotes"), "myvotes")
+        add_optional_tab(tabs, self.voted_tab, QIcon(":icons/tab_receive.png"), _("ReceivedVotes"), "receivedvotes")
 
         tabs.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.setCentralWidget(tabs)
@@ -516,6 +526,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         add_toggle_action(view_menu, self.utxo_tab)
         add_toggle_action(view_menu, self.contacts_tab)
         add_toggle_action(view_menu, self.console_tab)
+
+        add_toggle_action(view_menu, self.delegates_tab)
+        add_toggle_action(view_menu, self.votes_tab)
+        add_toggle_action(view_menu, self.voted_tab)
 
         tools_menu = menubar.addMenu(_("&Tools"))
 
@@ -1160,9 +1174,11 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.pw.hide()
             self.multi_name_label.hide()
             self.multi_name_e.hide()
-        elif self.show_business == 1: # "Register":
-            self.payto_label.setText("Address")
-            self.description_label.setText("Name")
+            self.c_url_label.hide()
+            self.c_url_e.hide()
+        elif (self.show_business == 1) or (self.show_business == 2): # "Register"== 1 or Register Committee Member == 2:
+            self.payto_label.setText(_("Address"))
+            self.description_label.setText(_("Name"))
             self.description_label.show()
             self.message_e.show()
             self.amount_label.hide()
@@ -1178,8 +1194,14 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 self.pw.show()
             self.multi_name_label.hide()
             self.multi_name_e.hide()
+            if (self.show_business == 2):
+                self.c_url_label.show()
+                self.c_url_e.show()
+            else:
+                self.c_url_label.hide()
+                self.c_url_e.hide()
 
-        elif (self.show_business == 2) or (self.show_business == 3): #"Vote/CancelVote":
+        elif (self.show_business == 3) or (self.show_business == 3): #"Vote/CancelVote":
             self.payto_label.setText("Address")
             self.description_label.hide()
             self.message_e.hide()
@@ -1207,7 +1229,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         self.business_button = QComboBox(self)
         #for t in [_('Transfer'), _('Register'), _('Vote'), _('CancelVote')]:
-        for t in [_('Transfer'), _('Register')]:
+        for t in [_('Transfer'), _('Register Miner'), _('Register Committee Member')]:
             self.business_button.addItem(t)
         self.business_button.setCurrentIndex(0)
         self.business_button.currentIndexChanged.connect(self.toggle_business)
@@ -1323,7 +1345,13 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.pw.hide()
         grid.addWidget(self.pw_label, 8, 0)
         grid.addWidget(self.pw, 8, 1)
-
+        # add url for register committee
+        self.c_url_label = QLabel(_('URL'))
+        self.c_url_e = MyLineEdit()
+        self.c_url_label.hide()
+        self.c_url_e.hide()
+        grid.addWidget(self.c_url_label, 9, 0)
+        grid.addWidget(self.c_url_e, 9, 1, 1, -1)
 
         self.preview_button = EnterButton(_("Preview"), self.do_preview)
         self.preview_button.setToolTip(_('Display the details of your transactions before signing it.'))
@@ -1334,7 +1362,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         buttons.addWidget(self.clear_button)
         buttons.addWidget(self.preview_button)
         buttons.addWidget(self.send_button)
-        grid.addLayout(buttons, 9, 1, 1, 3)
+        grid.addLayout(buttons, 10, 1, 1, 3)
 
         self.amount_e.shortcut.connect(self.spend_max)
         self.payto_e.textChanged.connect(self.update_fee)
@@ -1386,6 +1414,345 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         vbox.setStretchFactor(self.invoice_list, 1000)
         w.searchable_list = self.invoice_list
         run_hook('create_send_tab', grid)
+        return w
+
+    def do_proposal_clear(self):
+        for e in [self.p_addr_e, self.p_title_e, self.p_detail_e, self.p_url_e, self.p_endtime_e]:
+            e.setText('')
+        for i in range(self.p_option_cnt):
+            self.p_opition_textedit[i].setText('')
+        run_hook('do_proposal_clear', self)
+
+    def do_proposal_preview(self):
+        self.do_proposal_send(preview = True)
+
+    def get_proposal_outputs(self) :
+
+        data = ''
+        op_code = 0xc6
+        addr = self.p_addr_e.text()
+        
+        #for each in selected_list :
+
+            #addrtype, addr_hash = b58_address_to_hash160(each)
+            #data = data + bh2u(addr_hash)
+
+            #data = data + each.get('id') + int_to_hex(each.get('index'))
+        # title, detail, url, endtime, options
+        title = bh2u(to_bytes(self.p_title_e.text().strip()))
+        detail = bh2u(to_bytes(self.p_detail_e.toPlainText().strip()))
+        url = bh2u(to_bytes(self.p_url_e.text().strip()))
+        endtime = bh2u(to_bytes(str((int(time.time())) + 24*3600*int(self.p_endtime_e.text().strip()))))
+        option_cnt = int_to_hex(self.p_option_cnt)
+        
+        data = title + ' ' + detail + ' ' + url + ' ' + endtime 
+        _type, data = self.payto_e.parse_output(data)
+
+        data = data + option_cnt
+        
+        for i in range(self.p_option_cnt):
+            item = bh2u(to_bytes(self.p_opition_textedit[i].text().strip()))
+            _type, item = self.payto_e.parse_output(item)
+            data = data + item
+
+        msg = []
+        if self.wallet.has_password():
+            msg.append("")
+            msg.append(_("Enter your password to proceed"))
+            password = self.password_dialog('\n'.join(msg))
+            self.passwd = password
+            if not password:
+                return
+        else:
+            msg.append(_('Proceed?'))
+            password = None
+            self.passwd = password
+            if not self.question('\n'.join(msg)):
+                return
+
+        _type, addr = self.get_proposal_script(addr, op_code, data, password)
+        if not addr:
+            return
+        outputs = [(_type, addr, 0)]
+            
+        return outputs
+
+    def read_proposal_info(self):
+        label = ''
+        outputs = self.get_proposal_outputs()
+        #return
+        if not outputs:
+            self.print_error(_('No outputs'))
+            return
+
+        for _type, addr, amount in outputs:
+            if addr is None:
+                self.show_error(_('Bitcoin Address is None'))
+                return
+            if _type == TYPE_ADDRESS and not bitcoin.is_address(addr):
+                self.show_error(_('Invalid Bitcoin Address'))
+                return
+            if amount is None:
+                self.show_error(_('Invalid Amount'))
+                return
+        fee = 300000000
+        coins = self.get_coins()
+        self.print_error("coins : ", coins)
+        
+        return outputs, fee, label, coins
+
+    def do_proposal_send(self, preview = False):
+        if run_hook('abort_send', self):
+            return
+        # check empty : title, detail, url, endtime, options
+        if not self.p_addr_e.text().strip() :
+            self.show_error(_('please input address.'))
+            return
+
+        # address filter
+        addr = self.p_addr_e.text().strip()
+        try :
+            witness_json = self.network.synchronous_get(('blockchain.address.getcommittee', [addr]))
+        except BaseException as e:
+            self.show_message("error: " + str(e))
+            return
+        witness_json = json.loads(witness_json)
+        self.print_error("committee :", witness_json)
+        if witness_json :
+            if witness_json.get('address') != addr :
+                self.show_message(_("Address is not registered as committee!"))
+                return
+                
+        title = self.p_title_e.text().strip()
+        is_exist = False
+        
+        if not self.p_title_e.text().strip() :
+            self.show_error(_('please input title.'))
+            return
+        # is same bill name exist?
+        try :
+            bill_list = self.network.synchronous_get(('blockchain.address.getbill', ['']))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            bill_list = []
+        for each in bill_list:
+            if title == each.get('title'):
+                is_exist = True
+                break
+        if is_exist :
+            self.show_error(_('the bill with the same name has been exist, try another one!'))
+            return
+
+        # toPlainText
+        if not self.p_detail_e.toPlainText().strip() :
+            self.show_error(_('please input detail.'))
+            return
+        if not self.p_url_e.text().strip() :
+            self.show_error(_('please input url.'))
+            return
+        if not self.p_endtime_e.text().strip() :
+            self.show_error(_('please input endtime.'))
+            return
+
+        has_empty_option = False
+        for i in range(self.p_option_cnt):
+            if(not self.p_opition_textedit[i].text()):
+                has_empty_option = True
+                break
+
+        if has_empty_option :
+            self.show_error(_('please input all option.'))
+            return
+        # check endtime number format
+        if not self.p_endtime_e.text().isdigit():
+            self.show_error(_('Endtime must be integter.'))
+            return
+        # text length check
+        if len(self.p_title_e.text().encode('utf-8')) > 128 :
+            self.show_error(_('Title ') + _('too long'))
+            return
+        if len(self.p_detail_e.toPlainText().encode('utf-8')) > 256 :
+            self.show_error(_('Detail ') + _('too long'))
+            return
+        if len(self.p_url_e.text().encode('utf-8')) > 256 :
+            self.show_error(_('URL ') + _('too long'))
+            return
+
+        has_long_option = False
+        idx = 0
+        for i in range(self.p_option_cnt):
+            if(len(self.p_opition_textedit[i].text().encode('utf-8')) > 256):
+                has_long_option = True
+                idx = i
+                break
+        if has_long_option :
+            self.show_error('Option'+ str(idx)+ ' ' + _('too long'))
+            return
+        
+        r = self.read_proposal_info()
+        if not r:
+            return
+        outputs, fee, tx_desc, coins = r
+        try:
+            tx = self.wallet.make_unsigned_transaction(coins, outputs, self.config, fee)
+        except NotEnoughFunds:
+            self.show_message(_("Insufficient funds"))
+            return
+        except BaseException as e:
+            traceback.print_exc(file=sys.stdout)
+            self.show_message(str(e))
+            return
+
+        amount = sum(map(lambda x:x[2], outputs))
+        fee = tx.get_fee()
+
+        if fee < self.wallet.relayfee() * tx.estimated_size() / 1000:
+            self.show_error(_("This transaction requires a higher fee, or it will not be propagated by the network"))
+            return
+
+        if preview:
+            self.show_transaction(tx, tx_desc)
+            return
+
+        # confirmation dialog
+        msg = [
+            _("Amount to be sent") + ": " + self.format_amount_and_units(amount),
+            _("Mining fee") + ": " + self.format_amount_and_units(fee),
+        ]
+
+        x_fee = run_hook('get_tx_extra_fee', self.wallet, tx)
+        if x_fee:
+            x_fee_address, x_fee_amount = x_fee
+            msg.append( _("Additional fees") + ": " + self.format_amount_and_units(x_fee_amount) )
+
+        confirm_rate = 2 * self.config.max_fee_rate()
+        if fee > confirm_rate * tx.estimated_size() / 1000:
+            #msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
+            pass
+
+        if self.wallet.has_password():
+            #msg.append("")
+            #msg.append(_("Enter your password to proceed"))
+            #password = self.password_dialog('\n'.join(msg))
+            password = self.passwd
+            if not password:
+                return
+        else:
+            msg.append(_('Proceed?'))
+            password = None
+            if not self.question('\n'.join(msg)):
+                return
+
+        def sign_done(success):
+            if success:
+                if not tx.is_complete():
+                    self.show_transaction(tx)
+                    #self.update_send_tab()
+                    self.do_proposal_clear()
+                else:
+                    self.print_error("raw tx : ", tx.serialize())
+                    self.broadcast_transaction(tx, tx_desc)
+                    self.do_proposal_clear()
+        self.sign_tx_with_password(tx, sign_done, password)
+        self.passwd = None
+
+    def create_proposal_tab(self):
+        # A 4-column grid layout.  All the stretch is in the last column.
+        # The exchange rate plugin adds a fiat widget in column 2
+        self.p_max_option = 8
+        self.p_option_cnt = 2
+        self.p_opition_textedit = {}
+        self.p_opition_label = {}
+
+        self.proposal_grid = grid = QGridLayout()
+        grid.setSpacing(8)
+        grid.setColumnStretch(3, 1)
+
+        self.p_addr_e = QLineEdit(self)
+        self.p_addr_e.setText('')
+        self.p_addr_label = QLabel(_('Initiator Address'))
+        grid.addWidget(self.p_addr_label, 1, 0)
+        grid.addWidget(self.p_addr_e, 1, 1, 1, -1)
+
+        self.p_title_label = QLabel(_('Title'))
+        grid.addWidget(self.p_title_label, 2, 0)
+        self.p_title_e = MyLineEdit()
+        grid.addWidget(self.p_title_e, 2, 1, 1, -1)
+
+        self.p_detail_label = QLabel(_('Detail'))
+        grid.addWidget(self.p_detail_label, 3, 0)
+        self.p_detail_e = QTextEdit(self)
+        grid.addWidget(self.p_detail_e, 3, 1, 1, -1)
+
+        self.p_url_label = QLabel(_('URL'))
+        grid.addWidget(self.p_url_label, 4, 0)
+        self.p_url_e = MyLineEdit()
+        grid.addWidget(self.p_url_e, 4, 1, 1, -1)
+
+        self.p_endtime_label = QLabel(_('EndTime'))
+        grid.addWidget(self.p_endtime_label, 5, 0)
+        self.p_endtime_e = MyLineEdit()
+        grid.addWidget(self.p_endtime_e, 5, 1)
+
+        self.p_unit_label = QLabel(_('Days After'))
+        grid.addWidget(self.p_unit_label, 5, 2, 1, -1)
+
+        self.p_option_label = QLabel(_('Options'))
+        grid.addWidget(self.p_option_label, 6, 0)
+        #self.p_option_b = EnterButton(_("Add Option"), self.do_preview, self.refresh_proposal)
+        self.p_option_add = EnterButton(_("AddOption"), self.do_add_option)
+        grid.addWidget(self.p_option_add, 6, 1)
+        self.p_option_remove = EnterButton(_("RemoveOption"), self.do_remove_option)
+        grid.addWidget(self.p_option_remove, 6, 2)
+
+        self.p_fee_e_label = QLabel(_('Fee'))
+        self.p_fee_e = BTCAmountEdit(self.get_decimal_point)
+
+        self.p_fee_e_label.hide()
+        self.p_fee_e.setVisible(False)
+        self.p_fee_e.setAmount(300000000)
+
+        self.p_widget_idx = 7
+
+        for i in range(self.p_max_option):
+            self.p_opition_label[i] = QLabel(_('Options') + str(i+1))
+            grid.addWidget(self.p_opition_label[i], self.p_widget_idx, 0, 1, -1)
+            
+            self.p_opition_textedit[i] = MyLineEdit(self)
+            grid.addWidget(self.p_opition_textedit[i], self.p_widget_idx, 1, 1, -1)
+            if i >= self.p_option_cnt:
+                self.p_opition_label[i].hide()
+                self.p_opition_textedit[i].hide()
+
+            self.p_widget_idx = self.p_widget_idx + 1
+
+        self.p_preview_button = EnterButton(_("Preview"), self.do_proposal_preview)
+        self.p_send_button = EnterButton(_("Send"), self.do_proposal_send)
+        self.p_clear_button = EnterButton(_("Clear"), self.do_proposal_clear)
+        buttons = QHBoxLayout()
+        buttons.addStretch(1)
+        buttons.addWidget(self.p_clear_button)
+        buttons.addWidget(self.p_preview_button)
+        buttons.addWidget(self.p_send_button)
+        grid.addLayout(buttons, self.p_widget_idx, 1, 1, 3)
+ 
+        #self.p_invoices_label = QLabel(_('Invoices'))
+        #from .invoice_list import InvoiceList
+        #self.p_invoice_list = InvoiceList(self)
+
+        vbox0 = QVBoxLayout()
+        vbox0.addLayout(grid)
+        hbox = QHBoxLayout()
+        hbox.addLayout(vbox0)
+        w = QWidget()
+        vbox = QVBoxLayout(w)
+        vbox.addLayout(hbox)
+        vbox.addStretch(1)
+        #vbox.addWidget(self.p_invoices_label)
+        #vbox.addWidget(self.p_invoice_list)
+        #vbox.setStretchFactor(self.p_invoice_list, 1000)
+        #w.searchable_list = self.p_invoice_list
+        #run_hook('create_send_tab', grid)
         return w
 
     def spend_max(self):
@@ -1560,6 +1927,36 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         #return [each.get('delegate') for each in vote_ls]
         return self.get_vote_addresses(vote_ls)
 
+    # who voted to committee name 
+    def get_committee_voter(self, name) :
+        try :
+            vote_ls = self.network.synchronous_get(('blockchain.address.listcommitteevoters', [name]))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            vote_ls = []
+        #return [each.get('address') for each in vote_ls]
+        return vote_ls
+        
+    # addr voted to which committee
+    def get_voter_committee(self, addr) :
+        try :
+            vote_ls = self.network.synchronous_get(('blockchain.address.listvotercommittees', [addr]))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            vote_ls = []
+        #return [each.get('address') for each in vote_ls]
+        return vote_ls
+        
+    # addr voted to which bill
+    def get_voter_bill(self, addr) :
+        try :
+            vote_ls = self.network.synchronous_get(('blockchain.address.listvoterbills', [addr]))
+        except BaseException as e:
+            self.print_error("error: " + str(e))
+            vote_ls = []
+        #return [each.get('address') for each in vote_ls]
+        return vote_ls
+        
     # received vote
     def get_in_vote(self) :
         pass
@@ -1567,8 +1964,14 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def get_vote_outputs(self, addr, op_code, selected_list) :
 
         data = ''
-        vote_ls = self.get_out_vote(addr)
-        self.print_error("vote ls :", vote_ls)
+        if (op_code == 0xc1) or (op_code == 0xc2):
+            vote_ls = self.get_out_vote(addr)
+            self.print_error("vote ls :", vote_ls)
+        elif (op_code == 0xc4) or (op_code == 0xc5):
+            vote_ls = []
+        else:
+            self.show_error(_('Unspported code') + ' : ' + op_code)
+            return
         
         for each in selected_list :
             if (op_code == 0xc1) : # vote
@@ -1579,9 +1982,6 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 if each not in vote_ls :
                     self.show_message(_('Can not cancel vote to unvoted address') + ' : ' + each)
                     return
-            else :
-                self.show_error(_('Unspported code') + ' : ' + op_code)
-                return
 
             addrtype, addr_hash = b58_address_to_hash160(each)
             #_type, hash_data = self.payto_e.parse_output(bh2u(addr_hash))
@@ -1686,7 +2086,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         confirm_rate = 2 * self.config.max_fee_rate()
         if fee > confirm_rate * tx.estimated_size() / 1000:
-            msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
+            #msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
+            pass
 
         if self.wallet.has_password():
             #msg.append("")
@@ -1713,6 +2114,171 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.sign_tx_with_password(tx, sign_done, password)
         self.passwd = None
 
+    def get_bill_vote_outputs(self, addr, op_code, selected_list) :
+
+        data = ''
+        if (op_code != 0xc7) :
+            self.show_error(_('Unspported code') + ' : ' + op_code)
+            return
+        
+        for each in selected_list :
+
+            #addrtype, addr_hash = b58_address_to_hash160(each)
+            #data = data + bh2u(addr_hash)
+            _type, id_data = self.payto_e.parse_output(bh2u(to_bytes(each.get('id'))))
+            data = data + id_data + int_to_hex(each.get('index'))
+
+        msg = []
+        if self.wallet.has_password():
+            msg.append("")
+            msg.append(_("Enter your password to proceed"))
+            password = self.password_dialog('\n'.join(msg))
+            self.passwd = password
+            if not password:
+                return
+        else:
+            msg.append(_('Proceed?'))
+            password = None
+            self.passwd = password
+            if not self.question('\n'.join(msg)):
+                return
+
+        _type, addr = self.get_proposal_script(addr, op_code, data, password)
+        if not addr:
+            return
+        outputs = [(_type, addr, 0)]
+            
+        return outputs
+
+    def read_bill_vote_info(self, addr, op_code, selected_list):
+        label = ''
+        outputs = self.get_bill_vote_outputs(addr, op_code, selected_list)
+        #return
+        if not outputs:
+            self.print_error(_('No outputs'))
+            return
+
+        for _type, addr, amount in outputs:
+            if addr is None:
+                self.show_error(_('Bitcoin Address is None'))
+                return
+            if _type == TYPE_ADDRESS and not bitcoin.is_address(addr):
+                self.show_error(_('Invalid Bitcoin Address'))
+                return
+            if amount is None:
+                self.show_error(_('Invalid Amount'))
+                return
+        fee = 1000000
+        coins = self.get_coins()
+        self.print_error("coins : ", coins)
+        
+        return outputs, fee, label, coins
+
+    def do_bill_vote(self, addr, op_code, selected_list, preview = False):
+        if run_hook('abort_send', self):
+            return
+        if not addr :
+            self.show_error(_('please input address.'))
+            return
+
+        if not selected_list :
+            self.show_error(_('please select bill.'))
+            return
+
+        r = self.read_bill_vote_info(addr, op_code, selected_list)
+        if not r:
+            return
+        outputs, fee, tx_desc, coins = r
+        try:
+            tx = self.wallet.make_unsigned_transaction(coins, outputs, self.config, fee)
+        except NotEnoughFunds:
+            self.show_message(_("Insufficient funds"))
+            return
+        except BaseException as e:
+            traceback.print_exc(file=sys.stdout)
+            self.show_message(str(e))
+            return
+
+        amount = sum(map(lambda x:x[2], outputs))
+        fee = tx.get_fee()
+
+        if fee < self.wallet.relayfee() * tx.estimated_size() / 1000:
+            self.show_error(_("This transaction requires a higher fee, or it will not be propagated by the network"))
+            return
+
+        if preview:
+            self.show_transaction(tx, tx_desc)
+            return
+
+        # confirmation dialog
+        msg = [
+            _("Amount to be sent") + ": " + self.format_amount_and_units(amount),
+            _("Mining fee") + ": " + self.format_amount_and_units(fee),
+        ]
+
+        x_fee = run_hook('get_tx_extra_fee', self.wallet, tx)
+        if x_fee:
+            x_fee_address, x_fee_amount = x_fee
+            msg.append( _("Additional fees") + ": " + self.format_amount_and_units(x_fee_amount) )
+
+        confirm_rate = 2 * self.config.max_fee_rate()
+        if fee > confirm_rate * tx.estimated_size() / 1000:
+            #msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
+            pass
+
+        if self.wallet.has_password():
+            #msg.append("")
+            #msg.append(_("Enter your password to proceed"))
+            #password = self.password_dialog('\n'.join(msg))
+            password = self.passwd
+            if not password:
+                return
+        else:
+            msg.append(_('Proceed?'))
+            password = None
+            if not self.question('\n'.join(msg)):
+                return
+
+        def sign_done(success):
+            if success:
+                if not tx.is_complete():
+                    self.show_transaction(tx)
+                    self.update_send_tab()
+                    self.do_clear()
+                else:
+                    self.print_error("raw tx : ", tx.serialize())
+                    self.broadcast_transaction(tx, tx_desc)
+        self.sign_tx_with_password(tx, sign_done, password)
+        self.passwd = None
+
+    # compared with get_script , the function remove data len before data 
+    def get_proposal_script(self, addr, op_code, data, passwd) :
+        # populate op_return script
+        # format : HASH + PUBLICKEY + DATETIME + SIGNATURE + OP_CODE + Application_DATA
+        epoch_time = int_to_hex(int(time.time()))
+        #epoch_time = int_to_hex(1514127494)
+        pubkey = self.wallet.get_public_key(addr)
+        try :
+            sig = self.wallet.test_standard_sign_message(addr, epoch_time, passwd)
+        except InvalidPassword as e:
+            self.show_error(_('Invalid Password!'))
+            return
+        hash = bh2u(to_bytes('LBTC'))
+        op_code = int_to_hex(op_code)
+        self.print_error("value :", 'OP_RETURN' + ' ' + hash + ' ' + pubkey + ' ' +  epoch_time + ' ' + sig + ' ' + op_code + ' ' + data)
+        _type, addr = self.payto_e.parse_output(hash + ' ' + pubkey + ' ' +  epoch_time + ' ' + sig)
+        ret_data = op_code
+        #_type, op_data = self.payto_e.parse_output(data)
+        op_data = data
+
+        ret_data += op_data
+        _type, ret_data = self.payto_e.parse_output(ret_data)
+        addr = addr + ret_data
+        _type, addr = self.payto_e.parse_output('OP_RETURN' + ' ' + addr)
+        #return 'OP_RETURN' + ' ' + hash + ' ' + pubkey + ' ' +  epoch_time + ' ' + sig + ' ' + op_code + ' ' + data
+        self.print_error("encode value :", addr)
+        return _type, addr
+            
 
     def get_script(self, addr, op_code, data, passwd) :
         #if isinstance(self.wallet, Imported_Wallet) :
@@ -1773,7 +2339,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if has_segwit :
             self.show_error(_('Not support Segwit Address : ') + seg_addr)
             return
-
+        self.print_error("show_business :", self.show_business)
         if (self.show_business == 0) : # transfer
             self.passwd = None
             if self.payment_request:
@@ -1794,8 +2360,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         else : 
             if (self.show_business == 1) : # register
                 op_code = 0xc0 # int_to_hex(i, 4)
-            elif (self.show_business == 2) : # vote
-                op_code = 0xc1
+            elif (self.show_business == 2) : # register committee member
+                op_code = 0xc3
             elif (self.show_business == 3) : # cancelvote
                 op_code = 0xc2
                 
@@ -1838,7 +2404,41 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 data = bh2u(to_bytes(data)) + bh2u(b'\x00'*(32-len(data.encode('utf-8'))))
                 self.print_error("user :", data)
 
-            elif (self.show_business == 2) or (self.show_business == 3) : # vote/cancelvote
+            elif (self.show_business == 2) : # register committee member
+                data = data.strip()
+                self.print_error("user1 :", data)
+                #if len(to_bytes(data)) > 32 :
+                if len(data.encode('utf-8')) > 32 :
+                    self.show_error(_('Too long name') + ' : ' + data)
+                    return
+                # address filter
+                try :
+                    witness_json = self.network.synchronous_get(('blockchain.address.getcommittee', [addr]))
+                except BaseException as e:
+                    self.show_message("error: " + str(e))
+                    return
+                witness_json = json.loads(witness_json)
+                self.print_error("user2 :", witness_json)
+                if witness_json :
+                    if witness_json.get('address') == addr :
+                        self.show_message(_("Address already registered, try another one!"))
+                        return
+                # name filter
+                try :
+                    delegate_list = self.network.synchronous_get(('blockchain.address.getcommittee', ['']))
+                except BaseException as e:
+                    self.print_error("error: " + str(e))
+                self.print_error("user4 :", delegate_list)
+                for each in delegate_list :
+                    if each.get('name') == data :
+                        #self.show_message(_("Address already registered wiht %s"))
+                        self.show_message(_("Name already registered"))
+                        return
+
+                #data = bh2u(to_bytes(data)) + bh2u(b'\x00'*(32-len(data.encode('utf-8'))))
+                _type, data = self.payto_e.parse_output(bh2u(to_bytes(data)) + ' ' + bh2u(to_bytes(self.c_url_e.text().strip())))
+                self.print_error("user3 :", data)
+            elif (self.show_business == 3) or (self.show_business == 3) : # vote/cancelvote
                 data = ''
                 lines = [i for i in self.multi_name_e.toPlainText().split('\n') if i]
                 for each in lines :
@@ -1866,7 +2466,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.passwd = passwd # password not input twice bug
             if not passwd:
                 passwd = None
-            _type, addr = self.get_script(addr, op_code, data, passwd)
+            if(self.show_business == 2): # special process for register committee
+                _type, addr = self.get_proposal_script(addr, op_code, data, passwd)
+            else:
+                _type, addr = self.get_script(addr, op_code, data, passwd)
             if not addr:
                 return
             outputs = [(_type, addr, 0)]
@@ -1878,13 +2481,20 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.show_error(_('Payment request has expired'))
             return
         label = self.message_e.text()
-        if self.show_business == 1 : # register/vote/cancelvote name check
+        if (self.show_business == 1) or (self.show_business == 2) : # register/vote/cancelvote name check
             if not (label and label.strip()) :
                 self.show_error(_('Empty Name'))
                 return
             if len(to_bytes(label)) > 32 :
                 self.show_error(_('Too long name'))
                 return
+            if (self.show_business == 2): # register committee
+                if not self.c_url_e.text().strip():
+                    self.show_error(_('Empty URL'))
+                    return
+                if len(to_bytes(self.c_url_e.text().strip())) > 256 :
+                    self.show_error(_('Too long URL'))
+                    return
 
         outputs = self.get_outputs()
 
@@ -1902,10 +2512,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             if amount is None:
                 self.show_error(_('Invalid Amount'))
                 return
-        if (self.show_business == 1) : # register
+        if (self.show_business == 1) or (self.show_business == 2) : # register
             self.fee_e.setAmount(100000000) # 1 LBTC fee for register
             fee = self.fee_e.get_amount()
-        elif (self.show_business == 2) or (self.show_business == 3) : # vote fee not less than 100000
+        elif (self.show_business == 3) or (self.show_business == 3) : # vote fee not less than 100000
             fee = self.fee_e.get_amount()
             if not fee :
                 fee = 1000000
@@ -1989,7 +2599,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         confirm_rate = 2 * self.config.max_fee_rate()
         if fee > confirm_rate * tx.estimated_size() / 1000:
-            msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
+            #msg.append(_('Warning') + ': ' + _("The fee for this transaction seems unusually high."))
+            pass
 
         password = None
         if self.wallet.has_password():
@@ -2179,7 +2790,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.not_enough_funds = False
         self.payment_request = None
         self.payto_e.is_pr = False
-        for e in [self.payto_e, self.message_e, self.amount_e, self.fiat_send_e, self.fee_e, self.pw]:
+        for e in [self.payto_e, self.message_e, self.amount_e, self.fiat_send_e, self.fee_e, self.pw, self.c_url_e]:
             e.setText('')
             e.setFrozen(False)
         self.set_pay_from([])
@@ -2194,6 +2805,24 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.utxo_list.update()
         self.update_fee()
 
+    def do_add_option(self):
+        if (self.p_option_cnt >= 2) and (self.p_option_cnt < self.p_max_option):
+            self.p_opition_label[self.p_option_cnt].show()
+            self.p_opition_textedit[self.p_option_cnt].show()
+            self.p_option_cnt = self.p_option_cnt + 1
+        
+    def do_remove_option(self):
+        for i in range(self.p_max_option):
+            self.p_opition_label[i].hide()
+            self.p_opition_textedit[i].hide()
+        self.p_option_cnt = self.p_option_cnt - 1
+        if(self.p_option_cnt < 2):
+            self.p_option_cnt = 2
+        if (self.p_option_cnt >= 2) and (self.p_option_cnt < self.p_max_option):
+            for i in range(self.p_option_cnt):
+                self.p_opition_label[i].show()
+                self.p_opition_textedit[i].show()
+                        
     def create_list_tab(self, l, list_header=None):
         w = QWidget()
         w.searchable_list = l
@@ -2229,7 +2858,17 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         from .contact_list import DelegateList
         self.delegate_list = l = DelegateList(self)
         return self.create_list_tab(l, l.get_list_header())
-        
+
+    def create_committees_tab(self):
+        from .contact_list import CommitteeList
+        self.committee_list = l = CommitteeList(self)
+        return self.create_list_tab(l, l.get_list_header())
+
+    def create_bill_tab(self):
+        from .contact_list import BillList
+        self.bill_list = l = BillList(self)
+        return self.create_list_tab(l, l.get_list_header())
+
     def create_utxo_tab(self):
         from .utxo_list import UTXOList
         self.utxo_list = l = UTXOList(self)

@@ -602,7 +602,20 @@ class Abstract_Wallet(PrintError):
 
     def get_spendable_coins(self, domain, config):
         confirmed_only = config.get('confirmed_only', False)
-        return self.get_utxos(domain, exclude_frozen=True, mature=True, confirmed_only=confirmed_only)
+        #return self.get_utxos(domain, exclude_frozen=True, mature=True, confirmed_only=confirmed_only)
+        coins = self.get_utxos(domain, exclude_frozen=True, mature=True, confirmed_only=confirmed_only)
+        # filter p2pk utxo 
+        self.print_error("filter before coins : ", json.dumps(coins, indent=4))
+        for each in coins:
+            prevout_hash = each.get('prevout_hash')
+            prevout_n = each.get('prevout_n')
+            tx = self.transactions.get(prevout_hash)
+            tx.deserialize()
+            if(tx.outputs()[prevout_n][0] == TYPE_PUBKEY):
+                coins.remove(each)  
+            #self.print_error("after coins : ", json.dumps(tx.outputs(), indent=4))
+        self.print_error("after coins : ", json.dumps(coins, indent=4))
+        return coins
 
     def get_utxos(self, domain = None, exclude_frozen = False, mature = False, confirmed_only = False):
         coins = []

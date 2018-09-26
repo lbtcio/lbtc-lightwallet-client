@@ -4549,7 +4549,7 @@ msgid "Unregistered name"
 msgstr "未注册的名字"
 
 msgid "please input address."
-msgstr "请输入投票地址！"
+msgstr "请输入地址！"
 
 msgid "please select candidate."
 msgstr "请选择代理人！"
@@ -4577,3 +4577,96 @@ msgstr "收到了"
 
 msgid "new transactions received: Total amount received in the new transactions"
 msgstr "条新交易，共计"
+
+msgid "Register Committee Member"
+msgstr "注册理事候选人"
+
+msgid "CommitteeMembers"
+msgstr "理事候选人"
+
+msgid "InitBill"
+msgstr "发起议案"
+
+msgid "Bills"
+msgstr "议案"
+
+msgid "Initiator Address"
+msgstr "发起地址"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Detail"
+msgstr "详情"
+
+msgid "EndTime"
+msgstr "截止时间"
+
+msgid "Days After"
+msgstr "天后"
+
+msgid "AddOption"
+msgstr "添加选项"
+
+msgid "RemoveOption"
+msgstr "移除选项"
+
+msgid "Address is not registered as committee!"
+msgstr "该地址还没有注册为理事候选人！"
+
+msgid "please input title."
+msgstr "请输入标题"
+
+msgid "the bill with the same name has been exist, try another one!"
+msgstr "相同标题的议案已存在，请修改议案标题！"
+
+msgid "please input detail."
+msgstr "请输入详情"
+
+msgid "please input url."
+msgstr "请输入URL"
+
+msgid "please input endtime."
+msgstr "请输入截止时间"
+
+msgid "please input all option."
+msgstr "请输入所有选项"
+
+msgid "Endtime must be integter."
+msgstr "截止时间必需为整数"
+
+msgid "too long"
+msgstr "过长"
+
+msgid "You have voted to "
+msgstr "您已投票给"
+
+msgid "You have not voted to "
+msgstr "您没有投过票给"
+
+msgid "not vote to expired bill!"
+msgstr "不能投票给已过期的议案！"
+
+msgid "AllCommittee"
+msgstr "所有理事候选人"
+
+msgid "MyVoteCommittee"
+msgstr "已投票理事候选人"
+
+msgid "AllBill"
+msgstr "所有议案"
+
+msgid "MyVoteBill"
+msgstr "已投票议案"
+
+msgid "View on explorer"
+msgstr "打开浏览器查看"
+
+msgid "Copy "
+msgstr "复制"
+
+msgid "is not your own address!"
+msgstr "不是你的钱包地址！"
+
+msgid "Register Miner"
+msgstr "注册代理人"
