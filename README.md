@@ -18,6 +18,7 @@ For Windows users, you can download latest release [here](http://downloadwallet.
 If you are using Linux, read the following:
 
 
+
 > **NOTE :  All the following command work well on Ubuntu 16.04**
 
 Check out the code from Github:
@@ -48,9 +49,9 @@ sudo apt-get install python-pycurl gettext
 
 
 
-
 Author
 ===============
+
 
 **Benjamin Smith**
 
