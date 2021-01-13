@@ -2,6 +2,7 @@
 
 # python setup.py sdist --format=zip,gztar
 
+
 from setuptools import setup
 import os
 import sys
@@ -9,12 +10,16 @@ import platform
 import imp
 import argparse
 
+
 version = imp.load_source('version', 'lib/version.py')
+
 
 if sys.version_info[:3] < (3, 4, 0):
     sys.exit("Error: Electrum requires Python version >= 3.4.0...")
 
+    
 data_files = []
+
 
 if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     parser = argparse.ArgumentParser()
@@ -32,6 +37,7 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum.png'])
     ]
 
+    
 setup(
     name="Electrum",
     version=version.ELECTRUM_VERSION,
@@ -46,6 +52,7 @@ setup(
         'jsonrpclib-pelix',
         'PySocks>=1.6.6',
     ],
+    
     packages=[
         'electrum',
         'electrum_gui',
@@ -64,11 +71,13 @@ setup(
         'electrum_plugins.trustedcoin',
         'electrum_plugins.virtualkeyboard',
     ],
+    
     package_dir={
         'electrum': 'lib',
         'electrum_gui': 'gui',
         'electrum_plugins': 'plugins',
     },
+    
     package_data={
         'electrum': [
             'servers.json',
