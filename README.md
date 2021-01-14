@@ -4,6 +4,7 @@ Lightning Bitcoin light weight wallet
 
 Licence: MIT Licence
 
+
 Lightning Bitcoin light weight wallet is forked from [Electrum](https://github.com/spesmilo/electrum) v3.0.5
 
 
@@ -60,6 +61,8 @@ Author
 
 **Benjamin Smith**
 
+
 sunshine.benjamin.smith@gmail.com
+
 
 1ECSDWsm17fbCECgdb5MvR3EZMT6Sbd232
