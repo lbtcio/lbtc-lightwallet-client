@@ -88,6 +88,7 @@ setup(
             'locale/*/LC_MESSAGES/electrum.mo',
         ]
     },
+    
     scripts=['electrum'],
     data_files=data_files,
     description="Lightweight LBTC Wallet",
