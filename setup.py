@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 # python setup.py sdist --format=zip,gztar
 
 
@@ -87,6 +88,7 @@ setup(
             'wordlist/*.txt',
             'locale/*/LC_MESSAGES/electrum.mo',
         ]
+        
     },
     
     scripts=['electrum'],
