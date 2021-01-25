@@ -1,5 +1,6 @@
 Lightning Bitcoin 
 
+
 light weight wallet
 =====================================
 
@@ -58,8 +59,11 @@ sudo apt-get install python-pycurl gettext
 Author
 ===============
 
+
 **Benjamin Smith**
 
+
 sunshine.benjamin.smith@gmail.com
+
 
 1ECSDWsm17fbCECgdb5MvR3EZMT6Sbd232
