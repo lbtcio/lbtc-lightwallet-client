@@ -54,6 +54,7 @@ setup(
         'PySocks>=1.6.6',
     ],
     
+    
     packages=[
         'electrum',
         'electrum_gui',
@@ -73,11 +74,13 @@ setup(
         'electrum_plugins.virtualkeyboard',
     ],
     
+    
     package_dir={
         'electrum': 'lib',
         'electrum_gui': 'gui',
         'electrum_plugins': 'plugins',
     },
+    
     
     package_data={
         'electrum': [
