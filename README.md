@@ -1,6 +1,5 @@
 Lightning Bitcoin 
 
-
 light weight wallet
 =====================================
 
@@ -8,7 +7,6 @@ light weight wallet
 Licence: MIT Licence
 
 Lightning Bitcoin light weight wallet is forked from [Electrum](https://github.com/spesmilo/electrum) v3.0.5
-
 
 
 
@@ -20,7 +18,7 @@ For Windows users, you can download latest release [here](http://downloadwallet.
 
 
 
-If you are using Linux, read the following:
+If you  use Linux, read the following:
 
 
 > **NOTE :  All the following command work well on Ubuntu 16.04**
@@ -59,11 +57,8 @@ sudo apt-get install python-pycurl gettext
 Author
 ===============
 
-
 **Benjamin Smith**
 
-
 sunshine.benjamin.smith@gmail.com
-
 
 1ECSDWsm17fbCECgdb5MvR3EZMT6Sbd232
