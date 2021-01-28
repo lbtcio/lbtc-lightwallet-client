@@ -6,6 +6,7 @@
 
 from setuptools import setup
 
+
 import os
 import sys
 import platform
@@ -56,6 +57,7 @@ setup(
     ],
     
     
+    
     packages=[
         'electrum',
         'electrum_gui',
@@ -76,11 +78,13 @@ setup(
     ],
     
     
+    
     package_dir={
         'electrum': 'lib',
         'electrum_gui': 'gui',
         'electrum_plugins': 'plugins',
     },
+    
     
     
     package_data={
@@ -95,6 +99,7 @@ setup(
         
     },
     
+    
     scripts=['electrum'],
     data_files=data_files,
     description="Lightweight LBTC Wallet",
@@ -104,3 +109,4 @@ setup(
     url="http://lbtc.io/",
     long_description="""Lightweight LBTC Wallet"""
 )
+
