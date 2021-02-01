@@ -1,5 +1,7 @@
 name: electrum
+
 version: master
+
 summary: Bitcoin thin client
 description: |
   Lightweight Bitcoin client
