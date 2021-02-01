@@ -1,18 +1,35 @@
 # Release 0.0.6
+
   * add Chinese lauguage support in light wallet GUI
+  
   * not refresh table if no delegate selected when user click "StoreDelegates"
+  
   * add new light wallet server wallet-cn.lbtc.io/wallet-hk.lbtc.io and set them as the default server
+  
   * chang default base unit to LBTC in wallet preference
+  
   * remove "Zero after decimal point" and "Video Device" in Appearance
+  
   * remove "Use multiple change addresses" and "Coin selection"
+  
   * remove "Sweep" menu in Wallet->Private keys menu
+  
   * remove "Invoices" menu item in Wallet
+  
   * remove "Plot" menu item in Wallet->History menu
+  
   * remove "From QR code" menu item in Tools->Load transaction menu
+  
   * fix wallet crash bug wehn use "Pay to many" to pay to multiple address
+  
   * add Russian lauguage support in light wallet GUI
+  
 # Realease 0.0.7
+
   * add language automatic detecting function, wallet use os default language as its default language. 
+  
   * make password dialog show only once when user do vote or cancelvote
+  
   * remove the black backgroud dialog when wallet running and not run in python embeded interpreter
+  
   * cut wallet size from 257M to 20M, make it occupy less disk space
