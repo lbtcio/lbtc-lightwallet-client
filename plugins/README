@@ -1,7 +1,9 @@
 Plugin rules:
 
+
  * The plugin system of Electrum is designed to allow the development
    of new features without increasing the core code of Electrum.
+
 
  * Electrum is written in pure python. if you want to add a feature
    that requires non-python libraries, then it must be submitted as a
