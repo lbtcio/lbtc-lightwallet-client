@@ -1,6 +1,9 @@
 gui/qt/__init__.py
+
 gui/qt/main_window.py
+
 gui/qt/history_list.py
+
 gui/qt/contact_list.py
 gui/qt/invoice_list.py
 gui/qt/request_list.py
@@ -26,4 +29,5 @@ gui/kivy/uix/ui_screens/receive.kv
 gui/kivy/uix/ui_screens/send.kv
 plugins/labels/qt.py
 plugins/trezor/qt.py
+
 plugins/virtualkeyboard/qt.py
