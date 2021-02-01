@@ -1,6 +1,9 @@
 import tty, sys
+
 import curses, datetime, locale
+
 from decimal import Decimal
+
 import getpass
 
 import electrum
