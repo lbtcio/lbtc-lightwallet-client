@@ -1,18 +1,32 @@
 # If you want electrum to appear in a linux app launcher ("start menu"), install this by doing:
 
+
 # sudo desktop-file-install electrum.desktop
 
+
 [Desktop Entry]
+
 Comment=Lightweight LBTC Client
+
 Exec=electrum %u
+
 GenericName[en_US]=LBTC Wallet
+
 GenericName=LBTC Wallet
+
 Icon=electrum
+
 Name[en_US]=Electrum LBTC Wallet
+
 Name=Electrum LBTC Wallet
+
 Categories=Finance;Network;
+
 StartupNotify=false
+
 Terminal=false
+
 Type=Application
+
 MimeType=x-scheme-handler/LBTC;
 
