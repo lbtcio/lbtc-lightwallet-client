@@ -1,34 +1,21 @@
 #!/usr/bin/env python3
 
-
-
 # python setup.py sdist --format=zip,gztar
-
-
 
 
 from setuptools import setup
 
-
-
 import os
-
 
 import sys
 
-
 import platform
-
 
 import imp
 
-
 import argparse
 
-
-
 version = imp.load_source('version', 'lib/version.py')
-
 
 
 if sys.version_info[:3] < (3, 4, 0):
@@ -70,7 +57,6 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         
     ]
 
-    
 setup(
     
     name="Electrum",
@@ -167,12 +153,10 @@ setup(
             
             'locale/*/LC_MESSAGES/electrum.mo',
             
-        ]
-        
+        ]       
         
     },
-    
-    
+     
     scripts=['electrum'],
     
     data_files=data_files,
@@ -188,6 +172,4 @@ setup(
     url="http://lbtc.io/",
     
     long_description="""Lightweight LBTC Wallet"""
-    
 )
-
