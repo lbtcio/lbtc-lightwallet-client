@@ -2,17 +2,11 @@
 
 # python setup.py sdist --format=zip,gztar
 
-
 from setuptools import setup
-
 import os
-
 import sys
-
 import platform
-
 import imp
-
 import argparse
 
 version = imp.load_source('version', 'lib/version.py')
