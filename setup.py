@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
+
 # python setup.py sdist --format=zip,gztar
 
+
 from setuptools import setup
+
 
 import os
 
@@ -31,6 +34,7 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     parser = argparse.ArgumentParser()
     
     parser.add_argument('--root=', dest='root_path', metavar='dir', default='/')
+    
     
     opts, _ = parser.parse_known_args(sys.argv[1:])
     
@@ -82,7 +86,9 @@ setup(
         
         'PySocks>=1.6.6',
         
+        
     ],
+    
     
     
     
@@ -120,17 +126,22 @@ setup(
         
         'electrum_plugins.virtualkeyboard',
         
+        
     ],
     
     
     
+    
     package_dir={
+        
         
         'electrum': 'lib',
         
         'electrum_gui': 'gui',
         
         'electrum_plugins': 'plugins',
+       
+        
         
     },
     
@@ -156,19 +167,28 @@ setup(
         
     },
      
+    
     scripts=['electrum'],
+    
     
     data_files=data_files,
     
+    
     description="Lightweight LBTC Wallet",
+    
     
     author="LBTC Dev Team",
     
+    
     author_email="support@lightningbitcoin.io",
+    
     
     license="MIT Licence",
     
+    
     url="http://lbtc.io/",
     
+    
     long_description="""Lightweight LBTC Wallet"""
+    
 )
