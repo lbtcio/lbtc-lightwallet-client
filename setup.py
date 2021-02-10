@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-
 # python setup.py sdist --format=zip,gztar
 
-
 from setuptools import setup
-
 
 import os
 
@@ -19,14 +16,11 @@ import argparse
 
 version = imp.load_source('version', 'lib/version.py')
 
-
 if sys.version_info[:3] < (3, 4, 0):
     
     sys.exit("Error: Electrum requires Python version >= 3.4.0...")
-
-    
+  
 data_files = []
-
 
 if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     
