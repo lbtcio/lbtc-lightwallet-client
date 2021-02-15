@@ -1,40 +1,31 @@
 Lightning Bitcoin 
 
-
 light weight wallet
 
 =====================================
 
-
 Licence: MIT Licence
 
-
 Lightning Bitcoin light weight wallet is forked from [Electrum](https://github.com/spesmilo/electrum) v3.0.5
-
 
 NOW Getting started
 
 ===============
 
-
 For Windows users,
 
 you can download latest release [here](http://downloadwallet.lbtc.io/index.php/s/HvkFNyCqVu3oc0r/downloads).
 
-
 If you  use Linux, read the following:
-
 
 > **NOTE :  All the following command work well on Ubuntu 16.04**
 
 Check out the code from Github:
 ```
-
 git clone git://github.com/lbtcio/lbtc-lightwallet-client
 
 cd lbtc-lightwallet-client
 ```
-
 Run install (this should install dependencies):
 ```
 
