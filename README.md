@@ -1,6 +1,8 @@
 Lightning Bitcoin 
 
+
 light weight wallet
+
 
 =====================================
 
@@ -28,6 +30,7 @@ cd lbtc-lightwallet-client
 ```
 Run install (this should install dependencies):
 ```
+
 
 
 python3 setup.py install
@@ -58,6 +61,7 @@ sudo apt-get install python-pycurl gettext
 
 ```
 //=========//
+
 
 Author
 
