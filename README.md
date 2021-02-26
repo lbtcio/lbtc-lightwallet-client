@@ -2,7 +2,6 @@ Lightning Bitcoin
 
 light weight wallet
 
-
 =====================================
 
 Licence: MIT Licence
@@ -30,6 +29,7 @@ cd lbtc-lightwallet-client
 ```
 Run install (this should install dependencies):
 ```
+
 
 
 
@@ -63,8 +63,9 @@ sudo apt-get install python-pycurl gettext
 //=========//
 
 
-Author
 
+
+Author
 ===============
 
 **Benjamin Smith**
