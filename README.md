@@ -1,24 +1,22 @@
 Lightning Bitcoin 
 
+
 light weight wallet
+
 
 =====================================
 
+
 Licence: MIT Licence
 
-
 =======================================
-
 
 Lightning Bitcoin light weight wallet is forked from [Electrum](https://github.com/spesmilo/electrum) v3.0.5
 
 
-
 NOW Getting started
 
-
 ===============
-
 
 For Windows users,
 
@@ -40,7 +38,6 @@ cd lbtc-lightwallet-client
 ```
 Run install (this should install dependencies):
 ```
-
 
 
 
