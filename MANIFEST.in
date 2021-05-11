@@ -1,5 +1,4 @@
 include LICENCE RELEASE-NOTES AUTHORS
-
 include README.rst
 include electrum.conf.sample
 include electrum.desktop
