@@ -1,8 +1,6 @@
 Lightning Bitcoin 
 
-
 light weight wallet
-
 
 =====================================
 
@@ -15,9 +13,7 @@ Lightning Bitcoin light weight wallet is forked from [Electrum](https://github.c
 
 NOW Getting started
 
-
 ===============
-
 
 For Windows users,
 
