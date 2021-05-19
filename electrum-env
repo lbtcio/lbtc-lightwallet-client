@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 # This script creates a virtualenv named 'env' and installs all
 # python dependencies before activating the env and running Electrum.
 # If 'env' already exists, it is activated and Electrum is started
