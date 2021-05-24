@@ -1,7 +1,9 @@
 Lightning Bitcoin 
 
 
+
 light weight wallet
+
 
 
 =====================================
@@ -27,7 +29,6 @@ If you  use Linux, read the following:
 
 
 > **NOTE :  All the following command work well on Ubuntu 16.04**
-
 
 Check out the code from Github:
 ```
