@@ -1,8 +1,6 @@
 Lightning Bitcoin 
 
-
 light weight wallet
-
 
 =====================================
 
@@ -19,13 +17,9 @@ NOW Getting started
 
 For Windows users,
 
-
 you can download latest release [here](http://downloadwallet.lbtc.io/index.php/s/HvkFNyCqVu3oc0r/downloads).
 
-
-
 If you  use Linux, read the following:
-
 
 > **NOTE :  All the following command work well on Ubuntu 16.04**
 
