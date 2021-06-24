@@ -1,5 +1,6 @@
 # If you want electrum to appear in a linux app launcher ("start menu"), install this by doing:
 
+
 # sudo desktop-file-install electrum.desktop
 
 [Desktop Entry]
