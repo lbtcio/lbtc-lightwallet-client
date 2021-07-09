@@ -1,10 +1,14 @@
 Lightning Bitcoin 
 
+
 light weight wallet
+
 
 =====================================
 
+
 Licence: MIT Licence
+
 
 =======================================
 
