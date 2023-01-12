@@ -4,7 +4,7 @@ chardet==3.0.4
 
 dnspython==1.15.0
 
-ecdsa==0.13
+ecdsa==0.13.3
 
 idna==2.6
 
